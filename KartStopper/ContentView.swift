@@ -9,16 +9,27 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @State private var path: [String] = []
     var body: some View {
-        NavigationStack(path:$path) {
-            List {
-                NavigationLink("Item 1", value: "item1")
-                NavigationLink("Item 2", value: "item2")
-                NavigationLink("Item 3", value: "item3")
+        TabView {
+            Tab ("Home", systemImage: "house") {
+                HomeView()
+                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
+                    .toolbarBackground(Color("Bar"), for: .tabBar)
             }
-            .navigationTitle("To Buy")
+            
+            Tab ("Track", systemImage: "chart.bar.xaxis.ascending.badge.clock") {
+                TrackView()
+                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
+                    .toolbarBackground(Color("Bar"), for: .tabBar)
+            }
+            
+            Tab ("Manage", systemImage: "book.and.wrench") {
+                ManageView()
+                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
+                    .toolbarBackground(Color("Bar"), for: .tabBar)
+            }
         }
+        .tint(.gray100)
     }
 }
 
