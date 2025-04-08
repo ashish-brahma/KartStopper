@@ -14,22 +14,18 @@ struct ContentView: View {
             Tab ("Home", systemImage: "house") {
                 HomeView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                    .toolbarBackground(Color("Bar"), for: .tabBar)
             }
             
             Tab ("Track", systemImage: "chart.bar.xaxis.ascending.badge.clock") {
                 TrackView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                    .toolbarBackground(Color("Bar"), for: .tabBar)
             }
             
             Tab ("Manage", systemImage: "book.and.wrench") {
                 ManageView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                    .toolbarBackground(Color("Bar"), for: .tabBar)
             }
         }
-        .tint(.gray100)
     }
 }
 

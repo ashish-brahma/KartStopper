@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct TrackView: View {
+struct TrackView: View, Hashable {
     var body: some View {
         ZStack {
             Rectangle()
@@ -15,7 +15,7 @@ struct TrackView: View {
                 .scaledToFill()
             
             Text("Summary")
-                .foregroundStyle(.richBlack)
+                .foregroundStyle(.accent)
                 .font(.title)
                 .bold()
         }

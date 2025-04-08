@@ -15,7 +15,7 @@ struct ManageView: View {
                 .scaledToFill()
             
             Text("Preferences")
-                .foregroundStyle(.richBlack)
+                .foregroundStyle(.accent)
                 .font(.title)
                 .bold()
         }
