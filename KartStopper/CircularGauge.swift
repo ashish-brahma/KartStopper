@@ -35,7 +35,7 @@ struct CircularGauge: View {
             
         }
         .gaugeStyle(.accessoryCircular)
-        .tint(.white.opacity(0.65))
+        .tint(.white.opacity(0.5))
         .padding()
     }
 }

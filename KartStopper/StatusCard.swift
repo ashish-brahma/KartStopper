@@ -17,12 +17,17 @@ struct StatusCard: View {
             Rectangle()
                 .fill(statusColor)
             
-            VStack {
+            VStack(alignment: .leading) {
+                Text(message)
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundStyle(messageColor)
+                    .padding()
+                
                 HStack(alignment: .top) {
                     // Headline
                     Text("This month you've spent")
                         .font(Font.custom("NewYorkMedium-SemiboldItalic", size: 16))
-                        .foregroundStyle(.richBlack)
                         .padding(.top, 20)
                         .padding(.leading, 16)
                     
@@ -31,25 +36,60 @@ struct StatusCard: View {
                     // Gauge
                     CircularGauge(statusColor: statusColor, current: current )
                 }
-                
+                .padding(.top, -20)
+
                 HStack {
                     // Currency
                     Text("$")
-                        .foregroundColor(.letterJacket)
+                        .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .letterJacket)
                         .font(Font.custom("NewYorkLarge-Regular.otf", size: 48))
                     
                     // Current Amount
                     Text(String(format:"%.2f", current))
-                        .foregroundColor(statusColor == .negativeStatus ? .cowpeas : .richBlack  )
                         .font(Font.custom("NewYorkLarge-Regular.otf", size: 132))
                         .padding(.leading, 10)
                 }
-                .padding(.top, 10)
-                .padding(.bottom, -30)
+                .frame(maxWidth: .infinity)
+                .padding(.top, -20)
+                .padding(.bottom, 30)
+                .padding(.horizontal, 10)
             }
-            .padding(.top, -80)
+            .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .richBlack)
+            .padding(.top, 10)
         }
         .frame(width: .infinity, height: 333)
+    }
+    
+    var message: String {
+        switch (statusColor) {
+        case .positiveStatus:
+            "You're Awesome"
+            
+        case .neutralStatus:
+            "Slow Down"
+            
+        case .negativeStatus:
+            "You're Broke"
+            
+        default:
+            "Welcome"
+        }
+    }
+    
+    var messageColor: Color {
+        switch (statusColor) {
+        case .positiveStatus:
+                .richBlack
+            
+        case .neutralStatus:
+                .sankrit
+            
+        case .negativeStatus:
+                .cowpeas
+            
+        default:
+                .accent
+        }
     }
 }
 
