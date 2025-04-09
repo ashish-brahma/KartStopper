@@ -8,6 +8,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showTags: Bool = false
+    @State var numLists = 0
+    @State var numTags = 0
     
     var body: some View {
         NavigationStack {
@@ -37,14 +39,14 @@ struct HomeView: View {
                         NavigationLink {
                             Lists()
                         } label: {
-                            CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .title2, stat: "0")
+                            CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .title2, stat: $numLists)
                         }
                         .padding(3)
                         
                         Button {
                             showTags.toggle()
                         } label: {
-                            CardLabel(name: "Tags", symbol: "plus.circle.fill", symbolFont: .title, stat: "0")
+                            CardLabel(name: "Tags", symbol: "plus.circle.fill", symbolFont: .title, stat: $numTags)
                         }
                     }
                     .navigationTitle("Home")
@@ -53,6 +55,8 @@ struct HomeView: View {
                     .padding(.horizontal)
                     .sheet(isPresented: $showTags) {
                         Tags()
+                            .presentationDetents([.medium, .large])
+                            .presentationDragIndicator(.visible)
                     }
                     
                     Spacer()

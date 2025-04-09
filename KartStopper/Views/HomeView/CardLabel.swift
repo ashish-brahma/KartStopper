@@ -11,7 +11,7 @@ struct CardLabel: View {
     let name: String
     let symbol: String
     let symbolFont: Font
-    let stat: String
+    @Binding var stat:Int
     
     var body: some View {
         VStack() {
@@ -28,7 +28,7 @@ struct CardLabel: View {
             
             Spacer()
             
-            Text(stat)
+            Text("\(stat)")
                 .font(.largeTitle)
                 .foregroundStyle(.gray)
             
@@ -42,5 +42,6 @@ struct CardLabel: View {
 }
 
 #Preview {
-    CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .body, stat: "0")
+    @Previewable @State var numLists = 1
+    CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .body, stat: $numLists)
 }

@@ -42,4 +42,5 @@ struct CircularGauge: View {
 
 #Preview {
     CircularGauge(statusColor: .neutralStatus, current: 40.0)
+        .scaleEffect(4)
 }
