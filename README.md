@@ -2,7 +2,7 @@
 KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.
 
 ### Status
-It is currently in design phase.
+Pilot build is under development.
 
 ### Promo
 Please follow the page on LinkedIn at https://www.linkedin.com/company/kartstopper
