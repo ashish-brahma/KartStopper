@@ -41,6 +41,9 @@ struct CircularGauge: View {
 }
 
 #Preview {
-    CircularGauge(statusColor: .neutralStatus, current: 40.0)
+    @Previewable @State var color = Budget().messageColor
+    @Previewable @State var current = Budget().currentAmount
+    
+    CircularGauge(statusColor: color, current: current)
         .scaleEffect(4)
 }

@@ -21,6 +21,7 @@ struct Tags: View {
                     Text("Tags")
                         .font(.title)
                         .bold()
+                        .foregroundStyle(Color(.foreground))
                     
                     Spacer()
                     

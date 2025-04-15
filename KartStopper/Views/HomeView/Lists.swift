@@ -17,6 +17,7 @@ struct Lists: View {
                 
                 Text("No Lists")
                     .navigationTitle("Lists")
+                    .navigationTitleColor(Color(.foreground))
             }
         }
     }

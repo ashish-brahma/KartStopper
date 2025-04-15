@@ -8,22 +8,17 @@
 import SwiftUI
 
 struct StatusCard: View {
+    @State var cardColor: String
     @State var statusColor: Color
     @State var current: Double
     
     var body: some View {
-        ZStack {
+        ZStack() {
             // Background
             Rectangle()
-                .fill(statusColor)
+                .fill(Color(cardColor))
             
             VStack(alignment: .leading) {
-                Text(message)
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(messageColor)
-                    .padding()
-                
                 HStack(alignment: .top) {
                     // Headline
                     Text("This month you've spent")
@@ -57,42 +52,14 @@ struct StatusCard: View {
             .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .richBlack)
             .padding(.top, 10)
         }
-        .frame(width: .infinity, height: 333)
-    }
-    
-    var message: String {
-        switch (statusColor) {
-        case .positiveStatus:
-            "You're Awesome"
-            
-        case .neutralStatus:
-            "Slow Down"
-            
-        case .negativeStatus:
-            "You're Broke"
-            
-        default:
-            "Welcome"
-        }
-    }
-    
-    var messageColor: Color {
-        switch (statusColor) {
-        case .positiveStatus:
-                .richBlack
-            
-        case .neutralStatus:
-                .sankrit
-            
-        case .negativeStatus:
-                .cowpeas
-            
-        default:
-                .accent
-        }
+        .frame(height: 333)
     }
 }
 
 #Preview {
-    StatusCard(statusColor: .neutralStatus, current: 40.0)
+    @Previewable @State var cardColor = Budget().status.rawValue
+    @Previewable @State var messageColor = Budget().messageColor
+    @Previewable @State var current = Budget().currentAmount
+    
+    StatusCard(cardColor: cardColor, statusColor: messageColor, current: current)
 }

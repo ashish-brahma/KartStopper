@@ -36,7 +36,7 @@ struct CardLabel: View {
         }
         .padding()
         .frame(height: 160, alignment: .top)
-        .background(.white.opacity(0.9))
+        .background(Color(.cardLabel))
         .clipShape(.rect(cornerRadius:25))
     }
 }

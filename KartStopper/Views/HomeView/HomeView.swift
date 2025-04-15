@@ -10,10 +10,11 @@ struct HomeView: View {
     @State var showTags: Bool = false
     @State var numLists = 0
     @State var numTags = 0
+    let budget = Budget()
     
     var body: some View {
         NavigationStack {
-            ZStack {
+            ZStack() {
                 // Background
                 Rectangle()
                     .fill(Color(.background))
@@ -24,8 +25,12 @@ struct HomeView: View {
                     Spacer()
                     
                     // Status Card
-                    StatusCard(statusColor: .positiveStatus, current: 0.0)
-                        .padding(.top, -20)
+                    StatusCard(
+                        cardColor: budget.status.rawValue,
+                        statusColor: budget.messageColor,
+                        current: budget.currentAmount
+                    )
+                    .padding(.top, -20)
                     
                     // Call to action
                     Text("Continue Listing")
@@ -49,9 +54,10 @@ struct HomeView: View {
                             CardLabel(name: "Tags", symbol: "plus.circle.fill", symbolFont: .title, stat: $numTags)
                         }
                     }
-                    .navigationTitle("Home")
-                    .foregroundStyle(.turkishAqua)
+                    .navigationTitle(budget.message)
+                    .navigationTitleColor(budget.messageColor)
                     .background(Color(.background))
+                    .foregroundStyle(Color(.foreground))
                     .padding(.horizontal)
                     .sheet(isPresented: $showTags) {
                         Tags()
@@ -61,11 +67,9 @@ struct HomeView: View {
                     
                     Spacer()
                 }
-                .scaledToFit()
+                .frame(width: 402)
             }
-            .scaledToFill()
         }
-        .scrollContentBackground(.hidden)
     }
 }
 
