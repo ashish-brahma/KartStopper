@@ -8,39 +8,21 @@
 import SwiftUI
 
 struct Budget {
+    var currencySymbol = K.dollarSymbol
     var currentAmount = 40.0
     var maxAmount = 60.0
-    var status: budgetStatus = .neutralStatus
-    
-    enum budgetStatus: String {
-        case positiveStatus = "PositiveStatus"
-        case neutralStatus = "NeutralStatus"
-        case negativeStatus = "NegativeStatus"
+    var status: String {
+        guard let statusIndex = K.budgetStatus.keys.firstIndex(where: { $0.hasPrefix(K.NeutralPrefix) }) else {
+            return K.defaultStatus
+        }
+        return K.budgetStatus[statusIndex].key
     }
     
     var message: String {
-        switch (status) {
-        case .positiveStatus:
-            "You're Awesome"
-            
-        case .neutralStatus:
-            "Slow Down"
-            
-        case .negativeStatus:
-            "You're Broke"
-        }
+        return K.budgetStatus[status]?[K.messageIndex] ?? K.homeTabName
     }
     
     var messageColor: Color {
-        switch (status) {
-        case .positiveStatus:
-                .richBlack
-            
-        case .neutralStatus:
-                .sankrit
-            
-        case .negativeStatus:
-                .cowpeas
-        }
+        return Color(K.budgetStatus[status]?[K.colorIndex] ?? K.defaultColor)
     }
 }

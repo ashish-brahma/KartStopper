@@ -11,6 +11,7 @@ struct StatusCard: View {
     @State var cardColor: String
     @State var statusColor: Color
     @State var current: Double
+    @State var currencySymbol: String
     
     var body: some View {
         ZStack() {
@@ -21,8 +22,8 @@ struct StatusCard: View {
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
                     // Headline
-                    Text("This month you've spent")
-                        .font(Font.custom("NewYorkMedium-SemiboldItalic", size: 16))
+                    Text(K.statusCardHeadline)
+                        .font(Font.custom(K.newYorkMediumSemiboldItalicFont, size: 16))
                         .padding(.top, 20)
                         .padding(.leading, 16)
                     
@@ -35,13 +36,13 @@ struct StatusCard: View {
 
                 HStack {
                     // Currency
-                    Text("$")
+                    Text(currencySymbol)
                         .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .letterJacket)
-                        .font(Font.custom("NewYorkLarge-Regular.otf", size: 48))
+                        .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
                     
                     // Current Amount
-                    Text(String(format:"%.2f", current))
-                        .font(Font.custom("NewYorkLarge-Regular.otf", size: 132))
+                    Text(String(format:K.decimalFormat, current))
+                        .font(Font.custom(K.newYorkLargeRegularFont, size: 132))
                         .padding(.leading, 10)
                 }
                 .frame(maxWidth: .infinity)
@@ -57,9 +58,10 @@ struct StatusCard: View {
 }
 
 #Preview {
-    @Previewable @State var cardColor = Budget().status.rawValue
+    @Previewable @State var cardColor = Budget().status
     @Previewable @State var messageColor = Budget().messageColor
     @Previewable @State var current = Budget().currentAmount
+    @Previewable @State var symbol = Budget().currencySymbol
     
-    StatusCard(cardColor: cardColor, statusColor: messageColor, current: current)
+    StatusCard(cardColor: cardColor, statusColor: messageColor, current: current, currencySymbol: symbol)
 }

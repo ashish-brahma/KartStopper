@@ -11,17 +11,17 @@ import SwiftData
 struct ContentView: View {
     var body: some View {
         TabView {
-            Tab ("Home", systemImage: "house") {
+            Tab (K.homeTabName, systemImage: K.homeTabSymbol) {
                 HomeView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
             
-            Tab ("Track", systemImage: "chart.bar.xaxis.ascending.badge.clock") {
+            Tab (K.trackTabName, systemImage: K.trackTabSymbol) {
                 TrackView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
             
-            Tab ("Manage", systemImage: "book.and.wrench") {
+            Tab (K.manageTabName, systemImage: K.manageTabSymbol) {
                 ManageView()
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
@@ -31,25 +31,4 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-}
-
-extension View {
-    @available(iOS 14, *)
-    func navigationTitleColor(_ color: Color) -> some View {
-        let uiColor = UIColor(color)
-        
-        UINavigationBar
-            .appearance()
-            .titleTextAttributes = [
-                .foregroundColor: uiColor
-            ]
-        
-        UINavigationBar
-            .appearance()
-            .largeTitleTextAttributes = [
-                .foregroundColor: uiColor
-            ]
-        
-        return self
-    }
 }

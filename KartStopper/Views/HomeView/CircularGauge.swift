@@ -18,20 +18,20 @@ struct CircularGauge: View {
             // Image
             
         } currentValueLabel: {
-            Text(String(format:"%.2f", current))
+            Text(String(format:K.decimalFormat, current))
                 .foregroundColor(statusColor == .negativeStatus ? .cowpeas : .richBlack  )
-                .font(Font.custom("NewYorkLarge-Regular.otf", size: 18))
+                .font(Font.custom(K.newYorkLargeRegularFont, size: 18))
                 .padding(.leading, -1)
             
         } minimumValueLabel: {
             Text("\(Int(minValue))")
                 .foregroundColor(.gray700)
-                .font(Font.custom("NewYorkLarge-Regular.otf", size: 9))
+                .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
         } maximumValueLabel: {
             Text("\(Int(maxValue))")
                 .foregroundColor(.cowpeas)
-                .font(Font.custom("NewYorkLarge-Regular.otf", size: 9))
+                .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
         }
         .gaugeStyle(.accessoryCircular)

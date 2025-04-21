@@ -18,7 +18,7 @@ struct Tags: View {
             
             VStack {
                 HStack {
-                    Text("Tags")
+                    Text(K.tagsTitle)
                         .font(.title)
                         .bold()
                         .foregroundStyle(Color(.foreground))
@@ -28,7 +28,7 @@ struct Tags: View {
                     Button {
                         dismiss()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: K.tagsDismissSymbol)
                             .font(.title)
                     }
                 }
@@ -36,7 +36,8 @@ struct Tags: View {
                 
                 Spacer()
                 
-                Text("No tags.")
+                
+                Text(K.tagsFillerText)
                 
                 Spacer()
             }

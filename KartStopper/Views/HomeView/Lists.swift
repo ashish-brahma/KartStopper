@@ -9,15 +9,27 @@ import SwiftUI
 
 struct Lists: View {
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Rectangle()
-                    .fill(.gray300)
-                    .ignoresSafeArea()
+        ZStack {
+            Rectangle()
+                .fill(.gray300)
+                .ignoresSafeArea()
+            
+            VStack {
+                HStack {
+                    Text(K.listsTitle)
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(Color(.foreground))
+                    
+                    Spacer()
+                }
+                .padding()
                 
-                Text("No Lists")
-                    .navigationTitle("Lists")
-                    .navigationTitleColor(Color(.foreground))
+                Spacer()
+                
+                Text(K.listsFillerText)
+                
+                Spacer()
             }
         }
     }

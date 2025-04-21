@@ -43,5 +43,5 @@ struct CardLabel: View {
 
 #Preview {
     @Previewable @State var numLists = 1
-    CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .body, stat: $numLists)
+    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .body, stat: $numLists)
 }

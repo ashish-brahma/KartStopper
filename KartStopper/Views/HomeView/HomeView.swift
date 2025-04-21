@@ -26,14 +26,15 @@ struct HomeView: View {
                     
                     // Status Card
                     StatusCard(
-                        cardColor: budget.status.rawValue,
+                        cardColor: budget.status,
                         statusColor: budget.messageColor,
-                        current: budget.currentAmount
+                        current: budget.currentAmount,
+                        currencySymbol: budget.currencySymbol
                     )
                     .padding(.top, -20)
                     
                     // Call to action
-                    Text("Continue Listing")
+                    Text(K.homeCTA)
                         .font(.title2)
                         .bold()
                         .padding(.top, 20)
@@ -44,14 +45,14 @@ struct HomeView: View {
                         NavigationLink {
                             Lists()
                         } label: {
-                            CardLabel(name: "Lists", symbol: "chevron.right", symbolFont: .title2, stat: $numLists)
+                            CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: $numLists)
                         }
                         .padding(3)
                         
                         Button {
                             showTags.toggle()
                         } label: {
-                            CardLabel(name: "Tags", symbol: "plus.circle.fill", symbolFont: .title, stat: $numTags)
+                            CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: $numTags)
                         }
                     }
                     .navigationTitle(budget.message)
