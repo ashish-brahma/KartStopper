@@ -22,6 +22,14 @@ struct HomeView: View {
                     .scaledToFill()
                 
                 VStack(alignment: .leading) {
+                    // Title
+                    Text(budget.message)
+                        .font(.largeTitle)
+                        .bold()
+                        .foregroundStyle(budget.messageColor)
+                        .padding()
+                        .padding(.top, 30)
+                    
                     Spacer()
                     
                     // Status Card
@@ -43,7 +51,7 @@ struct HomeView: View {
                     // Navigation Cards
                     HStack {
                         NavigationLink {
-                            Lists()
+                            ListExplorer()
                         } label: {
                             CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: $numLists)
                         }
@@ -55,8 +63,8 @@ struct HomeView: View {
                             CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: $numTags)
                         }
                     }
-                    .navigationTitle(budget.message)
-                    .navigationTitleColor(budget.messageColor)
+                    .navigationBarTitleDisplayMode(.large)
+                    .navigationTitleColor(Color.foreground)
                     .background(Color(.background))
                     .foregroundStyle(Color(.foreground))
                     .padding(.horizontal)

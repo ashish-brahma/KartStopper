@@ -18,6 +18,7 @@ struct Tags: View {
             
             VStack {
                 HStack {
+                    // Title
                     Text(K.tagsTitle)
                         .font(.title)
                         .bold()
@@ -38,6 +39,9 @@ struct Tags: View {
                 
                 
                 Text(K.tagsFillerText)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.tertiary)
                 
                 Spacer()
             }

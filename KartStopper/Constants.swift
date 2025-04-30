@@ -15,6 +15,9 @@ struct K {
     // Number Formatting
     static let decimalFormat = "%.2f"
     
+    // Strings
+    static let emptyString = ""
+    
     // Tab View
     static let homeTabName = "Home"
     static let homeTabSymbol = "house"
@@ -36,11 +39,21 @@ struct K {
     // Tags View
     static let tagsTitle = "Tags"
     static let tagsDismissSymbol = "xmark.circle.fill"
-    static let tagsFillerText = "No tags"
+    static let tagsFillerText = "No Tags"
     
     // Lists View
     static let listsTitle = "Lists"
     static let listsFillerText = "No Lists"
+    static let listsCTA = "Tap on plus button to create."
+    static let listsAddTagsButtonLabel = "Add Tags"
+    static let listsAddTagsButtonImage = "tag"
+    static let listsAddListButtonLabel = "Add List"
+    static let listsAddListButtonImage = "plus"
+    static let listsFavouritesRowTitle = "Favourites"
+    static let listsSectionHeader = "Keep Going..."
+    static let listsFavouritesFillerText = "No lists favourited."
+    static let listsNewListTitlePlaceholderLabel = "New List"
+    static let listsSearchPlaceholderLabel = "Search a product"
     
     // Budget Model
     static let dollarSymbol = "$"
