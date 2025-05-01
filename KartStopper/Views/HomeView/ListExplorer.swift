@@ -10,7 +10,7 @@ import SwiftUI
 struct ListExplorer: View {
     @State var showTags: Bool = false
     @State var searchText: String = K.emptyString
-    let lists = ListContainer()
+    let lists: ListContainer
     
     var body: some View {
         ZStack {
@@ -36,19 +36,22 @@ struct ListExplorer: View {
                         // Favourites section
                         Section {
                             NavigationLink {
+                                // TODO: Create favourites list
                                 Text(K.listsFavouritesFillerText)
                             } label: {
                                 HStack {
                                     Text(K.listsFavouritesRowTitle)
+                                        .foregroundStyle(Color.foreground)
                                     
                                     Spacer()
                                     
-                                    Text("0")
+                                    Text(String(lists.getFavouritesCount()))
+                                        .foregroundStyle(.secondary)
                                 }
                             }
                         }
                         
-                        // Saved lists
+                        // Saved lists section
                         Section(header: Text(K.listsSectionHeader)
                                             .font(.title2)
                                             .foregroundStyle(.accent)) {
@@ -56,7 +59,6 @@ struct ListExplorer: View {
                         }
                     }
                     .listStyle(.plain)
-                    .foregroundStyle(Color.foreground)
                 }
                 
                 Spacer()
@@ -89,5 +91,6 @@ struct ListExplorer: View {
 }
 
 #Preview {
-    ListExplorer()
+    let lists = ListContainer()
+    ListExplorer(lists: lists)
 }

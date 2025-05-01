@@ -10,6 +10,7 @@ import Foundation
 struct ListModel: Identifiable {
     let id: Int
     let name: String
+    let detail: String
     let date: Date
     let content: [ListItemModel]
 }

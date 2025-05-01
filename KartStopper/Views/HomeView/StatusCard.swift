@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatusCard: View {
     @State var cardColor: String
-    @State var statusColor: Color
+    @State var status: String
     @State var current: Double
     @State var currencySymbol: String
     
@@ -30,14 +30,14 @@ struct StatusCard: View {
                     Spacer()
                     
                     // Gauge
-                    CircularGauge(statusColor: statusColor, current: current )
+                    CircularGauge(status: status, current: current )
                 }
                 .padding(.top, -20)
 
                 HStack {
                     // Currency
                     Text(currencySymbol)
-                        .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .letterJacket)
+                        .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .letterJacket)
                         .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
                     
                     // Current Amount
@@ -50,7 +50,7 @@ struct StatusCard: View {
                 .padding(.bottom, 30)
                 .padding(.horizontal, 10)
             }
-            .foregroundStyle(statusColor == .negativeStatus ? .cowpeas : .richBlack)
+            .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .richBlack)
             .padding(.top, 10)
         }
         .frame(height: 333)
@@ -59,9 +59,9 @@ struct StatusCard: View {
 
 #Preview {
     @Previewable @State var cardColor = Budget().status
-    @Previewable @State var messageColor = Budget().messageColor
+    @Previewable @State var status = Budget().status
     @Previewable @State var current = Budget().currentAmount
     @Previewable @State var symbol = Budget().currencySymbol
     
-    StatusCard(cardColor: cardColor, statusColor: messageColor, current: current, currencySymbol: symbol)
+    StatusCard(cardColor: cardColor, status: status, current: current, currencySymbol: symbol)
 }

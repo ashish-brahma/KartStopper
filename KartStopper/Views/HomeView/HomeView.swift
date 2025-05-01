@@ -8,9 +8,16 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showTags: Bool = false
-    @State var numLists = 0
-    @State var numTags = 0
+    
+    // Models
     let budget = Budget()
+    let lists = ListContainer()
+    
+    var numLists: Int {
+        lists.data.count
+    }
+    
+    var numTags: Int = 0
     
     var body: some View {
         NavigationStack {
@@ -35,7 +42,7 @@ struct HomeView: View {
                     // Status Card
                     StatusCard(
                         cardColor: budget.status,
-                        statusColor: budget.messageColor,
+                        status: budget.status,
                         current: budget.currentAmount,
                         currencySymbol: budget.currencySymbol
                     )
@@ -45,26 +52,28 @@ struct HomeView: View {
                     Text(K.homeCTA)
                         .font(.title2)
                         .bold()
+                        .foregroundStyle(Color.foreground)
                         .padding(.top, 20)
                         .padding(.leading, 16)
                     
                     // Navigation Cards
                     HStack {
                         NavigationLink {
-                            ListExplorer()
+                            ListExplorer(lists: lists)
                         } label: {
-                            CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: $numLists)
+                            CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
                         }
                         .padding(3)
                         
                         Button {
                             showTags.toggle()
                         } label: {
-                            CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: $numTags)
+                            CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: numTags)
                         }
                     }
-                    .navigationBarTitleDisplayMode(.large)
+                    .navigationTitle(K.homeTabName)
                     .navigationTitleColor(Color.foreground)
+                    .toolbarVisibility(.hidden, for: .navigationBar)
                     .background(Color(.background))
                     .foregroundStyle(Color(.foreground))
                     .padding(.horizontal)
@@ -75,7 +84,7 @@ struct HomeView: View {
                     }
                     
                     Spacer()
-                }
+                } // TODO: Use device geometry to set width
                 .frame(width: 402)
             }
         }

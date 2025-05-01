@@ -15,7 +15,7 @@ class ListContainer {
     }
     
     func createModelContainer() {
-        data.append(ListModel(id: 0,name: "Pariatur celer", date: .now, content: [
+        data.append(ListModel(id: 0,name: "Pariatur celer", detail: "Amiculum torrens", date: .now, content: [
             ListItemModel(id: 0,
                           name: "Studio umerus",
                           thumbnail: Image(systemName:"headphones"),
@@ -32,5 +32,13 @@ class ListContainer {
                           isFavourited: false
                          )
         ]))
+    }
+    
+    func getFavouritesCount() -> Int {
+        var numFavourites = 0
+        for li in data {
+            numFavourites += li.content.count(where: { $0.isFavourited })
+        }
+        return numFavourites
     }
 }

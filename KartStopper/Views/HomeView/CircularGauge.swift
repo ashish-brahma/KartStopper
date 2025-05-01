@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct CircularGauge: View {
-    let statusColor: Color
+    @State var status: String
     let current: Double
     let minValue = 0.0
     let maxValue = 60.0
@@ -19,7 +19,7 @@ struct CircularGauge: View {
             
         } currentValueLabel: {
             Text(String(format:K.decimalFormat, current))
-                .foregroundColor(statusColor == .negativeStatus ? .cowpeas : .richBlack  )
+                .foregroundColor(status == K.negativeStatus ? .cowpeas : .richBlack  )
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 18))
                 .padding(.leading, -1)
             
@@ -41,9 +41,9 @@ struct CircularGauge: View {
 }
 
 #Preview {
-    @Previewable @State var color = Budget().messageColor
+    @Previewable @State var status = Budget().status
     @Previewable @State var current = Budget().currentAmount
     
-    CircularGauge(statusColor: color, current: current)
+    CircularGauge(status: status, current: current)
         .scaleEffect(4)
 }

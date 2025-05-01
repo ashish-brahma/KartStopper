@@ -62,8 +62,9 @@ struct K {
         "NeutralStatus": ["message": "Slow Down", "color": "Sanskrit"],
         "NegativeStatus": ["message": "You're Broke", "color": "Cowpeas"]
     ]
-    static let defaultStatus = "PositiveStatus"
-    static let NeutralPrefix = "Neutral"
+    static let positiveStatus = "PositiveStatus"
+    static let neurtalStatus = "NeutralStatus"
+    static let negativeStatus = "NegativeStatus"
     static let messageIndex = "message"
     static let colorIndex = "color"
     static let defaultColor = "Background"

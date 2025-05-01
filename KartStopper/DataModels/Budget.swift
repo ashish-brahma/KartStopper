@@ -9,13 +9,17 @@ import SwiftUI
 
 struct Budget {
     var currencySymbol = K.dollarSymbol
-    var currentAmount = 40.0
+    var currentAmount = 0.0
     var maxAmount = 60.0
-    var status: String {
-        guard let statusIndex = K.budgetStatus.keys.firstIndex(where: { $0.hasPrefix(K.NeutralPrefix) }) else {
-            return K.defaultStatus
+    var status : String {
+        switch (currentAmount/maxAmount) {
+        case 0.0..<0.5:
+            K.positiveStatus
+        case 0.5..<0.8:
+            K.neurtalStatus
+        default:
+            K.negativeStatus
         }
-        return K.budgetStatus[statusIndex].key
     }
     
     var message: String {
