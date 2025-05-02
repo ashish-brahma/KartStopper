@@ -14,46 +14,47 @@ struct StatusCard: View {
     @State var currencySymbol: String
     
     var body: some View {
-        ZStack() {
-            // Background
-            Rectangle()
-                .fill(Color(cardColor))
-            
-            VStack(alignment: .leading) {
-                HStack(alignment: .top) {
-                    // Headline
-                    Text(K.statusCardHeadline)
-                        .font(Font.custom(K.newYorkMediumSemiboldItalicFont, size: 16))
-                        .padding(.top, 20)
-                        .padding(.leading, 16)
+        GeometryReader { reader in
+            ZStack() {
+                // Background
+                Rectangle()
+                    .fill(Color(cardColor))
+                
+                VStack(alignment: .leading) {
+                    HStack(alignment: .top) {
+                        // Headline
+                        Text(K.statusCardHeadline)
+                            .font(Font.custom(K.newYorkMediumSemiboldItalicFont, size: 16))
+                            .padding(.top, 20)
+                            .padding(.leading, 16)
+                        
+                        Spacer()
+                        
+                        // Gauge
+                        CircularGauge(status: status, current: current )
+                    }
                     
-                    Spacer()
-                    
-                    // Gauge
-                    CircularGauge(status: status, current: current )
+                    HStack {
+                        // Currency
+                        Text(currencySymbol)
+                            .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .letterJacket)
+                            .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
+                        
+                        // Current Amount
+                        Text(String(format:K.decimalFormat, current))
+                            .font(Font.custom(K.newYorkLargeRegularFont, size: 132))
+                            .padding(.leading, 10)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, -20)
+                    .padding(.bottom, 30)
+                    .padding(.horizontal, 10)
                 }
-                .padding(.top, -20)
-
-                HStack {
-                    // Currency
-                    Text(currencySymbol)
-                        .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .letterJacket)
-                        .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
-                    
-                    // Current Amount
-                    Text(String(format:K.decimalFormat, current))
-                        .font(Font.custom(K.newYorkLargeRegularFont, size: 132))
-                        .padding(.leading, 10)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.top, -20)
-                .padding(.bottom, 30)
-                .padding(.horizontal, 10)
+                .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .richBlack)
+                .padding(.vertical, reader.size.height/2)
             }
-            .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .richBlack)
-            .padding(.top, 10)
+            .frame(height: reader.size.height)
         }
-        .frame(height: 333)
     }
 }
 

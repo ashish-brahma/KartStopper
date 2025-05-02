@@ -14,30 +14,32 @@ struct CardLabel: View {
     let stat: Int
     
     var body: some View {
-        VStack() {
-            HStack {
-                Text(name)
-                    .font(.title2)
+        GeometryReader { reader in
+            VStack() {
+                HStack {
+                    Text(name)
+                        .font(.title2)
+                    
+                    Spacer()
+                    
+                    Image(systemName: symbol)
+                        .font(symbolFont)
+                        .foregroundStyle(.gray700)
+                }
                 
                 Spacer()
                 
-                Image(systemName: symbol)
-                    .font(symbolFont)
-                    .foregroundStyle(.gray700)
+                Text("\(stat)")
+                    .font(.largeTitle)
+                    .foregroundStyle(.gray)
+                
+                Spacer()
             }
-            
-            Spacer()
-            
-            Text("\(stat)")
-                .font(.largeTitle)
-                .foregroundStyle(.gray)
-            
-            Spacer()
+            .padding()
+            .frame(height: reader.size.height/1.2, alignment: .top)
+            .background(Color(.cardLabel))
+            .clipShape(.rect(cornerRadius:25))
         }
-        .padding()
-        .frame(height: 160, alignment: .top)
-        .background(Color(.cardLabel))
-        .clipShape(.rect(cornerRadius:25))
     }
 }
 

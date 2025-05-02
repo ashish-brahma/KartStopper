@@ -21,71 +21,75 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack() {
-                // Background
-                Rectangle()
-                    .fill(Color(.background))
-                    .ignoresSafeArea()
-                    .scaledToFill()
-                
-                VStack(alignment: .leading) {
-                    // Title
-                    Text(budget.message)
-                        .font(.largeTitle)
-                        .bold()
-                        .foregroundStyle(budget.messageColor)
-                        .padding()
-                        .padding(.top, 30)
+            GeometryReader { reader in
+                ZStack() {
+                    // Background
+                    Rectangle()
+                        .fill(Color(.background))
+                        .ignoresSafeArea()
+                        .scaledToFill()
                     
-                    Spacer()
-                    
-                    // Status Card
-                    StatusCard(
-                        cardColor: budget.status,
-                        status: budget.status,
-                        current: budget.currentAmount,
-                        currencySymbol: budget.currencySymbol
-                    )
-                    .padding(.top, -20)
-                    
-                    // Call to action
-                    Text(K.homeCTA)
-                        .font(.title2)
-                        .bold()
-                        .foregroundStyle(Color.foreground)
-                        .padding(.top, 20)
-                        .padding(.leading, 16)
-                    
-                    // Navigation Cards
-                    HStack {
-                        NavigationLink {
-                            ListExplorer(lists: lists)
-                        } label: {
-                            CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
+                    ScrollView {
+                        VStack(alignment: .leading) {
+                            // Title
+                            Text(budget.message)
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundStyle(budget.messageColor)
+                                .padding()
+                                .padding(.bottom, reader.size.height/5)
+                            
+                            // Status Card
+                            StatusCard(
+                                cardColor: budget.status,
+                                status: budget.status,
+                                current: budget.currentAmount,
+                                currencySymbol: budget.currencySymbol
+                            )
+                            .padding(.vertical, reader.size.height/50)
+                            
+                            // Call to action
+                            Text(K.homeCTA)
+                                .font(.title2)
+                                .bold()
+                                .foregroundStyle(Color.foreground)
+                                .padding(.top, reader.size.height/4.6)
+                                .padding(.leading, reader.size.width/40)
+                            
+                            // Navigation Cards
+                            HStack {
+                                NavigationLink {
+                                    ListExplorer(lists: lists)
+                                } label: {
+                                    CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
+                                }
+                                .padding(3)
+                                
+                                Button {
+                                    showTags.toggle()
+                                } label: {
+                                    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: numTags)
+                                }
+                            }
+                            .frame(width: reader.size.width/1.04, height: reader.size.height/3.6)
+                            .padding(.horizontal, reader.size.width/60)
+                            .navigationTitle(K.homeTabName)
+                            .navigationTitleColor(Color.foreground)
+                            .toolbarVisibility(.hidden, for: .navigationBar)
+                            .background(Color(.background))
+                            .foregroundStyle(Color(.foreground))
+                            .sheet(isPresented: $showTags) {
+                                Tags()
+                                    .presentationDetents([.medium, .large])
+                                    .presentationDragIndicator(.visible)
+                            }
+                            
+                            Spacer()
                         }
-                        .padding(3)
-                        
-                        Button {
-                            showTags.toggle()
-                        } label: {
-                            CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: numTags)
-                        }
+                        .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
                     }
-                    .navigationTitle(K.homeTabName)
-                    .navigationTitleColor(Color.foreground)
-                    .toolbarVisibility(.hidden, for: .navigationBar)
-                    .background(Color(.background))
-                    .foregroundStyle(Color(.foreground))
-                    .padding(.horizontal)
-                    .sheet(isPresented: $showTags) {
-                        Tags()
-                            .presentationDetents([.medium, .large])
-                            .presentationDragIndicator(.visible)
-                    }
-                    
-                    Spacer()
-                } // TODO: Use device geometry to set width
-                .frame(width: 402)
+                }
+                .position(x: reader.size.width/2, y: reader.size.height/2)
             }
         }
     }
