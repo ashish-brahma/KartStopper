@@ -12,7 +12,7 @@ struct NewItemField: View {
     
     var body: some View {
         HStack {
-            // TODO: Radio button
+            // TODO: Check mark
             Image(systemName: "circle")
                 .padding([.leading, .trailing])
             

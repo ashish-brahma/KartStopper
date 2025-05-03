@@ -53,15 +53,13 @@ struct ListExplorer: View {
                         
                         // Saved lists section
                         Section(header: Text(K.listsSectionHeader)
-                                            .font(.title2)
-                                            .foregroundStyle(.accent)) {
-                                                ListBuilder(lists: lists.data)
-                        }
+                            .font(.title2)
+                            .foregroundStyle(.accent)) {
+                                ListBuilder(lists: lists.data)
+                            }
                     }
                     .listStyle(.plain)
                 }
-                
-                Spacer()
             }
         }
         .navigationTitle(K.listsTitle)
@@ -91,6 +89,5 @@ struct ListExplorer: View {
 }
 
 #Preview {
-    let lists = ListContainer()
-    ListExplorer(lists: lists)
+    ListExplorer(lists: ListContainer())
 }

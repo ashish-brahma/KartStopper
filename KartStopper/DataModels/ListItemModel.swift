@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ListItemModel: Identifiable {
-    let id: Int
+    let id = UUID()
     let name: String
-    let thumbnail: Image
-    let picture: Image
+    let thumbnail: Color // TODO: Image type
+    let picture: Color // TODO: Image type
     let detail: String
     let price: Double
     let tags: [String]

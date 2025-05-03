@@ -47,7 +47,6 @@ struct ListBuilder: View {
 
 
 #Preview {
-    let lists = ListContainer()
-    ListBuilder(lists: lists.data)
+    ListBuilder(lists: ListContainer().data)
 }
 

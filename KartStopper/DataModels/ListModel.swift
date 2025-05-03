@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListModel: Identifiable {
-    let id: Int
+    let id = UUID()
     let name: String
     let detail: String
     let date: Date

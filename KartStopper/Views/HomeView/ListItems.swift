@@ -9,6 +9,18 @@ import SwiftUI
 
 struct ListItems: View {
     let list: ListModel
+    @State var searchText = ""
+    @State private var multiSelection = Set<UUID>()
+    
+    var filteredList: [ListItemModel] {
+        if searchText.isEmpty {
+            list.content
+        } else {
+            list.content.filter { item in
+                item.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
     
     var body: some View {
         ZStack {
@@ -19,16 +31,49 @@ struct ListItems: View {
             
             // List Items
             VStack {
-                // TODO: Saved items
+                List(filteredList, selection: $multiSelection) { item in
+                    HStack {
+                        // Image
+                        item.thumbnail
+//                            .resizable()
+//                            .scaledToFit()
+                            .frame(width: 60, height: 60)
+                            .padding(.horizontal)
+                        
+                        VStack(alignment: .leading) {
+                            // Name
+                            Text(item.name)
+                                .font(.title3)
+                            
+                            // Detail
+                            Text(item.detail)
+                                .font(.subheadline)
+                                .foregroundStyle(.gray)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .frame(width: 200, height: 80)
+                        
+                        Spacer()
+                        
+                        // TODO: Info sheet
+                        Image(systemName: "info.circle")
+                    }
+                    .foregroundStyle(Color.foreground)
+                }
+                .listStyle(.plain)
                 
-                // New item search field
+                // TODO: Use inline search bar on keyboard.
                 NewItemField()
-                
-                // TODO: Search results
                 
                 Spacer()
             }
             .navigationTitle(list.name)
+            .searchable(text: $searchText)
+            .autocorrectionDisabled()
+            .animation(.default, value: searchText)
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }
