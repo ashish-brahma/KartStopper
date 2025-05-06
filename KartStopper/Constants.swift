@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct K {
+enum K {
     // Custom Fonts
     static let newYorkLargeRegularFont = "NewYorkLarge-Regular"
     static let newYorkMediumSemiboldItalicFont = "NewYorkMedium-SemiboldItalic"
@@ -54,6 +54,8 @@ struct K {
     static let listsFavouritesFillerText = "No lists favourited."
     static let listsNewListTitlePlaceholderLabel = "New List"
     static let listsSearchPlaceholderLabel = "Search a product"
+    static let listsCheckCircleSymbol = "circle"
+    static let listsInfoSymbol = "info.circle"
     
     // Budget Model
     static let dollarSymbol = "$"

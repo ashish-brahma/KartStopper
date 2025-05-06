@@ -13,7 +13,7 @@ struct NewItemField: View {
     var body: some View {
         HStack {
             // TODO: Check mark
-            Image(systemName: "circle")
+            Image(systemName: K.listsCheckCircleSymbol)
                 .padding([.leading, .trailing])
             
             // New item search field

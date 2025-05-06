@@ -12,6 +12,16 @@ struct ListExplorer: View {
     @State var searchText: String = K.emptyString
     let lists: ListContainer
     
+    var filteredList: [ListModel] {
+        if searchText.isEmpty {
+            lists.data
+        } else {
+            lists.data.filter { item in
+                item.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
             // Background
@@ -55,7 +65,7 @@ struct ListExplorer: View {
                         Section(header: Text(K.listsSectionHeader)
                             .font(.title2)
                             .foregroundStyle(.accent)) {
-                                ListBuilder(lists: lists.data)
+                                ListBuilder(lists: filteredList)
                             }
                     }
                     .listStyle(.plain)

@@ -17,6 +17,7 @@ struct ListItemModel: Identifiable {
     let tags: [String]
     let guide: Guide
     let isFavourited: Bool
+    var count: Int = 1
 }
 
 struct Guide {

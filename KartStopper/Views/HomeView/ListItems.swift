@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListItems: View {
     let list: ListModel
-    @State var searchText = ""
+    @State var searchText = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
     var filteredList: [ListItemModel] {
@@ -32,7 +32,12 @@ struct ListItems: View {
             // List Items
             VStack {
                 List(filteredList, selection: $multiSelection) { item in
-                    HStack {
+                    HStack(alignment: .top) {
+                        // TODO: Checkmark functionality
+                        Image(systemName: K.listsCheckCircleSymbol)
+                            .imageScale(.large)
+                            .padding(.vertical)
+                        
                         // Image
                         item.thumbnail
 //                            .resizable()
@@ -44,21 +49,31 @@ struct ListItems: View {
                             // Name
                             Text(item.name)
                                 .font(.title3)
+                                .foregroundStyle(Color.foreground)
                             
                             // Detail
                             Text(item.detail)
                                 .font(.subheadline)
                                 .foregroundStyle(.gray)
                                 .multilineTextAlignment(.leading)
+                                .minimumScaleFactor(0.9)
+                                .padding(.bottom, 8)
+                            
+                            // SKU stepper
+                            SKU(count: item.count)
+                                .padding(.horizontal, 6)
                         }
                         .frame(width: 200, height: 80)
+                        .padding(.vertical, 6)
                         
                         Spacer()
                         
                         // TODO: Info sheet
-                        Image(systemName: "info.circle")
+                        Image(systemName: K.listsInfoSymbol)
+                            .padding(.vertical)
                     }
-                    .foregroundStyle(Color.foreground)
+                    .padding()
+                    .foregroundStyle(.accent)
                 }
                 .listStyle(.plain)
                 
@@ -82,4 +97,3 @@ struct ListItems: View {
     let lists = ListContainer()
     ListItems(list: lists.data[0])
 }
-
