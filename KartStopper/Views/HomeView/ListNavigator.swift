@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ListBuilder: View {
+struct ListNavigator: View {
     let lists: [ListModel]
     
     var body: some View {
         ForEach(lists, id:\.id) { list in
             NavigationLink {
-                ListItems(list: list)
+                ListEditor(list: list)
             } label: {
                 HStack {
                     VStack(alignment: .leading) {
@@ -47,6 +47,6 @@ struct ListBuilder: View {
 
 
 #Preview {
-    ListBuilder(lists: ListContainer().data)
+    ListNavigator(lists: ListContainer().data)
 }
 

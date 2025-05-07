@@ -13,14 +13,16 @@ struct SKU: View {
     
     var body: some View {
         HStack {
-            // Stepper
             Stepper {
-                // Counter
                 Text("\(count)")
                     .foregroundStyle(Color.foreground)
-                    .padding(.horizontal, 25)
-                    .background(.neon)
-                    .overlay {
+                    .frame(width: 60)
+                    .background {
+                        // Background color
+                        Color.neon
+                            .clipShape(.rect(cornerRadius: 21))
+                        
+                        // Border
                         RoundedRectangle(cornerRadius: 21)
                             .stroke()
                             .foregroundStyle(Color.foreground)

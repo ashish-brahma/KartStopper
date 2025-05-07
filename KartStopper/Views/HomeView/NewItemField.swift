@@ -15,6 +15,7 @@ struct NewItemField: View {
             // TODO: Check mark
             Image(systemName: K.listsCheckCircleSymbol)
                 .padding([.leading, .trailing])
+                .foregroundStyle(.accent)
             
             // New item search field
             TextField(K.listsSearchPlaceholderLabel, text: $newItem)

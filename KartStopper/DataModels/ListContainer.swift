@@ -5,7 +5,7 @@
 //  Created by Ashish Brahma on 30/04/25.
 //
 
-import SwiftUI
+import Foundation
 
 class ListContainer {
     var data: [ListModel] = []
@@ -17,8 +17,8 @@ class ListContainer {
     func createModelContainer() {
         data.append(ListModel(name: "Pariatur celer", detail: "Amiculum torrens", date: .now, content: [
             ListItemModel(name: "Studio umerus",
-                          thumbnail: Color.gray,
-                          picture: Color.gray,
+                          thumbnail: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                          pictures: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                           detail: "Vacuus volaticus careo. Absconditus verto delectus totus nobis atqui aduro censura ter.",
                           price: 28.99,
                           tags: ["Aecipio", "Cllus"],
@@ -31,8 +31,8 @@ class ListContainer {
                           isFavourited: false),
             
             ListItemModel(name: "Aegre tantum",
-                          thumbnail: Color.gray,
-                          picture: Color.gray,
+                          thumbnail: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                          pictures: ["https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                           detail: "Ocer capto talio venia uterque. Stips sumptus tabernus adimpleo verus venio iure cilicium theca.",
                           price: 10.42,
                           tags: ["Aecipio", "Oubvenio"],
@@ -45,8 +45,8 @@ class ListContainer {
                           isFavourited: false),
             
             ListItemModel(name: "Abundans decerno",
-                          thumbnail: Color.gray,
-                          picture: Color.gray,
+                          thumbnail: "https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                          pictures: ["https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                           detail: "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
                           price: 40.39,
                           tags: ["Aecipio", "Oubvenio"],

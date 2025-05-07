@@ -35,7 +35,7 @@ struct HomeView: View {
                             Text(budget.message)
                                 .font(.largeTitle)
                                 .bold()
-                                .foregroundStyle(budget.messageColor)
+                                .foregroundStyle(Color(budget.messageColor))
                                 .padding()
                                 .padding(.bottom, reader.size.height/5)
                             

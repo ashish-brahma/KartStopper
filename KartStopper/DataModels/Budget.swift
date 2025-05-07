@@ -5,7 +5,7 @@
 //  Created by Ashish Brahma on 15/04/25.
 //
 
-import SwiftUI
+import Foundation
 
 struct Budget {
     var currencySymbol = K.dollarSymbol
@@ -26,7 +26,7 @@ struct Budget {
         return K.budgetStatus[status]?[K.messageIndex] ?? K.homeTabName
     }
     
-    var messageColor: Color {
-        return Color(K.budgetStatus[status]?[K.colorIndex] ?? K.defaultColor)
+    var messageColor: String {
+        return K.budgetStatus[status]?[K.colorIndex] ?? K.defaultColor
     }
 }

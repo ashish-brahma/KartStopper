@@ -65,7 +65,7 @@ struct ListExplorer: View {
                         Section(header: Text(K.listsSectionHeader)
                             .font(.title2)
                             .foregroundStyle(.accent)) {
-                                ListBuilder(lists: filteredList)
+                                ListNavigator(lists: filteredList)
                             }
                     }
                     .listStyle(.plain)
