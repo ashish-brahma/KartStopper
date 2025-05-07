@@ -47,7 +47,6 @@ struct ListExplorer: View {
                         // Favourites section
                         Section {
                             NavigationLink {
-                                // TODO: Create favourites list
                                 Favourites(list: lists.getFavourites())
                             } label: {
                                 HStack {

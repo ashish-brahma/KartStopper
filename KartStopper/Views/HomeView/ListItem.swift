@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListItem: View {
     let item: ListItemModel
+    let asFavourite: Bool
     
     var body: some View {
         HStack(alignment: .top) {
@@ -43,13 +44,21 @@ struct ListItem: View {
                     .padding(.bottom, 8)
                 
                 // SKU stepper
-                SKU(count: item.count)
-                    .padding(.horizontal, 6)
+                if !asFavourite {
+                    SKU(count: item.count)
+                        .padding(.horizontal, 6)
+                }
             }
             .frame(width: 200, height: 80)
             .padding(.vertical, 6)
             
             Spacer()
+            
+            if asFavourite {
+                Image(systemName: K.listsFavouritesSymbol)
+                    .padding(.vertical)
+                    .foregroundStyle(.red)
+            }
             
             // TODO: Info sheet
             Image(systemName: K.listsInfoSymbol)
@@ -62,5 +71,5 @@ struct ListItem: View {
 
 #Preview {
     let lists = ListContainer()
-    ListItem(item: lists.data[0].content[0])
+    ListItem(item: lists.data[0].content[0], asFavourite: false)
 }

@@ -31,15 +31,13 @@ struct ListEditor: View {
             
             // List Items
             VStack {
-                List(filteredList, selection: $multiSelection) { item in
-                    ListItem(item: item)
+                List(filteredList, selection: $multiSelection) {
+                    ListItem(item: $0, asFavourite: false)
                 }
                 .listStyle(.plain)
                 
                 // TODO: Use inline search bar on keyboard.
                 NewItemField()
-                
-                Spacer()
             }
             .navigationTitle(list.name)
             .searchable(text: $searchText)
@@ -54,5 +52,7 @@ struct ListEditor: View {
 
 #Preview {
     let lists = ListContainer()
-    ListEditor(list: lists.data[0])
+    NavigationStack {
+        ListEditor(list: lists.data[0])
+    }
 }

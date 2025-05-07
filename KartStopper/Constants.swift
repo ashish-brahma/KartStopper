@@ -51,6 +51,7 @@ enum K {
     static let listsAddListButtonImage = "plus"
     static let listsFavouritesNavigationTitle = "Favourites"
     static let listsFavouritesRowTitle = "Favourites"
+    static let listsFavouritesSymbol = "heart.fill"
     static let listsSectionHeader = "Keep Going..."
     static let listsFavouritesFillerText = "No lists favourited."
     static let listsNewListTitlePlaceholderLabel = "New List"

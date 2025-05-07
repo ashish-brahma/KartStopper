@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Favourites: View {
     @State var searchText: String = K.emptyString
+    @State private var multiSelection = Set<UUID>()
     
     let list: [ListItemModel]
     
@@ -26,7 +27,7 @@ struct Favourites: View {
         ZStack {
             // Background
             Rectangle()
-                .fill(.gray300.mix(with: .gray100, by: 0.5))
+                .fill(.gray300)
                 .ignoresSafeArea()
             
             // Favourite List
@@ -34,8 +35,8 @@ struct Favourites: View {
                 if list.isEmpty {
                     Text(K.listsFavouritesFillerText)
                 } else {
-                    List(filteredList) { item in
-                        ListItem(item: item)
+                    List(filteredList, selection: $multiSelection) {
+                        ListItem(item: $0, asFavourite: true)
                     }
                     .listStyle(.plain)
                 }
@@ -44,6 +45,10 @@ struct Favourites: View {
         .navigationTitle(K.listsFavouritesNavigationTitle)
         .searchable(text: $searchText)
         .autocorrectionDisabled()
+        .animation(.default, value: searchText)
+        .toolbar {
+            EditButton()
+        }
     }
 }
 
