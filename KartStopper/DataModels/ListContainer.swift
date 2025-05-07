@@ -28,7 +28,7 @@ class ListContainer {
                                         "Shipping & Returns Policy" : "Return Period: 7 working days\nFree shipping: For orders USD 80 & above.",
                                         "Carbon Impact" : "290-930 g CO2e/kWh"
                                        ]),
-                          isFavourited: false),
+                          isFavourited: true),
             
             ListItemModel(name: "Aegre tantum",
                           thumbnail: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -67,5 +67,13 @@ class ListContainer {
             numFavourites += li.content.count(where: { $0.isFavourited })
         }
         return numFavourites
+    }
+    
+    func getFavourites() -> [ListItemModel] {
+        var favourites = [ListItemModel]()
+        for li in data {
+            favourites += (li.content.filter { $0.isFavourited })
+        }
+        return favourites
     }
 }

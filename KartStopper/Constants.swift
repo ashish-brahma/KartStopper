@@ -42,13 +42,14 @@ enum K {
     static let tagsFillerText = "No Tags"
     
     // Lists View
-    static let listsTitle = "Lists"
+    static let listsNavigationTitle = "Lists"
     static let listsFillerText = "No Lists"
     static let listsCTA = "Tap on plus button to create."
     static let listsAddTagsButtonLabel = "Add Tags"
     static let listsAddTagsButtonImage = "tag"
     static let listsAddListButtonLabel = "Add List"
     static let listsAddListButtonImage = "plus"
+    static let listsFavouritesNavigationTitle = "Favourites"
     static let listsFavouritesRowTitle = "Favourites"
     static let listsSectionHeader = "Keep Going..."
     static let listsFavouritesFillerText = "No lists favourited."

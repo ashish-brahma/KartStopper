@@ -10,6 +10,7 @@ import SwiftUI
 struct ListExplorer: View {
     @State var showTags: Bool = false
     @State var searchText: String = K.emptyString
+    
     let lists: ListContainer
     
     var filteredList: [ListModel] {
@@ -47,7 +48,7 @@ struct ListExplorer: View {
                         Section {
                             NavigationLink {
                                 // TODO: Create favourites list
-                                Text(K.listsFavouritesFillerText)
+                                Favourites(list: lists.getFavourites())
                             } label: {
                                 HStack {
                                     Text(K.listsFavouritesRowTitle)
@@ -72,7 +73,7 @@ struct ListExplorer: View {
                 }
             }
         }
-        .navigationTitle(K.listsTitle)
+        .navigationTitle(K.listsNavigationTitle)
         .searchable(text: $searchText)
         .autocorrectionDisabled()
         .toolbar {
@@ -99,5 +100,7 @@ struct ListExplorer: View {
 }
 
 #Preview {
-    ListExplorer(lists: ListContainer())
+    NavigationStack {
+        ListExplorer(lists: ListContainer())
+    }
 }

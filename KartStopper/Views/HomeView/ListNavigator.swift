@@ -47,6 +47,8 @@ struct ListNavigator: View {
 
 
 #Preview {
-    ListNavigator(lists: ListContainer().data)
+    NavigationStack {
+        ListNavigator(lists: ListContainer().data)
+    }
 }
 
