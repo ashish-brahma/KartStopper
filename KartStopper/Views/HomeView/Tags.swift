@@ -9,41 +9,49 @@ import SwiftUI
 
 struct Tags: View {
     @Environment(\.dismiss) var dismiss
+    @State var tags: [String] = ["Tag1", "Tag2"]
     
     var body: some View {
-        ZStack{
-            Rectangle()
-                .fill(.gray300.mix(with: .gray100, by: 0.5))
-                .ignoresSafeArea()
-            
-            VStack {
-                HStack {
-                    // Title
-                    Text(K.tagsTitle)
-                        .font(.title)
-                        .bold()
-                        .foregroundStyle(Color(.foreground))
-                    
-                    Spacer()
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: K.tagsDismissSymbol)
-                            .font(.title)
-                    }
-                }
-                .padding()
+        VStack {
+            // Navigation
+            HStack {
+                // Title
+                Text(K.tagsTitle)
+                    .font(.title)
+                    .bold()
+                    .foregroundStyle(Color(.foreground))
                 
                 Spacer()
                 
-                
+                // Dismiss button
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: K.tagsDismissSymbol)
+                        .font(.title)
+                }
+            }
+            .padding()
+            
+            Spacer()
+            
+            // Editor
+            if tags.isEmpty {
                 Text(K.tagsFillerText)
                     .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.tertiary)
                 
                 Spacer()
+            } else {
+                List {
+                    Section(header: Text("Saved Tags")) {
+                        ForEach(tags, id: \.self) {
+                            Label($0, systemImage: "circle")
+                        }
+                    }
+                }
+                .listStyle(.insetGrouped)
             }
         }
     }
