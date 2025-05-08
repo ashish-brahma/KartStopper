@@ -10,8 +10,9 @@ import SwiftUI
 struct ListExplorer: View {
     @State var showTags: Bool = false
     @State var searchText: String = K.emptyString
+    @State private var multiSelection = Set<UUID>()
     
-    let lists: ListContainer
+    @Binding var lists: ListContainer
     
     var filteredList: [ListModel] {
         if searchText.isEmpty {
@@ -43,7 +44,7 @@ struct ListExplorer: View {
                         .font(.subheadline)
                         .foregroundStyle(.tertiary)
                 } else {
-                    List {
+                    List(selection: $multiSelection) {
                         // Favourites section
                         Section {
                             NavigationLink {
@@ -59,14 +60,23 @@ struct ListExplorer: View {
                                         .foregroundStyle(.secondary)
                                 }
                             }
+                            .selectionDisabled(true)
                         }
                         
                         // Saved lists section
-                        Section(header: Text(K.listsSectionHeader)
-                            .font(.title2)
-                            .foregroundStyle(.accent)) {
-                                ListNavigator(lists: filteredList)
+                        Section {
+                            ForEach(filteredList) { list in
+                                NavigationLink {
+                                    ListEditor(list: list)
+                                } label: {
+                                    ListRow(list: list)
+                                }
                             }
+                        } header: {
+                            Text(K.listsSectionHeader)
+                                .font(.title2)
+                                .foregroundStyle(.accent)
+                        }
                     }
                     .listStyle(.plain)
                 }
@@ -89,17 +99,25 @@ struct ListExplorer: View {
                     // TODO: Add new item.
                 }
             }
+            
+            // Edit button
+            ToolbarItem(placement: .primaryAction) {
+                EditButton()
+            }
         }
         .sheet(isPresented: $showTags) {
-            Tags()
-                .presentationDetents([.medium, .large])
-                .presentationDragIndicator(.visible)
+            NavigationStack {
+                Tags(asHome: true)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
+            }
         }
     }
 }
 
 #Preview {
+    @Previewable @State var lists = ListContainer()
     NavigationStack {
-        ListExplorer(lists: ListContainer())
+        ListExplorer(lists: $lists)
     }
 }

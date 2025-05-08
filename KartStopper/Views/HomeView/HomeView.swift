@@ -8,10 +8,9 @@ import SwiftUI
 
 struct HomeView: View {
     @State var showTags: Bool = false
-    
-    // Models
-    let budget = Budget()
-    let lists = ListContainer()
+
+    @State var budget = Budget()
+    @State var lists = ListContainer()
     
     var numLists: Int {
         lists.data.count
@@ -59,7 +58,7 @@ struct HomeView: View {
                             // Navigation Cards
                             HStack {
                                 NavigationLink {
-                                    ListExplorer(lists: lists)
+                                    ListExplorer(lists: $lists)
                                 } label: {
                                     CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
                                 }
@@ -79,9 +78,11 @@ struct HomeView: View {
                             .background(Color(.background))
                             .foregroundStyle(Color(.foreground))
                             .sheet(isPresented: $showTags) {
-                                Tags()
-                                    .presentationDetents([.medium, .large])
-                                    .presentationDragIndicator(.visible)
+                                NavigationStack {
+                                    Tags(asHome: true)
+                                        .presentationDetents([.medium, .large])
+                                        .presentationDragIndicator(.visible)
+                                }
                             }
                             
                             Spacer()

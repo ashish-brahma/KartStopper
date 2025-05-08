@@ -13,21 +13,15 @@ struct ListItem: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            // TODO: Checkmark functionality
-            Image(systemName: K.listsCheckCircleSymbol)
-                .imageScale(.large)
-                .padding(.vertical)
-            
             // Image
             AsyncImage(url: URL(string:item.thumbnail)) { image in
                 image
                     .resizable()
-                    .imageScale(.small)
+                    .frame(width: 80, height: 80)
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 60, height: 60)
-            .padding(.horizontal)
+            .padding(.horizontal, 2)
             
             VStack(alignment: .leading) {
                 // Name
@@ -49,27 +43,30 @@ struct ListItem: View {
                         .padding(.horizontal, 6)
                 }
             }
-            .frame(width: 200, height: 80)
-            .padding(.vertical, 6)
+            .frame(height: 80, alignment: .topLeading)
+            .padding(.horizontal, 8)
             
             Spacer()
             
             if asFavourite {
                 Image(systemName: K.listsFavouritesSymbol)
-                    .padding(.vertical)
+                    .padding(.vertical, 5)
                     .foregroundStyle(.red)
             }
             
             // TODO: Info sheet
             Image(systemName: K.listsInfoSymbol)
-                .padding(.vertical)
+                .padding(.vertical, 5)
         }
-        .padding()
+        .frame(height: 110, alignment: .topLeading)
         .foregroundStyle(.accent)
     }
 }
 
 #Preview {
     let lists = ListContainer()
-    ListItem(item: lists.data[0].content[0], asFavourite: false)
+    Group {
+        ListItem(item: lists.data[0].content[0], asFavourite: true)
+        ListItem(item: lists.data[0].content[1], asFavourite: false)
+    }
 }
