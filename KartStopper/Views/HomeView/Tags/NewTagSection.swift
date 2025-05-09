@@ -16,14 +16,14 @@ struct NewTagSection: View {
         // Fields
         Section {
             // Name
-            TextField("New Tag", text: $tagName)
+            TextField(K.tagsTextFieldPlaceholder, text: $tagName)
             
             // Color
-            ColorPicker("Color", selection: $color)
+            ColorPicker(K.tagsColorPickerLabel, selection: $color)
         } header: {
-            Text("Create tags")
+            Text(K.tagsCreateTagsHeader)
         } footer: {
-            Text("Choose a name and a color to create a new tag.")
+            Text(K.tagsCreateTagsFooter)
         }
         
         // Controls
@@ -31,7 +31,8 @@ struct NewTagSection: View {
             HStack {
                 Spacer()
                 
-                Button("Cancel") {
+                // Cancel button
+                Button(K.tagsCancelButtonLabel) {
                     dismiss()
                 }
                 .buttonStyle(.borderless)
@@ -39,7 +40,7 @@ struct NewTagSection: View {
                 .padding(.horizontal)
                 
                 // TODO: Add button
-                Button("Add") {
+                Button(K.tagsAddButtonLabel) {
                     
                 }
                 .buttonStyle(.borderedProminent)

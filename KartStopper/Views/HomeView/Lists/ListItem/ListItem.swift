@@ -50,12 +50,14 @@ struct ListItem: View {
             
             if asFavourite {
                 Image(systemName: K.listsFavouritesSymbol)
+                    .imageScale(.large)
                     .padding(.vertical, 5)
                     .foregroundStyle(.red)
             }
             
             // TODO: Info sheet
             Image(systemName: K.listsInfoSymbol)
+                .imageScale(.large)
                 .padding(.vertical, 5)
         }
         .frame(height: 110, alignment: .topLeading)

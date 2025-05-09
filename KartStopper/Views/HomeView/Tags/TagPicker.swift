@@ -12,7 +12,7 @@ struct TagPicker: View {
     @State private var singleSelection = UUID()
     
     var body: some View {
-        Picker("Select tag", selection: $singleSelection) {
+        Picker(K.tagsPickerTitle, selection: $singleSelection) {
             ForEach(tags) { tag in
                 TagRow(tag: tag)
             }

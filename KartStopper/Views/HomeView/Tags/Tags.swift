@@ -35,10 +35,10 @@ struct Tags: View {
                     }
                 }
             } header:  {
-                Text("Saved tags")
+                Text(K.tagsSavedTagsHeader)
             } footer: {
                 if !tags.isEmpty && !asHome {
-                    Text("Choose a tag to apply to a list item.")
+                    Text(K.tagsSavedTagsFooter)
                 }
             }
             .listRowBackground(tags.isEmpty ? Color.clear : Color.white)

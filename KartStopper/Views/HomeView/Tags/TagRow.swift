@@ -15,7 +15,7 @@ struct TagRow: View {
             Text(tag.name)
                 .tag(tag.name)
         } icon: {
-            Image(systemName: "circle.fill")
+            Image(systemName: K.tagsRowSymbol)
                 .foregroundStyle(tag.color)
         }
     }

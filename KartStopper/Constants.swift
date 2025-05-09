@@ -40,6 +40,16 @@ enum K {
     static let tagsTitle = "Tags"
     static let tagsDismissSymbol = "xmark.circle.fill"
     static let tagsFillerText = "No Tags"
+    static let tagsTextFieldPlaceholder = "New Tag"
+    static let tagsCreateTagsHeader = "Create tags"
+    static let tagsCancelButtonLabel = "Cancel"
+    static let tagsAddButtonLabel = "Add"
+    static let tagsCreateTagsFooter = "Choose a name and a color to create a new tag."
+    static let tagsColorPickerLabel = "Color"
+    static let tagsRowSymbol = "circle.fill"
+    static let tagsPickerTitle = "Select tag"
+    static let tagsSavedTagsHeader = "Saved tags"
+    static let tagsSavedTagsFooter = "Choose a tag to apply to a list item."
     
     // Lists View
     static let listsNavigationTitle = "Lists"
