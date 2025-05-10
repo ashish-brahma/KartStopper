@@ -41,7 +41,6 @@ struct Tags: View {
                     Text(K.tagsSavedTagsFooter)
                 }
             }
-            .listRowBackground(tags.isEmpty ? Color.clear : Color.white)
         }
         .listStyle(.insetGrouped)
         .navigationTitle(K.tagsTitle)
