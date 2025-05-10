@@ -17,6 +17,11 @@ enum K {
     
     // Strings
     static let emptyString = ""
+    static let spaceString = " "
+    
+    // Button
+    static let closeButtonTitle = "Close"
+    static let closeButtonSymbol = "xmark"
     
     // Tab View
     static let homeTabName = "Home"
@@ -38,7 +43,6 @@ enum K {
     
     // Tags View
     static let tagsTitle = "Tags"
-    static let tagsDismissSymbol = "xmark.circle.fill"
     static let tagsFillerText = "No Tags"
     static let tagsTextFieldPlaceholder = "New Tag"
     static let tagsCreateTagsHeader = "Create tags"
@@ -69,8 +73,10 @@ enum K {
     static let listsCheckCircleSymbol = "circle"
     static let listsInfoSymbol = "info.circle"
     
+    // Score Card
+    static let scoreTitle = "Score"
+    
     // Budget Model
-    static let dollarSymbol = "$"
     static let budgetStatus: [String: [String:String]] = [
         "PositiveStatus": ["message": "You're Awesome", "color": "RichBlack"],
         "NeutralStatus": ["message": "Slow Down", "color": "Sanskrit"],

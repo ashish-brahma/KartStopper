@@ -49,18 +49,11 @@ struct Tags: View {
         .toolbar {
             // Dismiss button
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    dismiss()
-                } label: {
-                    VStack {
-                        Spacer()
-                        Spacer()
-                        Spacer()
-                        
-                        Image(systemName: K.tagsDismissSymbol)
-                            .font(.title2)
-                    }
-                }
+                Button(K.closeButtonTitle, systemImage: K.closeButtonSymbol, action: {dismiss()})
+                    .buttonStyle(.bordered)
+                    .clipShape(.circle)
+                    .foregroundStyle(.secondary)
+                    .bold()
             }
         }
     }

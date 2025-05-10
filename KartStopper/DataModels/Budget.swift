@@ -8,7 +8,7 @@
 import Foundation
 
 struct Budget {
-    var currencySymbol = K.dollarSymbol
+    var currencySymbol = Currency.dollarSign
     var currentAmount = 0.0
     var maxAmount = 60.0
     var status : String {

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ListItem: View {
+    @State var showInfo = false
+    @State var currencySymbol = Budget().currencySymbol
+    
     let item: ListItemModel
     let asFavourite: Bool
     
@@ -29,12 +32,10 @@ struct ListItem: View {
                     .font(.title3)
                     .foregroundStyle(Color.foreground)
                 
-                // Detail
-                Text(item.detail)
+                // Price
+                Text(currencySymbol + K.spaceString + String(format: K.decimalFormat, item.price))
                     .font(.subheadline)
                     .foregroundStyle(.gray)
-                    .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.9)
                     .padding(.bottom, 8)
                 
                 // SKU stepper
@@ -48,6 +49,7 @@ struct ListItem: View {
             
             Spacer()
             
+            // Favourite status
             if asFavourite {
                 Image(systemName: K.listsFavouritesSymbol)
                     .imageScale(.large)
@@ -55,19 +57,30 @@ struct ListItem: View {
                     .foregroundStyle(.red)
             }
             
-            // TODO: Info sheet
-            Image(systemName: K.listsInfoSymbol)
-                .imageScale(.large)
-                .padding(.vertical, 5)
+            // Info button
+            Button {
+                showInfo.toggle()
+            } label: {
+                Image(systemName: K.listsInfoSymbol)
+                    .imageScale(.large)
+                    .padding(.vertical, 5)
+            }
         }
         .frame(height: 110, alignment: .topLeading)
         .foregroundStyle(.accent)
+        .sheet(isPresented: $showInfo) {
+            NavigationStack {
+                ItemDetails(isSaved: true, item: item)
+                    .presentationDetents([.large])
+                    .presentationDragIndicator(.visible)
+            }
+        }
     }
 }
 
 #Preview {
     let lists = ListContainer()
-    Group {
+    NavigationStack {
         ListItem(item: lists.data[0].content[0], asFavourite: true)
         ListItem(item: lists.data[0].content[1], asFavourite: false)
     }
