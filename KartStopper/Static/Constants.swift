@@ -72,6 +72,10 @@ enum K {
     static let listsSearchPlaceholderLabel = "Search a product"
     static let listsCheckCircleSymbol = "circle"
     static let listsInfoSymbol = "info.circle"
+    static let listsGuideButtonLabel = "Guide"
+    static let listsGuideButtonSymbol = "questionmark.circle"
+    static let listsAddButtonLabel = "Add"
+    static let listsAddButtonSymbol = "plus"
     
     // Score Card
     static let scoreTitle = "Score"

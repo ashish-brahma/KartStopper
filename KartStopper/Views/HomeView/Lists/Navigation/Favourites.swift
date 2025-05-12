@@ -36,7 +36,7 @@ struct Favourites: View {
                     Text(K.listsFavouritesFillerText)
                 } else {
                     List(filteredList, selection: $multiSelection) {
-                        ListItem(item: $0, asFavourite: true)
+                        ListItem(item: $0, list: filteredList, asFavourite: true)
                     }
                     .listStyle(.plain)
                 }

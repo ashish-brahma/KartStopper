@@ -12,6 +12,7 @@ struct ListItem: View {
     @State var currencySymbol = Budget().currencySymbol
     
     let item: ListItemModel
+    let list: [ListItemModel]
     let asFavourite: Bool
     
     var body: some View {
@@ -69,19 +70,17 @@ struct ListItem: View {
         .frame(height: 110, alignment: .topLeading)
         .foregroundStyle(.accent)
         .sheet(isPresented: $showInfo) {
-            NavigationStack {
-                ItemDetails(isSaved: true, item: item)
-                    .presentationDetents([.large])
-                    .presentationDragIndicator(.visible)
-            }
+            Carousel(selectedItem: item, list: list)
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
         }
     }
 }
 
 #Preview {
-    let lists = ListContainer()
+    let list = ListContainer().data[0].content
     NavigationStack {
-        ListItem(item: lists.data[0].content[0], asFavourite: true)
-        ListItem(item: lists.data[0].content[1], asFavourite: false)
+        ListItem(item: list[0], list: list, asFavourite: true)
+        ListItem(item: list[1], list: list, asFavourite: false)
     }
 }

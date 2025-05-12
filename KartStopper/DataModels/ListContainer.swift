@@ -24,12 +24,12 @@ class ListContainer {
                           detail: "Vacuus volaticus careo. Absconditus verto delectus totus nobis atqui aduro censura ter.",
                           price: 28.99,
                           tags: ["Aecipio", "Cllus"],
-                          guide: Guide(score: 86, graph: nil,
-                                       info: [
-                                        "Product Safety" : "This product is FDA approved.",
-                                        "Shipping & Returns Policy" : "Return Period: 7 working days\nFree shipping: For orders USD 80 & above.",
-                                        "Carbon Impact" : "290-930 g CO2e/kWh"
-                                       ]),
+                          guide: Guide(score: 86,
+                                       info: ProductInfo(
+                                        productSafety : "This product is FDA approved.",
+                                        shippingPolicy : "Return Period: 7 working days\nFree shipping: For orders USD 80 & above.",
+                                        carbonImpact : "290-930 g CO2e/kWh"
+                                       )),
                           isFavourited: true),
             
             ListItemModel(name: "Aegre tantum",
@@ -38,12 +38,12 @@ class ListContainer {
                           detail: "Ocer capto talio venia uterque. Stips sumptus tabernus adimpleo verus venio iure cilicium theca.",
                           price: 10.42,
                           tags: ["Aecipio", "Oubvenio"],
-                          guide: Guide(score: 49, graph: nil,
-                                       info: [
-                                        "Product Safety" : "This product complies with ESG standards.",
-                                        "Shipping & Returns Policy" : "No Returns\nNo free shipping",
-                                        "Carbon Impact" : "-2 g CO2e/kWh"
-                                       ]),
+                          guide: Guide(score: 49,
+                                       info: ProductInfo(
+                                        productSafety : "This product complies with ESG standards.",
+                                        shippingPolicy : "No Returns\nNo free shipping",
+                                        carbonImpact : "-2 g CO2e/kWh"
+                                       )),
                           isFavourited: false),
             
             ListItemModel(name: "Abundans decerno",
@@ -52,12 +52,12 @@ class ListContainer {
                           detail: "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
                           price: 40.39,
                           tags: ["Aecipio", "Oubvenio"],
-                          guide: Guide(score: 28, graph: nil,
-                                       info: [
-                                        "Product Safety" : "This product failed toxicity tests.",
-                                        "Shipping & Returns Policy" : "Return Period: 5-7 working days\nNo free shipping",
-                                        "Carbon Impact" : "-2 g CO2e/kWh"
-                                       ]),
+                          guide: Guide(score: 28,
+                                       info: ProductInfo(
+                                        productSafety : "This product failed toxicity tests.",
+                                        shippingPolicy : "Return Period: 5-7 working days\nNo free shipping",
+                                        carbonImpact : "-2 g CO2e/kWh"
+                                       )),
                           isFavourited: false),
             
         ]))

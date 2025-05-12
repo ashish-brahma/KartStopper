@@ -22,6 +22,19 @@ struct ListItemModel: Identifiable {
 
 struct Guide {
     let score: Int
-    let graph: AXChart? // TODO: Make graph non-optional
-    let info: [String:String]
+    let info: ProductInfo
+    
+    var title : String {
+        score > 50 ? "Go Ahead" : "Not Recommended"
+    }
+    
+    var icon : String {
+        score > 50 ? "hand.thumbsup" : "hand.thumbsdown"
+    }
+}
+
+struct ProductInfo {
+    let productSafety: String
+    let shippingPolicy: String
+    let carbonImpact: String
 }

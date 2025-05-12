@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Score: View {
     let value: Int
+    let asGuide: Bool
+    
     var status : String {
         switch value {
         case 50..<100:
@@ -18,6 +20,10 @@ struct Score: View {
         }
     }
     
+    var dimension : CGFloat {
+        asGuide ? 130 : 80
+    }
+    
     var body: some View {
         ZStack {
             Rectangle()
@@ -25,19 +31,22 @@ struct Score: View {
             
             VStack(alignment: .center) {
                 Text(K.scoreTitle)
-                    .font(.caption.smallCaps())
+                    .font(asGuide ? .body.smallCaps() : .caption.smallCaps())
                     .foregroundStyle(status == K.negativeStatus ? .cowpeas : .accentColor)
                 
                 Text(String(value))
-                    .font(Font.custom(K.newYorkLargeRegularFont, size: 36))
+                    .font(Font.custom(K.newYorkLargeRegularFont, size:asGuide ? 48 : 36))
                     .foregroundStyle(status == K.negativeStatus ? .cowpeas : .richBlack)
             }
         }
-        .clipShape(.rect(cornerRadius: 25))
-        .frame(width: 80, height: 80)
+        .clipShape(.rect(cornerRadius: 21))
+        .frame(width: dimension, height: dimension)
     }
 }
 
 #Preview {
-    Score(value: 50)
+    Group {
+        Score(value: 34, asGuide: false)
+        Score(value: 86, asGuide: true)
+    }
 }
