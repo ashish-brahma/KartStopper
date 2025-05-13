@@ -70,7 +70,7 @@ struct ListItem: View {
         .frame(height: 110, alignment: .topLeading)
         .foregroundStyle(.accent)
         .sheet(isPresented: $showInfo) {
-            Carousel(selectedItem: item, list: list)
+            Carousel(selectedItem: item, list: list, asFavourite: asFavourite)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }

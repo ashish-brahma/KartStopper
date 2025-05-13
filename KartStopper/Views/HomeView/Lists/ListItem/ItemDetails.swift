@@ -13,6 +13,7 @@ struct ItemDetails: View {
     let isSaved: Bool
     let item: ListItemModel
     let list: [ListItemModel]
+    let asFavourite: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -63,26 +64,53 @@ struct ItemDetails: View {
                         .padding(.horizontal)
                         .frame(height: 60)
                     
-                    // TODO: Controls to be modified for favourites
+                    // Controls
                     VStack(alignment: .center) {
                         HStack {
-                            // Guide
-                            NavigationLink {
-                                ItemGuide(guide: item.guide, list: list)
-                            } label: {
-                                Label(K.listsGuideButtonLabel, systemImage: K.listsGuideButtonSymbol)
+                            if asFavourite {
+                                // TODO: Share button
+                                Button("Share", systemImage: "square.and.arrow.up") {
+                                    
+                                }
+                                .labelStyle(.iconOnly)
+                                .buttonStyle(.borderedProminent)
+                                .buttonBorderShape(.circle)
+                                .tint(.gray700)
+                                .padding(.trailing)
+                                
+                                // TODO: Favourite button
+                                Button("Favourite", systemImage: "heart") {
+                                    
+                                }
+                                .labelStyle(.iconOnly)
+                                .buttonStyle(.borderedProminent)
+                                .buttonBorderShape(.circle)
+                                .tint(.pink)
+                                .padding(.trailing)
+                                
+                                // Guide
+                                GuideButton(item: item, list: list, asFavourite: asFavourite)
+                                    .labelStyle(.iconOnly)
+                                    .buttonStyle(.borderedProminent)
+                                    .buttonBorderShape(.circle)
+                                    .tint(.orange)
+                                
+                            } else {
+                                // Guide
+                                GuideButton(item: item, list: list, asFavourite: asFavourite)
+                                    .labelStyle(.titleAndIcon)
+                                    .buttonStyle(.bordered)
+                                    .clipShape(.rect(cornerRadius: 40))
+                                    .tint(Color.foreground)
+                                    .padding(.trailing)
+                                
+                                // TODO: Add button
+                                Button(K.listsAddButtonLabel, systemImage: K.listsAddButtonSymbol) {
+                                    
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .clipShape(.rect(cornerRadius: 40))
                             }
-                            .buttonStyle(.bordered)
-                            .clipShape(.rect(cornerRadius: 40))
-                            .tint(Color.foreground)
-                            .padding(.trailing)
-                            
-                            // TODO: Add button
-                            Button(K.listsAddButtonLabel, systemImage: K.listsAddButtonSymbol) {
-                            }
-                            .buttonStyle(.borderedProminent)
-                            .buttonStyle(.bordered)
-                            .clipShape(.rect(cornerRadius: 40))
                         }
                     }
                     .frame(width:reader.size.width / 1.1 , alignment: .center)
@@ -99,6 +127,6 @@ struct ItemDetails: View {
 #Preview {
     let list = ListContainer().data[0].content
     NavigationStack {
-        ItemDetails(isSaved: true, item: list[0], list: list)
+        ItemDetails(isSaved: true, item: list[0], list: list, asFavourite: true)
     }
 }

@@ -13,6 +13,7 @@ struct Carousel: View {
     
     let selectedItem: ListItemModel
     let list: [ListItemModel]
+    let asFavourite: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -25,7 +26,7 @@ struct Carousel: View {
                     
                     TabView(selection: $selection) {
                         ForEach(list) { item in
-                            ItemDetails(isSaved: true, item: item, list: list)
+                            ItemDetails(isSaved: true, item: item, list: list, asFavourite: asFavourite)
                                 .tag(item.id)
                         }
                     }
@@ -54,5 +55,5 @@ struct Carousel: View {
 
 #Preview {
     let list = ListContainer().data[0].content
-    Carousel(selectedItem: list[0], list: list)
+    Carousel(selectedItem: list[0], list: list, asFavourite: false)
 }

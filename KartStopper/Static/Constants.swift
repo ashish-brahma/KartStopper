@@ -76,9 +76,19 @@ enum K {
     static let listsGuideButtonSymbol = "questionmark.circle"
     static let listsAddButtonLabel = "Add"
     static let listsAddButtonSymbol = "plus"
+    static let listsComparisonTitle = "How does it compare?"
+    static let listsImportantInfoTitle = "Important Information"
+    static let listsProductSafetyTitle = "Product Safety"
+    static let listsShippingPolicyTitle = "Shipping & Returns Policy"
+    static let listsCarbonImpactTitle = "Carbon Impact"
     
     // Score Card
     static let scoreTitle = "Score"
+    
+    // Charts
+    static let chartsComparativeX1Label = "Price"
+    static let chartsComparativeX2label = "Quality"
+    static let chartsComparativeYLabel = "Name"
     
     // Budget Model
     static let budgetStatus: [String: [String:String]] = [

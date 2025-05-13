@@ -19,27 +19,31 @@ struct ComparativeViz: View {
     
     var body: some View {
         Chart(list) { item in
-                BarMark (
-                    xStart: .value("Price", -(item.price/2)),
-                    xEnd: .value("Price", 0),
-                    y: .value("Name", item.name),
-                )
-                .foregroundStyle(item.id == bestItem.id ? .green : .gray)
-                .annotation(position: .leading, alignment: .center) {
-                    Text(item.price.formatted())
-                        .font(.caption)
-                }
-                
-                BarMark (
-                    xStart: .value("Quality", 0),
-                    xEnd: .value("Quality", item.guide.score/2),
-                    y: .value("Name", item.name),
-                )
-                .foregroundStyle(item.id == bestItem.id ? Color.foreground : .blue)
-                .annotation(position: .trailing, alignment: .center) {
-                    Text(item.guide.score.formatted())
-                        .font(.caption)
-                }
+            // Price
+            BarMark (
+                xStart: .value(K.chartsComparativeX1Label, -(item.price/2)),
+                xEnd: .value(K.chartsComparativeX1Label, 0),
+                y: .value(K.chartsComparativeYLabel, item.name),
+            )
+            .foregroundStyle(item.id == bestItem.id ? .green : .gray)
+            .annotation(position: .leading, alignment: .center) {
+                Text(item.price.formatted())
+                    .font(.caption)
+                    .foregroundStyle(Color.foreground)
+            }
+            
+            // Quality
+            BarMark (
+                xStart: .value(K.chartsComparativeX2label, 0),
+                xEnd: .value(K.chartsComparativeX2label, item.guide.score/2),
+                y: .value(K.chartsComparativeYLabel, item.name),
+            )
+            .foregroundStyle(item.id == bestItem.id ? Color.foreground : .blue)
+            .annotation(position: .trailing, alignment: .center) {
+                Text(item.guide.score.formatted())
+                    .font(.caption)
+                    .foregroundStyle(Color.foreground)
+            }
         }
         .chartXAxis(.hidden)
         .frame(width: 280, height: 160)

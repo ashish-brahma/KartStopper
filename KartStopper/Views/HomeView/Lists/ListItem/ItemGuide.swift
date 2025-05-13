@@ -10,6 +10,7 @@ import SwiftUI
 struct ItemGuide: View {
     let guide: Guide
     let list: [ListItemModel]
+    let asFavourite : Bool
     
     var body: some View {
         ZStack {
@@ -43,27 +44,28 @@ struct ItemGuide: View {
                     .padding(.vertical, 50)
                     
                     // Comparison chart
-                    // TODO: Hide in favourites
-                    Group {
-                        Text("How does it compare?")
-                            .font(.title2)
-                            .bold()
-                        
-                        ComparativeViz(list: list)
-                            .padding(.horizontal, 30)
-                            .padding(.bottom, 40)
+                    if !asFavourite {
+                        Group {
+                            Text(K.listsComparisonTitle)
+                                .font(.title2)
+                                .bold()
+                            
+                            ComparativeViz(list: list)
+                                .padding(.horizontal, 30)
+                                .padding(.bottom, 40)
+                        }
                     }
                     
                     Divider()
                     
                     // Important Information
-                    Text("Important Information")
+                    Text(K.listsImportantInfoTitle)
                         .font(.title2)
                         .bold()
                         .padding(.vertical)
                     
                     // Product Safety
-                    Text("Product Safety")
+                    Text(K.listsProductSafetyTitle)
                         .font(.title3)
                     
                     Text(guide.info.productSafety)
@@ -71,7 +73,7 @@ struct ItemGuide: View {
                         .padding(.top, -8)
                     
                     // Shipping and Returns
-                    Text("Shipping & Returns Policy")
+                    Text(K.listsShippingPolicyTitle)
                         .font(.title3)
                         .padding(.top, 10)
                     
@@ -79,8 +81,8 @@ struct ItemGuide: View {
                         .foregroundStyle(.gray)
                         .padding(.top, -8)
                     
-                    // Shipping and Returns
-                    Text("Carbon Impact")
+                    // Carbon Impact
+                    Text(K.listsCarbonImpactTitle)
                         .font(.title3)
                         .padding(.top, 10)
                     
@@ -98,5 +100,5 @@ struct ItemGuide: View {
 
 #Preview {
     let list = ListContainer().data[0].content
-    ItemGuide(guide: list[0].guide, list: list)
+    ItemGuide(guide: list[0].guide, list: list, asFavourite: false)
 }
