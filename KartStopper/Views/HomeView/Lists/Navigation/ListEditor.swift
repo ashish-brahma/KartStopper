@@ -38,7 +38,7 @@ struct ListEditor: View {
                     Section {
                         ForEach(filteredList) { item in
                             Label {
-                                ListItem(item: item, list: filteredList, asFavourite: false)
+                                ListItem(item: item, list: filteredList,isSaved: true, asFavourite: false)
                             } icon : {
                                 Image(systemName: K.listsCheckCircleSymbol)
                                     .padding([.leading, .trailing])
@@ -61,6 +61,11 @@ struct ListEditor: View {
                     }
                     .listRowBackground(Color.clear)
                     .listSectionSeparator(.hidden)
+                    
+                    // TODO: Search results
+                    Section {
+                        
+                    }
                 }
                 .listStyle(.plain)
             }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum Currency {
-    static let dollarSign = "$"
+enum Currency: String, CaseIterable { 
+    case dollarSign = "$"
 }

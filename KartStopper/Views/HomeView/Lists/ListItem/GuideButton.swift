@@ -10,18 +10,24 @@ import SwiftUI
 struct GuideButton: View {
     let item: ListItemModel
     let list: [ListItemModel]
-    let asFavourite: Bool
+    let asSheet: Bool
     
     var body: some View {
         NavigationLink {
-            ItemGuide(guide: item.guide, list: list, asFavourite: asFavourite)
+            ItemGuide(guide: item.guide, list: list)
         } label: {
             Label(K.listsGuideButtonLabel, systemImage: K.listsGuideButtonSymbol)
+                .padding(asSheet ? 5 : 0)
+                .imageScale(asSheet ? .large : .medium)
         }
     }
 }
 
 #Preview {
     let list = ListContainer().data[0].content
-    GuideButton(item: list[0], list: list, asFavourite: true)
+    Group {
+        GuideButton(item: list[0], list: list, asSheet: false)
+        GuideButton(item: list[0], list: list, asSheet: true)
+            .labelStyle(.iconOnly)
+    }
 }

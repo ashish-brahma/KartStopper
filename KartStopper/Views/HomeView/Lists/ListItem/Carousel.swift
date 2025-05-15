@@ -13,7 +13,7 @@ struct Carousel: View {
     
     let selectedItem: ListItemModel
     let list: [ListItemModel]
-    let asFavourite: Bool
+    let isSaved: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -21,17 +21,16 @@ struct Carousel: View {
                 ZStack {
                     // Background
                     Rectangle()
-                        .fill(.white.mix(with: .gray, by: 0.2))
+                        .fill(Color.background)
                         .ignoresSafeArea()
                     
                     TabView(selection: $selection) {
                         ForEach(list) { item in
-                            ItemDetails(isSaved: true, item: item, list: list, asFavourite: asFavourite)
+                            ItemDetails(isSaved: isSaved, item: item, list: list)
                                 .tag(item.id)
                         }
                     }
                     .tabViewStyle(.page)
-                    .background(.ultraThinMaterial)
                     .frame(width: reader.size.width , height: reader.size.height)
                     .toolbarTitleDisplayMode(.inline)
                     .toolbar {
@@ -55,5 +54,5 @@ struct Carousel: View {
 
 #Preview {
     let list = ListContainer().data[0].content
-    Carousel(selectedItem: list[0], list: list, asFavourite: false)
+    Carousel(selectedItem: list[0], list: list, isSaved: true)
 }

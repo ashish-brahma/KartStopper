@@ -20,7 +20,7 @@ struct ItemTags: View {
                         RoundedRectangle(cornerRadius: 40, style: .circular)
                             .foregroundStyle(Color.accentColor)
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.gray100)
             }
         }
     }

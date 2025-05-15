@@ -10,13 +10,12 @@ import SwiftUI
 struct ItemGuide: View {
     let guide: Guide
     let list: [ListItemModel]
-    let asFavourite : Bool
     
     var body: some View {
         ZStack {
             // Background
             Rectangle()
-                .fill(.white.mix(with: .gray, by: 0.2))
+                .fill(Color.background)
                 .ignoresSafeArea()
             
             ScrollView {
@@ -44,16 +43,14 @@ struct ItemGuide: View {
                     .padding(.vertical, 50)
                     
                     // Comparison chart
-                    if !asFavourite {
-                        Group {
-                            Text(K.listsComparisonTitle)
-                                .font(.title2)
-                                .bold()
-                            
-                            ComparativeViz(list: list)
-                                .padding(.horizontal, 30)
-                                .padding(.bottom, 40)
-                        }
+                    Group {
+                        Text(K.listsComparisonTitle)
+                            .font(.title2)
+                            .bold()
+                        
+                        ComparativeViz(list: list)
+                            .padding(.horizontal, 30)
+                            .padding(.bottom, 40)
                     }
                     
                     Divider()
@@ -91,7 +88,6 @@ struct ItemGuide: View {
                         .padding(.top, -8)
                 }
                 .foregroundStyle(Color.foreground)
-                .background(.ultraThinMaterial)
                 .padding()
             }
         }
@@ -100,5 +96,5 @@ struct ItemGuide: View {
 
 #Preview {
     let list = ListContainer().data[0].content
-    ItemGuide(guide: list[0].guide, list: list, asFavourite: false)
+    ItemGuide(guide: list[0].guide, list: list)
 }

@@ -13,7 +13,7 @@ struct Price: View {
     var body: some View {
         HStack(alignment: .lastTextBaseline) {
             // Symbol
-            Text(Currency.dollarSign)
+            Text(Currency.dollarSign.rawValue)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 24))
                 .foregroundStyle(.letterJacket)
             

@@ -13,7 +13,6 @@ struct ItemDetails: View {
     let isSaved: Bool
     let item: ListItemModel
     let list: [ListItemModel]
-    let asFavourite: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -67,29 +66,38 @@ struct ItemDetails: View {
                     // Controls
                     VStack(alignment: .center) {
                         HStack {
-                            if asFavourite {
+                            if isSaved {
                                 // TODO: Share button
-                                Button("Share", systemImage: "square.and.arrow.up") {
+                                Button {
                                     
+                                } label: {
+                                    Label(K.listsShareButtonLabel, systemImage: K.listsShareButtonSymbol)
+                                        .imageScale(.large)
+                                        .labelStyle(.iconOnly)
+                                        .padding(.horizontal, 5)
+                                        .padding(.vertical, 3.5)
                                 }
-                                .labelStyle(.iconOnly)
                                 .buttonStyle(.borderedProminent)
                                 .buttonBorderShape(.circle)
                                 .tint(.gray700)
                                 .padding(.trailing)
                                 
                                 // TODO: Favourite button
-                                Button("Favourite", systemImage: "heart") {
+                                Button {
                                     
+                                } label: {
+                                    Label(K.listsFavouriteButtonLabel, systemImage: K.listsFavouriteButtonSymbol)
+                                        .imageScale(.large)
+                                        .labelStyle(.iconOnly)
+                                        .padding(5)
                                 }
-                                .labelStyle(.iconOnly)
                                 .buttonStyle(.borderedProminent)
                                 .buttonBorderShape(.circle)
                                 .tint(.pink)
                                 .padding(.trailing)
                                 
                                 // Guide
-                                GuideButton(item: item, list: list, asFavourite: asFavourite)
+                                GuideButton(item: item, list: list, asSheet: isSaved)
                                     .labelStyle(.iconOnly)
                                     .buttonStyle(.borderedProminent)
                                     .buttonBorderShape(.circle)
@@ -97,7 +105,7 @@ struct ItemDetails: View {
                                 
                             } else {
                                 // Guide
-                                GuideButton(item: item, list: list, asFavourite: asFavourite)
+                                GuideButton(item: item, list: list, asSheet: isSaved)
                                     .labelStyle(.titleAndIcon)
                                     .buttonStyle(.bordered)
                                     .clipShape(.rect(cornerRadius: 40))
@@ -105,13 +113,17 @@ struct ItemDetails: View {
                                     .padding(.trailing)
                                 
                                 // TODO: Add button
-                                Button(K.listsAddButtonLabel, systemImage: K.listsAddButtonSymbol) {
+                                Button {
                                     
+                                } label: {
+                                    Label(K.listsAddButtonLabel, systemImage: K.listsAddButtonSymbol)
+                                        .foregroundStyle(.gray100)
                                 }
                                 .buttonStyle(.borderedProminent)
                                 .clipShape(.rect(cornerRadius: 40))
                             }
                         }
+                        .frame(height: 50)
                     }
                     .frame(width:reader.size.width / 1.1 , alignment: .center)
                     .padding(.top, 24)
@@ -120,6 +132,23 @@ struct ItemDetails: View {
                 .padding()
             }
             .navigationTitle(item.name)
+            .toolbar {
+                if !isSaved {
+                    ToolbarItem(placement: .primaryAction) {
+                        // TODO: Share button
+                        Button(K.listsShareButtonLabel, systemImage: K.listsShareButtonSymbol) {
+                            
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .primaryAction) {
+                        // TODO: Favourite button
+                        Button(K.listsFavouriteButtonLabel, systemImage: K.listsFavouriteButtonSymbol) {
+                            
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -127,6 +156,6 @@ struct ItemDetails: View {
 #Preview {
     let list = ListContainer().data[0].content
     NavigationStack {
-        ItemDetails(isSaved: true, item: list[0], list: list, asFavourite: true)
+        ItemDetails(isSaved: false, item: list[0], list: list)
     }
 }

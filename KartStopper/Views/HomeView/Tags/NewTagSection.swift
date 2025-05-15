@@ -40,8 +40,11 @@ struct NewTagSection: View {
                 .padding(.horizontal)
                 
                 // TODO: Add button
-                Button(K.tagsAddButtonLabel) {
+                Button {
                     
+                } label: {
+                    Text(K.tagsAddButtonLabel)
+                        .foregroundStyle(.gray100)
                 }
                 .buttonStyle(.borderedProminent)
                 .clipShape(.rect(cornerRadius: 40))
