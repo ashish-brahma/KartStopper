@@ -89,10 +89,28 @@ enum K {
     // Score Card
     static let scoreTitle = "Score"
     
-    // Charts
+    // ComparativeViz
     static let chartsComparativeX1Label = "Price"
     static let chartsComparativeX2label = "Quality"
     static let chartsComparativeYLabel = "Name"
+    
+    // Track View
+    static let trackTabNavigationTitle = "Summary"
+    
+    // Manage View
+    static let manageTabNavigationTitle = "Preferences"
+    static let manageCurrencyPickerTitle = "Currency"
+    static let manageCurrencyPickerHeader = "Set Currency"
+    static let manageCurrencyPickerFooter = "Set currency based on your current location. It may differ from your place of residence."
+    static let manageBudgetFieldHeader = "Set Budget"
+    static let manageBudgetFieldFooter = "Budget limit is unlocked for modification on the first day of each month. Tap on the field to use keyboard."
+    static let manageDifficultyModePickerTitle = "Difficulty"
+    static let manageDifficultyModeHeader = "Set Difficulty"
+    static let manageDifficultyModeFooter = "Difficulty mode sets the level of strictness with which expenses are monitored with respect to budget limit."
+    static let manageSupportNavigationTitle = "Help & Support"
+    static let managePrivacyNavigationTitle = "Privacy Policy"
+    static let manageFAQNavigationTitle = "FAQs"
+    static let manageContactNavigationTitle = "Contact"
     
     // Budget Model
     static let budgetStatus: [String: [String:String]] = [

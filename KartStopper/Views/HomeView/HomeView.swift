@@ -75,6 +75,7 @@ struct HomeView: View {
                             .navigationTitle(K.homeTabName)
                             .navigationTitleColor(Color.foreground)
                             .toolbarVisibility(.hidden, for: .navigationBar)
+                            .toolbarBackgroundVisibility(.visible, for: .tabBar)
                             .background(Color(.background))
                             .foregroundStyle(Color(.foreground))
                             .sheet(isPresented: $showTags) {

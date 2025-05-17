@@ -9,11 +9,12 @@ import SwiftUI
 
 struct Price: View {
     let value: Double
+    @State var currencySymbol = Budget().currencySymbol
     
     var body: some View {
         HStack(alignment: .lastTextBaseline) {
             // Symbol
-            Text(Currency.dollarSign.rawValue)
+            Text(currencySymbol)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 24))
                 .foregroundStyle(.letterJacket)
             

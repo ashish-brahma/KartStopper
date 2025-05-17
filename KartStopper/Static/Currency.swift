@@ -7,6 +7,20 @@
 
 import Foundation
 
-enum Currency: String, CaseIterable { 
-    case dollarSign = "$"
+enum Currency: Double, CaseIterable, Identifiable {
+    case usd = 1.00
+    
+    var id: Currency { self }
+    
+    var name : String {
+        switch self {
+        case .usd: "USD"
+        }
+    }
+    
+    var symbol : String {
+        switch self {
+        case .usd: "$"
+        }
+    }
 }

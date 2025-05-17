@@ -13,12 +13,10 @@ struct ContentView: View {
         TabView {
             Tab (K.homeTabName, systemImage: K.homeTabSymbol) {
                 HomeView()
-                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
             
             Tab (K.trackTabName, systemImage: K.trackTabSymbol) {
                 TrackView()
-                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
             
             Tab (K.manageTabName, systemImage: K.manageTabSymbol) {

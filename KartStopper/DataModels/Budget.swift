@@ -8,9 +8,11 @@
 import Foundation
 
 struct Budget {
-    var currencySymbol = Currency.dollarSign.rawValue
+    var currencySymbol = Currency.usd.symbol
     var currentAmount = 0.0
     var maxAmount = 60.0
+    var mode: Mode = .medium
+    
     var status : String {
         switch (currentAmount/maxAmount) {
         case 0.0..<0.5:
@@ -29,4 +31,10 @@ struct Budget {
     var messageColor: String {
         return K.budgetStatus[status]?[K.colorIndex] ?? K.defaultColor
     }
+}
+
+enum Mode: String, CaseIterable {
+    case easy = "Easy"
+    case medium = "Medium"
+    case hard = "Hard"
 }

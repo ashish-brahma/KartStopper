@@ -5,19 +5,35 @@
 //  Created by Ashish Brahma on 05/04/25.
 //
 import SwiftUI
+import Charts
 
-struct TrackView: View, Hashable {
+struct TrackView: View {
+    let data : [ListItemModel] = ListContainer().data[0].content
+    
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color(.background))
-                .ignoresSafeArea()
-                .scaledToFill()
-            
-            Text("Summary")
-                .foregroundStyle(.accent)
-                .font(.title)
-                .bold()
+        NavigationStack {
+            GeometryReader { reader in
+                ZStack {
+                    Rectangle()
+                        .fill(Color.background)
+                        .ignoresSafeArea()
+                        .scaledToFill()
+                    
+                    List {
+                        Chart(data) { item in
+                            SectorMark(angle: .value("Frequency", item.count))
+                                .foregroundStyle(by: .value("Category", item.tags[1]))
+                        }
+                        .frame(width: 280, height: 160)
+                    }
+                    .navigationTitle(K.trackTabNavigationTitle)
+                    .navigationTitleColor(Color.foreground)
+                    .scrollContentBackground(.hidden)
+                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
+                    .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
+                }
+                .position(x: reader.size.width/2, y: reader.size.height/2)
+            }
         }
     }
 }
