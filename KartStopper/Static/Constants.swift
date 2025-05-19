@@ -69,6 +69,7 @@ enum K {
     static let listsSectionHeader = "Keep Going..."
     static let listsFavouritesFillerText = "No lists favourited."
     static let listsNewListTitlePlaceholderLabel = "New List"
+    static let listsTotalCostLabel = "Total: "
     static let listsSearchPlaceholderLabel = "Search a product"
     static let listsCheckCircleSymbol = "circle"
     static let listsInfoSymbol = "info.circle"

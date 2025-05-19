@@ -21,7 +21,6 @@ struct ContentView: View {
             
             Tab (K.manageTabName, systemImage: K.manageTabSymbol) {
                 ManageView()
-                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
             }
         }
     }

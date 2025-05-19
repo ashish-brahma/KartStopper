@@ -92,10 +92,11 @@ struct ManageView: View {
                             }
                         }
                     }
-                    .scrollContentBackground(.hidden)
+                    .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
                     .navigationTitle(K.manageTabNavigationTitle)
                     .navigationTitleColor(Color.foreground)
-                    .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
+                    .scrollContentBackground(.hidden)
+                    .toolbarBackgroundVisibility(.visible, for: .tabBar)
                 }
                 .position(x: reader.size.width/2, y: reader.size.height/2)
                 .scrollDismissesKeyboard(.immediately)

@@ -12,6 +12,7 @@ struct ListEditor: View {
     @State var newItem = K.emptyString
     @State var showTags = false
     @State private var multiSelection = Set<UUID>()
+    @State var currencySymbol = Budget().currencySymbol
     
     let list: ListModel
     
@@ -23,6 +24,14 @@ struct ListEditor: View {
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
         }
+    }
+    
+    var totalAmount: Double {
+        var amt = 0.00
+        list.content.forEach { item in
+            amt += item.price * Double(item.count)
+        }
+        return amt
     }
     
     var body: some View {
@@ -74,6 +83,7 @@ struct ListEditor: View {
             .autocorrectionDisabled()
             .animation(.default, value: searchText)
             .toolbar {
+                // Edit Button
                 ToolbarItem(placement: .primaryAction) {
                     EditButton()
                 }
@@ -83,6 +93,12 @@ struct ListEditor: View {
                     Button(K.listsAddTagsButtonLabel, systemImage: K.listsAddTagsButtonImage) {
                         showTags.toggle()
                     }
+                }
+                
+                // Running total
+                ToolbarItem(placement: .principal) {
+                    Text(K.listsTotalCostLabel + currencySymbol + K.spaceString + String(format: K.decimalFormat, totalAmount))
+                        .foregroundStyle(Color.foreground)
                 }
             }
             .sheet(isPresented: $showTags) {

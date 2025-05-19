@@ -26,11 +26,11 @@ struct TrackView: View {
                         }
                         .frame(width: 280, height: 160)
                     }
+                    .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
                     .navigationTitle(K.trackTabNavigationTitle)
                     .navigationTitleColor(Color.foreground)
                     .scrollContentBackground(.hidden)
                     .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                    .frame(width: reader.size.width, height: reader.size.height, alignment: .leading)
                 }
                 .position(x: reader.size.width/2, y: reader.size.height/2)
             }
