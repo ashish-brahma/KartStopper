@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FAQ: View {
+    @State var searchText = K.emptyString
+    
     var body: some View {
         List{
             Section {
@@ -27,6 +29,7 @@ struct FAQ: View {
             }
         }
         .navigationTitle(K.manageFAQNavigationTitle)
+        .searchable(text: $searchText)
         .scrollContentBackground(.hidden)
         .background(Color.background)
     }
