@@ -16,6 +16,7 @@ struct ManageView: View {
         NavigationStack {
             GeometryReader { reader in
                 ZStack {
+                    // Background
                     Rectangle()
                         .fill(Color(.background))
                         .ignoresSafeArea()
