@@ -6,10 +6,34 @@
 //
 
 import SwiftUI
+<<<<<<< HEAD
 
 struct TopSpendViz: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+=======
+import Charts
+
+struct TopSpendViz: View {
+    let data : [ListItemModel] = ListContainer().data[0].content
+    
+    var body: some View {
+        Chart(data) { item in
+            SectorMark(angle: .value("Frequency", item.count))
+                .foregroundStyle(by: .value("Category", item.tags[1]))
+        }
+        .padding(8)
+        .padding(.top, 30)
+        .overlay(alignment: .topLeading) {
+            Text("Top Choices")
+                .font(.title2)
+                .bold()
+                .foregroundStyle(Color.foreground)
+        }
+        .padding()
+        .background(Color.cardLabel)
+        .clipShape(.rect(cornerRadius: 15))
+>>>>>>> e22fa5a (Refactor Top Spend pie chart and create custom disclosure for Today stat card.)
     }
 }
 

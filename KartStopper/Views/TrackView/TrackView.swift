@@ -5,11 +5,8 @@
 //  Created by Ashish Brahma on 05/04/25.
 //
 import SwiftUI
-import Charts
 
 struct TrackView: View {
-    let data : [ListItemModel] = ListContainer().data[0].content
-    
     var body: some View {
         NavigationStack {
             GeometryReader { reader in
@@ -24,22 +21,18 @@ struct TrackView: View {
                     ScrollView {
                         VStack {
                             // Spend by category chart
-                            Chart(data) { item in
-                                SectorMark(angle: .value("Frequency", item.count))
-                                    .foregroundStyle(by: .value("Category", item.tags[1]))
-                            }
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(.rect(cornerRadius: 15))
-                            .frame(height: reader.size.height/2.8)
-                            .padding(.vertical, 4)
+                            TopSpendViz()
+                                .frame(height: reader.size.height/2.2)
+                                .padding(.vertical, 4)
                             
                             // Today's total expense card
-                            NavigationLink {
-                                
-                            } label : {
-                                StatLabel(name: "Today", description: "Total Spend", stat: 39.41, bgColor: .neon)
+                            DisclosureGroup("Today") {
+                                List {
+                                    Text("List1")
+                                    Text("List2")
+                                }
                             }
+                            .disclosureGroupStyle(StatCardDisclosure())
                             .frame(height: reader.size.height/2.8)
                             .padding(.vertical, 4)
                             
@@ -48,13 +41,13 @@ struct TrackView: View {
                                 NavigationLink {
                                     
                                 } label : {
-                                    StatLabel(name: "This Week", description: "Total Spend", stat: 39.41, bgColor: .cardLabel)
+                                    StatLabel(name: "This Week", description: "Total Spend", stat: 39.41)
                                 }
                                 
                                 NavigationLink {
                                     
                                 } label : {
-                                    StatLabel(name: "This Month", description: "Total Spend", stat: 70.90, bgColor: .cardLabel)
+                                    StatLabel(name: "This Month", description: "Total Spend", stat: 70.90)
                                 }
                             }
                             .frame(height: reader.size.height/3.6)

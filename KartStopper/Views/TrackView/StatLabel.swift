@@ -11,11 +11,11 @@ struct StatLabel: View {
     let name: String
     let description: String
     let stat: Double
-    let bgColor: Color
     
     var body: some View {
         GeometryReader { reader in
             VStack() {
+                // Header
                 HStack {
                     Text(name)
                         .font(.title2)
@@ -30,7 +30,9 @@ struct StatLabel: View {
                 }
                 
                 Divider()
+                    .background(Color.secondary)
                 
+                // Short description
                 HStack {
                     Text(description)
                         .font(.caption)
@@ -41,6 +43,7 @@ struct StatLabel: View {
                 
                 Spacer()
                 
+                // Number
                 HStack {
                     Text(Budget().currencySymbol)
                         .foregroundStyle(.letterJacket)
@@ -55,12 +58,13 @@ struct StatLabel: View {
             }
             .padding()
             .frame(alignment: .top)
-            .background(bgColor)
+            .background(Color.cardLabel)
             .clipShape(.rect(cornerRadius:25))
         }
     }
 }
 
 #Preview {
-    StatLabel(name: "Today",  description: "Total Spend", stat: 39.41, bgColor: Color.neon)
+    StatLabel(name: "Today",  description: "Total Spend", stat: 39.41)
+        .background(Color.background)
 }

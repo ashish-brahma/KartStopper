@@ -98,6 +98,7 @@ enum K {
     // Track View
     static let trackTabNavigationTitle = "Summary"
     static let trackStatLabelSymbol = "chevron.right"
+    static let trackStatLabelDisclosureSymbol = "chevron.down"
     
     // Manage View
     static let manageTabNavigationTitle = "Preferences"
