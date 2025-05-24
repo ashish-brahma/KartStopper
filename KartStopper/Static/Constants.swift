@@ -98,7 +98,12 @@ enum K {
     // Track View
     static let trackTabNavigationTitle = "Summary"
     static let trackStatLabelSymbol = "chevron.right"
+    static let trackStatLabelDisclosureTitle = "Today"
     static let trackStatLabelDisclosureSymbol = "chevron.down"
+    static let trackStatLabelDisclosureCaption = "Total Spend"
+    static let trackWeekStatCardTitle = "This Week"
+    static let trackMonthStatCardTitle = "This Month"
+    static let trackTotalStatCardCaption = "Total Spend"
     
     // Manage View
     static let manageTabNavigationTitle = "Preferences"

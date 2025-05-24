@@ -35,9 +35,9 @@ struct StatCardDisclosure: DisclosureGroupStyle {
                         
                         // Short description
                         HStack {
-                            Text("Total Spend")
+                            Text(K.trackStatLabelDisclosureCaption)
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.primary)
                             
                             Spacer()
                         }
@@ -49,6 +49,7 @@ struct StatCardDisclosure: DisclosureGroupStyle {
                             Text(Budget().currencySymbol)
                                 .foregroundStyle(.letterJacket)
                             
+                            // TODO: Insert calculated value
                             Text(String(format: K.decimalFormat, 39.41))
                                 .font(.largeTitle)
                                 .bold()

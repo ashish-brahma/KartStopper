@@ -26,11 +26,19 @@ struct TrackView: View {
                                 .padding(.vertical, 4)
                             
                             // Today's total expense card
-                            DisclosureGroup("Today") {
+                            DisclosureGroup(K.trackStatLabelDisclosureTitle) {
                                 List {
-                                    Text("List1")
-                                    Text("List2")
+                                    Section("Recents") {
+                                        HStack {
+                                            Text("Studio umerus")
+                                            Spacer()
+                                            Image(systemName: "info.circle")
+                                        }
+                                        .foregroundStyle(Color.foreground)
+                                    }
                                 }
+                                .scrollContentBackground(.hidden)
+                                .background(Color.cardLabel.opacity(0.6))
                             }
                             .disclosureGroupStyle(StatCardDisclosure())
                             .frame(height: reader.size.height/2.8)
@@ -41,13 +49,13 @@ struct TrackView: View {
                                 NavigationLink {
                                     
                                 } label : {
-                                    StatLabel(name: "This Week", description: "Total Spend", stat: 39.41)
+                                    StatLabel(name: K.trackWeekStatCardTitle, description: K.trackTotalStatCardCaption, stat: 39.41)
                                 }
                                 
                                 NavigationLink {
                                     
                                 } label : {
-                                    StatLabel(name: "This Month", description: "Total Spend", stat: 70.90)
+                                    StatLabel(name: K.trackMonthStatCardTitle, description: K.trackTotalStatCardCaption, stat: 70.90)
                                 }
                             }
                             .frame(height: reader.size.height/3.6)
