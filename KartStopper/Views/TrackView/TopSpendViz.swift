@@ -6,12 +6,6 @@
 //
 
 import SwiftUI
-<<<<<<< HEAD
-
-struct TopSpendViz: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-=======
 import Charts
 
 struct TopSpendViz: View {
@@ -33,7 +27,6 @@ struct TopSpendViz: View {
         .padding()
         .background(Color.cardLabel)
         .clipShape(.rect(cornerRadius: 15))
->>>>>>> e22fa5a (Refactor Top Spend pie chart and create custom disclosure for Today stat card.)
     }
 }
 
