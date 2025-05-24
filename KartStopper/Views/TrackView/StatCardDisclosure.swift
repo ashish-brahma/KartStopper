@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-<<<<<<< HEAD
-struct StatCardDisclosure: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    StatCardDisclosure()
-=======
 struct StatCardDisclosure: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
@@ -89,5 +79,4 @@ struct StatCardDisclosure: DisclosureGroupStyle {
         Text("Sample Text")
     }
     .disclosureGroupStyle(StatCardDisclosure())
->>>>>>> e22fa5a (Refactor Top Spend pie chart and create custom disclosure for Today stat card.)
 }
