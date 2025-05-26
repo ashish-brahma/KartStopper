@@ -11,36 +11,41 @@ struct StatCardDisclosure: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             Button {
-                configuration.isExpanded.toggle()
+                withAnimation {
+                    configuration.isExpanded.toggle()
+                }
             } label: {
                 VStack {
+                    // Header
                     HStack(alignment: .firstTextBaseline) {
                         configuration.label
                             .font(.title2)
                             .bold()
-                            .multilineTextAlignment(.leading)
-                            .padding(.bottom, 8)
                             .foregroundStyle(Color.foreground)
+                            .multilineTextAlignment(.leading)
+                            .padding(.vertical, 12)
                         
                         Spacer()
                         
                         Image(systemName: configuration.isExpanded ? K.trackStatLabelDisclosureSymbol : K.trackStatLabelSymbol)
-                            .font(.body)
                             .foregroundStyle(.gray700)
                     }
+                    .padding(.horizontal)
                     
                     if !configuration.isExpanded {
                         Divider()
-                            .background(Color.secondary)
+                            .background(Color.gray300)
                         
                         // Short description
                         HStack {
                             Text(K.trackStatLabelDisclosureCaption)
                                 .font(.caption)
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(.primary.opacity(0.9))
                             
                             Spacer()
                         }
+                        .padding(.horizontal)
+                        .padding(.top, 4)
                         
                         Spacer()
                         
@@ -53,13 +58,12 @@ struct StatCardDisclosure: DisclosureGroupStyle {
                             Text(String(format: K.decimalFormat, 39.41))
                                 .font(.largeTitle)
                                 .bold()
-                                .foregroundStyle(Color.foreground)
+                                .foregroundStyle(Color.accentColor)
                         }
                         
-                        Spacer()
+                        Spacer(minLength: 30)
                     }
                 }
-                .padding()
                 .background(Color.neon)
                 .clipShape(.rect(cornerRadius:25))
             }
@@ -67,7 +71,7 @@ struct StatCardDisclosure: DisclosureGroupStyle {
             
             if configuration.isExpanded {
                 configuration.content
-                    .padding(.vertical, 3)
+                    .padding(.vertical, 10)
             }
         }
         .padding(.bottom, 8)
@@ -76,8 +80,14 @@ struct StatCardDisclosure: DisclosureGroupStyle {
 
 
 #Preview {
-    DisclosureGroup("Sample Text") {
-        Text("Sample Text")
+    ZStack {
+        Color.background
+        DisclosureGroup("Today") {
+            Text("Sample Text")
+                .padding(.horizontal, 20)
+        }
+        .disclosureGroupStyle(StatCardDisclosure())
+        .frame(width: 200, height: 200)
     }
-    .disclosureGroupStyle(StatCardDisclosure())
+    .ignoresSafeArea()
 }

@@ -16,18 +16,19 @@ struct StatLabel: View {
         GeometryReader { reader in
             VStack() {
                 // Header
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
                     Text(name)
                         .font(.title2)
                         .foregroundStyle(Color.foreground)
                         .bold()
+                        .padding(.vertical, 12)
                     
                     Spacer()
                     
                     Image(systemName: K.trackStatLabelSymbol)
-                        .font(.body)
                         .foregroundStyle(.gray700)
                 }
+                .padding(.horizontal)
                 
                 Divider()
                     .background(Color.secondary)
@@ -36,10 +37,12 @@ struct StatLabel: View {
                 HStack {
                     Text(description)
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(.primary.opacity(0.9))
                     
                     Spacer()
                 }
+                .padding(.horizontal)
+                .padding(.top, 4)
                 
                 Spacer()
                 
@@ -51,13 +54,11 @@ struct StatLabel: View {
                     Text(String(format: K.decimalFormat, stat))
                         .font(.largeTitle)
                         .bold()
-                        .foregroundStyle(Color.foreground)
+                        .foregroundStyle(Color.accentColor)
                 }
                 
-                Spacer()
+                Spacer(minLength: 30)
             }
-            .padding()
-            .frame(alignment: .top)
             .background(Color.cardLabel)
             .clipShape(.rect(cornerRadius:25))
         }
@@ -65,6 +66,10 @@ struct StatLabel: View {
 }
 
 #Preview {
-    StatLabel(name: "Today",  description: "Total Spend", stat: 39.41)
-        .background(Color.background)
+    ZStack {
+        Color.background
+        StatLabel(name: "This Week",  description: "Total Spend", stat: 39.41)
+            .frame(width: 200, height: 200)
+    }
+    .ignoresSafeArea()
 }

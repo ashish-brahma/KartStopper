@@ -16,7 +16,8 @@ struct CardLabel: View {
     var body: some View {
         GeometryReader { reader in
             VStack() {
-                HStack {
+                // Header
+                HStack(alignment: .center) {
                     Text(name)
                         .font(.title2)
                     
@@ -29,7 +30,8 @@ struct CardLabel: View {
                 
                 Spacer()
                 
-                Text("\(stat)")
+                // Number
+                Text(String(stat))
                     .font(.largeTitle)
                     .foregroundStyle(.gray)
                 
@@ -45,5 +47,10 @@ struct CardLabel: View {
 
 #Preview {
     let numLists = 1
-    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .body, stat: numLists)
+    ZStack {
+        Color.background
+        CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .body, stat: numLists)
+            .frame(width: 200, height: 200)
+    }
+    .ignoresSafeArea()
 }

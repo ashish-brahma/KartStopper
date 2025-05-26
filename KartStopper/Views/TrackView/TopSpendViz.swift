@@ -12,6 +12,7 @@ struct TopSpendViz: View {
     let data : [ListItemModel] = ListContainer().data[0].content
     
     var body: some View {
+        // TODO: Refactor data model
         Chart(data) { item in
             SectorMark(angle: .value("Frequency", item.count))
                 .foregroundStyle(by: .value("Category", item.tags[1]))
@@ -31,5 +32,11 @@ struct TopSpendViz: View {
 }
 
 #Preview {
-    TopSpendViz()
+    ZStack {
+        Color.background
+        TopSpendViz()
+            .frame(height: 300)
+            .padding()
+    }
+    .ignoresSafeArea()
 }

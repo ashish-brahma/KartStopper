@@ -23,45 +23,21 @@ struct TrackView: View {
                             // Spend by category chart
                             TopSpendViz()
                                 .frame(height: reader.size.height/2.2)
-                                .padding(.vertical, 4)
                             
                             // Today's total expense card
-                            DisclosureGroup(K.trackStatLabelDisclosureTitle) {
-                                List {
-                                    Section("Recents") {
-                                        HStack {
-                                            Text("Studio umerus")
-                                            Spacer()
-                                            Image(systemName: "info.circle")
-                                        }
-                                        .foregroundStyle(Color.foreground)
-                                    }
-                                }
-                                .scrollContentBackground(.hidden)
-                                .background(Color.cardLabel.opacity(0.6))
-                            }
-                            .disclosureGroupStyle(StatCardDisclosure())
-                            .frame(height: reader.size.height/2.8)
-                            .padding(.vertical, 4)
+                            TodayCard()
+                                .frame(height: reader.size.height/2.8)
+                                .padding(.top, 6)
                             
                             // Spend by week and month
-                            HStack {
-                                NavigationLink {
-                                    
-                                } label : {
-                                    StatLabel(name: K.trackWeekStatCardTitle, description: K.trackTotalStatCardCaption, stat: 39.41)
-                                }
-                                
-                                NavigationLink {
-                                    
-                                } label : {
-                                    StatLabel(name: K.trackMonthStatCardTitle, description: K.trackTotalStatCardCaption, stat: 70.90)
-                                }
-                            }
-                            .frame(height: reader.size.height/3.6)
-                            .padding(.vertical, 4)
+                            CalendarCards()
+                                .frame(height: reader.size.height/3.8, alignment: .top)
+                                .padding(.top, -2)
+                            
+                            Spacer(minLength: 20)
                         }
                     }
+                    .padding(.top)
                     .frame(width: reader.size.width/1.1, height: reader.size.height, alignment: .leading)
                     .navigationTitle(K.trackTabNavigationTitle)
                     .navigationTitleColor(Color.foreground)
