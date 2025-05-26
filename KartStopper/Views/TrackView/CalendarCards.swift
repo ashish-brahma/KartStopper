@@ -13,13 +13,16 @@ struct CalendarCards: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        HStack {
-            ForEach(0..<2) { i in
-                NavigationLink {
-                    
-                } label : {
-                    // TODO: Insert calculated value
-                    StatLabel(name: labels[i], description: K.trackTotalStatCardCaption, stat: values[i])
+        GeometryReader { reader in
+            LazyVGrid(columns: columns) {
+                ForEach(0..<2) { i in
+                    NavigationLink {
+                        
+                    } label : {
+                        // TODO: Insert calculated value
+                        StatLabel(name: labels[i], description: K.trackTotalStatCardCaption, stat: values[i])
+                    }
+                    .frame(height: reader.size.height)
                 }
             }
         }
