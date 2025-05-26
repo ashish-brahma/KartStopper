@@ -64,5 +64,10 @@ struct StatusCard: View {
     @Previewable @State var current = Budget().currentAmount
     @Previewable @State var symbol = Budget().currencySymbol
     
-    StatusCard(cardColor: cardColor, status: status, current: current, currencySymbol: symbol)
+    ZStack {
+        Color.background
+        StatusCard(cardColor: cardColor, status: status, current: current, currencySymbol: symbol)
+            .frame(height: 100)
+    }
+    .ignoresSafeArea()
 }

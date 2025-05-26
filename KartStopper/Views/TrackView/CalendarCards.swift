@@ -13,7 +13,7 @@ struct CalendarCards: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        LazyVGrid(columns: columns) {
+        HStack {
             ForEach(0..<2) { i in
                 NavigationLink {
                     
@@ -27,11 +27,13 @@ struct CalendarCards: View {
 }
 
 #Preview {
-    ZStack {
-        Color.background
-        CalendarCards()
-            .frame(height: 190)
-            .padding()
+    NavigationStack {
+        ZStack {
+            Color.background
+            CalendarCards()
+                .frame(height: 190)
+                .padding()
+        }
+        .ignoresSafeArea()
     }
-    .ignoresSafeArea()
 }
