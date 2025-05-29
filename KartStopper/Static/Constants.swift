@@ -104,6 +104,8 @@ enum K {
     static let trackWeekStatCardTitle = "This Week"
     static let trackMonthStatCardTitle = "This Month"
     static let trackTotalStatCardCaption = "Total Spend"
+    static let trackRecentsNavigationTitle = "Recents"
+    static let trackHistoryButtonLabel = "See History"
     
     // Manage View
     static let manageTabNavigationTitle = "Preferences"

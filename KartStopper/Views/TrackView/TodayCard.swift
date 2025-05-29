@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct TodayCard: View {
+    let list = ListContainer().data[0]
+    
     var body: some View {
         DisclosureGroup(K.trackStatLabelDisclosureTitle) {
-            List {
-                Section("Recents") {
-                    HStack {
-                        Text("Studio umerus")
-                        Spacer()
-                        Image(systemName: "info.circle")
+            List() {
+                // Recent items
+                Section(K.trackRecentsNavigationTitle) {
+                    ForEach(0..<2) { n in
+                        RecentItemRow(list: list, item: list.content[n])
                     }
-                    .foregroundStyle(Color.foreground)
                 }
+                
+                // History
+                NavigationLink(K.trackHistoryButtonLabel) {
+                }
+                .foregroundStyle(Color.foreground)
             }
             .scrollContentBackground(.hidden)
             .background(Color.cardLabel.opacity(0.6))
@@ -29,11 +34,13 @@ struct TodayCard: View {
 }
 
 #Preview {
-    ZStack {
-        Color.background
-        TodayCard()
-            .frame(height: 240)
-            .padding()
+    NavigationStack {
+        ZStack {
+            Color.background
+            TodayCard()
+                .frame(height: 240)
+                .padding()
+        }
+        .ignoresSafeArea()
     }
-    .ignoresSafeArea()
 }
