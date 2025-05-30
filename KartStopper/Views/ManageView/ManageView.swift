@@ -87,6 +87,7 @@ struct ManageView: View {
                                     }
                                 }
                                 .navigationTitle(K.manageSupportNavigationTitle)
+                                .navigationBarTitleDisplayMode(.inline)
                                 .scrollContentBackground(.hidden)
                                 .background(Color.background)
                             }
