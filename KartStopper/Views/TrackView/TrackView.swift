@@ -26,7 +26,7 @@ struct TrackView: View {
                             
                             // Today's total expense card
                             TodayCard()
-                                .frame(height: reader.size.height/2.8)
+                                .frame(height: reader.size.height/2.2)
                                 .padding(.top, 6)
                             
                             // Spend by week and month

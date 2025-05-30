@@ -23,7 +23,9 @@ struct RecentItemRow: View {
                 Text(list.name)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
+                    .padding(.top, -18)
             }
+            
             Spacer()
             
             // Price

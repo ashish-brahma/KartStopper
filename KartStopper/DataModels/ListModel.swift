@@ -14,3 +14,8 @@ struct ListModel: Identifiable {
     let date: Date
     let content: [ListItemModel]
 }
+
+enum TimePeriod: String, CaseIterable, Identifiable {
+    case week, month, year
+    var id: Self { self }
+}

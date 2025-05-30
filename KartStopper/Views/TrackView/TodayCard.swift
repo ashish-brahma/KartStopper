@@ -12,16 +12,18 @@ struct TodayCard: View {
     
     var body: some View {
         DisclosureGroup(K.trackStatLabelDisclosureTitle) {
-            List() {
+            List {
                 // Recent items
                 Section(K.trackRecentsNavigationTitle) {
                     ForEach(0..<2) { n in
                         RecentItemRow(list: list, item: list.content[n])
+                            .frame(height: 36)
                     }
                 }
                 
                 // History
                 NavigationLink(K.trackHistoryButtonLabel) {
+                    History(period: .week)
                 }
                 .foregroundStyle(Color.foreground)
             }
