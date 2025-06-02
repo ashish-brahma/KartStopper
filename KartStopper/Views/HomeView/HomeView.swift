@@ -63,6 +63,8 @@ struct HomeView: View {
                                     CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
                                 }
                                 .padding(3)
+                                .accessibility(addTraits: .isButton)
+                                .accessibility(identifier: "listsNavButton")
                                 
                                 Button {
                                     showTags.toggle()
