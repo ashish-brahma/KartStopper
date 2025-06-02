@@ -9,8 +9,9 @@ import SwiftUI
 import Charts
 
 struct History: View {
-    let period: TimePeriod
     @State private var selectedPeriod: TimePeriod = .week
+    
+    let period: TimePeriod
     let data = ListContainer().data
     
     var dateFormat: Date.FormatStyle {
@@ -87,11 +88,13 @@ struct History: View {
                 }
                 .listRowSeparator(.hidden)
                 
-                // TODO: Slice list by time period
-                Section("Today") {
-                    ForEach(0..<2) { n in
-                        RecentItemRow(list: data[0], item: data[0].content[n])
-                            .frame(height: 36)
+                // Transactions
+                ForEach(data) { list in
+                    Section(header: Text("\(list.date.formatted(dateFormat))")) {
+                        ForEach(list.content) { item in
+                            RecentItemRow(list: list, item: item)
+                                .frame(height: 36)
+                        }
                     }
                 }
             }
