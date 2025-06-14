@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct StatusCard: View {
-    @State var cardColor: String
-    @State var status: String
+    @State var status: Budget.StatusType
     @State var current: Double
     @State var currencySymbol: String
     
@@ -18,7 +17,7 @@ struct StatusCard: View {
             ZStack() {
                 // Background
                 Rectangle()
-                    .fill(Color(cardColor))
+                    .fill(Color(status.rawValue))
                 
                 VStack(alignment: .leading) {
                     HStack(alignment: .top) {
@@ -37,7 +36,7 @@ struct StatusCard: View {
                     HStack {
                         // Currency
                         Text(currencySymbol)
-                            .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .letterJacket)
+                            .foregroundStyle(status == Budget.StatusType.negativeStatus ? .cowpeas : .letterJacket)
                             .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
                         
                         // Current Amount
@@ -50,7 +49,7 @@ struct StatusCard: View {
                     .padding(.bottom, 30)
                     .padding(.horizontal, 10)
                 }
-                .foregroundStyle(cardColor == K.negativeStatus ? .cowpeas : .richBlack)
+                .foregroundStyle(status == Budget.StatusType.negativeStatus ? .cowpeas : .richBlack)
                 .padding(.vertical, reader.size.height/2)
             }
             .frame(height: reader.size.height)
@@ -59,14 +58,13 @@ struct StatusCard: View {
 }
 
 #Preview {
-    @Previewable @State var cardColor = Budget().status
     @Previewable @State var status = Budget().status
     @Previewable @State var current = Budget().currentAmount
     @Previewable @State var symbol = Budget().currencySymbol
     
     ZStack {
         Color.background
-        StatusCard(cardColor: cardColor, status: status, current: current, currencySymbol: symbol)
+        StatusCard(status: status, current: current, currencySymbol: symbol)
             .frame(height: 100)
     }
     .ignoresSafeArea()

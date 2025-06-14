@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarCards: View {
     let labels = [K.trackWeekStatCardTitle, K.trackMonthStatCardTitle]
-    let timePeriod = [TimePeriod.week, TimePeriod.month]
+    let timePeriod = [Budget.TimePeriod.week, Budget.TimePeriod.month]
     let values = [39.41, 70.90]
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     

@@ -9,9 +9,9 @@ import SwiftUI
 import Charts
 
 struct History: View {
-    @State private var selectedPeriod: TimePeriod = .week
+    @State private var selectedPeriod: Budget.TimePeriod = .week
     
-    let period: TimePeriod
+    let period: Budget.TimePeriod
     let data = ListContainer().data
     
     var dateFormat: Date.FormatStyle {
@@ -47,9 +47,9 @@ struct History: View {
         NavigationStack {
             List {
                 Picker("Time Period", selection: $selectedPeriod) {
-                    Text("W").tag(TimePeriod.week)
-                    Text("M").tag(TimePeriod.month)
-                    Text("Y").tag(TimePeriod.year)
+                    Text("W").tag(Budget.TimePeriod.week)
+                    Text("M").tag(Budget.TimePeriod.month)
+                    Text("Y").tag(Budget.TimePeriod.year)
                 }
                 .pickerStyle(.segmented)
                 .listRowBackground(Color.clear)
@@ -80,9 +80,9 @@ struct History: View {
                     Chart(data) { list in
                         BarMark(
                             x: .value("Date",list.date.formatted(dateFormat)),
-                            y: .value("Cost", list.content[0].price)
+                            y: .value("Cost", list.items[0].price)
                         )
-                        .foregroundStyle(by: .value("Category", list.content[0].tags[1]))
+                        .foregroundStyle(by: .value("Category", list.items[0].tags[1].name))
                     }
                     .padding()
                 }
@@ -91,7 +91,7 @@ struct History: View {
                 // Transactions
                 ForEach(data) { list in
                     Section(header: Text("\(list.date.formatted(dateFormat))")) {
-                        ForEach(list.content) { item in
+                        ForEach(list.items) { item in
                             RecentItemRow(list: list, item: item)
                                 .frame(height: 36)
                         }

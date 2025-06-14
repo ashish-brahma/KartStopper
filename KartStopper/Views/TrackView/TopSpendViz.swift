@@ -9,13 +9,13 @@ import SwiftUI
 import Charts
 
 struct TopSpendViz: View {
-    let data : [ListItemModel] = ListContainer().data[0].content
+    let data : [ListItemModel] = ListContainer().data[0].items
     
     var body: some View {
         // TODO: Refactor data model
         Chart(data) { item in
             SectorMark(angle: .value("Frequency", item.count))
-                .foregroundStyle(by: .value("Category", item.tags[1]))
+                .foregroundStyle(by: .value("Category", item.tags[1].name))
         }
         .padding(8)
         .padding(.top, 30)

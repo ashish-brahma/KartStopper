@@ -10,7 +10,7 @@ struct ManageView: View {
     @State var currency: Currency = .usd
     @State var budgetAmount = K.emptyString
     @State var budget = Budget()
-    @State var budgetMode = Mode.medium
+    @State var budgetMode = "medium"
     
     var body: some View {
         NavigationStack {
@@ -58,12 +58,12 @@ struct ManageView: View {
                         
                         // Difficulty Mode
                         Section {
-                            Picker(K.manageDifficultyModePickerTitle, selection: $budgetMode) {
-                                ForEach(Mode.allCases, id: \.self) { mode in
-                                    Text(mode.rawValue).tag(mode)
-                                }
-                            }
-                            .pickerStyle(.navigationLink)
+//                            Picker(K.manageDifficultyModePickerTitle, selection: $budgetMode) {
+//                                ForEach(Mode.allCases, id: \.self) { mode in
+//                                    Text(mode.rawValue).tag(mode)
+//                                }
+//                            }
+//                            .pickerStyle(.navigationLink)
                         } header: {
                             Text(K.manageDifficultyModeHeader)
                         } footer: {

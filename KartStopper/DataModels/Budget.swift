@@ -6,35 +6,77 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Budget {
-    var currencySymbol = Currency.usd.symbol
-    var currentAmount = 0.0
-    var maxAmount = 60.0
-    var mode: Mode = .medium
+@Model
+class Budget {
+    var currencySymbol: String
+    var currentAmount: Double
+    var maxAmount: Double
     
-    var status : String {
+    init(currencySymbol: String = Currency.usd.symbol,
+         currentAmount: Double = 0.0, maxAmount: Double = 60.0) {
+        self.currencySymbol = currencySymbol
+        self.currentAmount = currentAmount
+        self.maxAmount = maxAmount
+    }
+    
+    var mode: Mode {
+        return .medium
+    }
+    
+    var status: StatusType {
         switch (currentAmount/maxAmount) {
         case 0.0..<0.5:
-            K.positiveStatus
+                .positiveStatus
         case 0.5..<0.8:
-            K.neurtalStatus
+                .neurtalStatus
         default:
-            K.negativeStatus
+                .negativeStatus
         }
     }
     
     var message: String {
-        return K.budgetStatus[status]?[K.messageIndex] ?? K.homeTabName
+        switch status {
+        case .neurtalStatus:
+            "Slow Down"
+        case .negativeStatus:
+            "You're Broke"
+        default:
+            "You're Awesome"
+        }
     }
     
     var messageColor: String {
-        return K.budgetStatus[status]?[K.colorIndex] ?? K.defaultColor
+        switch status {
+        case .neurtalStatus:
+            "Sanskrit"
+        case .negativeStatus:
+            "Cowpeas"
+        default:
+            "RichBlack"
+        }
     }
-}
-
-enum Mode: String, CaseIterable {
-    case easy = "Easy"
-    case medium = "Medium"
-    case hard = "Hard"
+    
+    enum Mode: String, Codable, CaseIterable, Identifiable {
+        case easy = "Easy"
+        case medium = "Medium"
+        case hard = "Hard"
+        
+        var id: Self { self }
+    }
+    
+    enum StatusType: String, Codable, CaseIterable, Identifiable {
+        case positiveStatus = "PositiveStatus"
+        case neurtalStatus = "NeutralStatus"
+        case negativeStatus = "NegativeStatus"
+        
+        var id: Self { self }
+    }
+    
+    enum TimePeriod: String, Codable, CaseIterable, Identifiable {
+        case week, month, year
+        
+        var id: Self { self }
+    }
 }

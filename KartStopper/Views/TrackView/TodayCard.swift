@@ -16,7 +16,7 @@ struct TodayCard: View {
                 // Recent items
                 Section(K.trackRecentsNavigationTitle) {
                     ForEach(0..<2) { n in
-                        RecentItemRow(list: list, item: list.content[n])
+                        RecentItemRow(list: list, item: list.items[n])
                             .frame(height: 36)
                     }
                 }

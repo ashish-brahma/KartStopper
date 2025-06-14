@@ -154,7 +154,7 @@ struct ItemDetails: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].content
+    let list = ListContainer().data[0].items
     NavigationStack {
         ItemDetails(isSaved: false, item: list[0], list: list)
     }

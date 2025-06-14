@@ -79,7 +79,7 @@ struct ListItem: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].content
+    let list = ListContainer().data[0].items
     NavigationStack {
         ListItem(item: list[0], list: list, isSaved: true, asFavourite: true)
         ListItem(item: list[1], list: list, isSaved: true, asFavourite: false)

@@ -121,17 +121,5 @@ enum K {
     static let managePrivacyNavigationTitle = "Privacy Policy"
     static let manageFAQNavigationTitle = "FAQs"
     static let manageContactNavigationTitle = "Contact"
-    
-    // Budget Model
-    static let budgetStatus: [String: [String:String]] = [
-        "PositiveStatus": ["message": "You're Awesome", "color": "RichBlack"],
-        "NeutralStatus": ["message": "Slow Down", "color": "Sanskrit"],
-        "NegativeStatus": ["message": "You're Broke", "color": "Cowpeas"]
-    ]
-    static let positiveStatus = "PositiveStatus"
-    static let neurtalStatus = "NeutralStatus"
-    static let negativeStatus = "NegativeStatus"
-    static let messageIndex = "message"
-    static let colorIndex = "color"
-    static let defaultColor = "Background"
+
 }

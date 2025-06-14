@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ItemTags: View {
-    let tags: [String]
+    let tags: [TagModel]
     
     var body: some View {
         HStack {
             ForEach(tags, id: \.self) {
-                Text($0)
+                Text($0.name)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 10)
                     .background {
@@ -27,6 +27,6 @@ struct ItemTags: View {
 }
 
 #Preview {
-    let item = ListContainer().data[0].content[1]
+    let item = ListContainer().data[0].items[1]
     ItemTags(tags: item.tags)
 }

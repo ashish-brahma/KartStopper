@@ -18,9 +18,9 @@ struct ListEditor: View {
     
     var filteredList: [ListItemModel] {
         if searchText.isEmpty {
-            list.content
+            list.items
         } else {
-            list.content.filter { item in
+            list.items.filter { item in
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
         }
@@ -28,7 +28,7 @@ struct ListEditor: View {
     
     var totalAmount: Double {
         var amt = 0.00
-        list.content.forEach { item in
+        list.items.forEach { item in
             amt += item.price * Double(item.count)
         }
         return amt

@@ -6,16 +6,22 @@
 //
 
 import Foundation
+import SwiftData
 
-struct ListModel: Identifiable {
-    let id = UUID()
-    let name: String
-    let detail: String
-    let date: Date
-    let content: [ListItemModel]
-}
-
-enum TimePeriod: String, CaseIterable, Identifiable {
-    case week, month, year
-    var id: Self { self }
+@Model
+class ListModel {
+    @Attribute(.unique) var id = UUID()
+    var name: String
+    var detail: String
+    var date: Date
+    
+    @Relationship(deleteRule: .cascade) var items: [ListItemModel]
+    
+    init(id: UUID = UUID(), name: String, detail: String, date: Date, items: [ListItemModel]) {
+        self.id = id
+        self.name = name
+        self.detail = detail
+        self.date = date
+        self.items = items
+    }
 }

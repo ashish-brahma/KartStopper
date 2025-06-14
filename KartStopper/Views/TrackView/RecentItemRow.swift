@@ -43,7 +43,7 @@ struct RecentItemRow: View {
             }
         }
         .sheet(isPresented: $showInfo) {
-            Carousel(selectedItem: item, list: list.content, isSaved: true)
+            Carousel(selectedItem: item, list: list.items, isSaved: true)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }
@@ -52,5 +52,5 @@ struct RecentItemRow: View {
 
 #Preview {
     let list = ListContainer().data[0]
-    RecentItemRow(list: list, item: list.content[0])
+    RecentItemRow(list: list, item: list.items[0])
 }

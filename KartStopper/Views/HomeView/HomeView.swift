@@ -40,7 +40,6 @@ struct HomeView: View {
                             
                             // Status Card
                             StatusCard(
-                                cardColor: budget.status,
                                 status: budget.status,
                                 current: budget.currentAmount,
                                 currencySymbol: budget.currencySymbol

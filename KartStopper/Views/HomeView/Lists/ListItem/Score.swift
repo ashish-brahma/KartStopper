@@ -11,12 +11,12 @@ struct Score: View {
     let value: Int
     let asGuide: Bool
     
-    var status : String {
+    var status : Budget.StatusType {
         switch value {
         case 50..<100:
-            K.positiveStatus
+            .positiveStatus
         default:
-            K.negativeStatus
+            .negativeStatus
         }
     }
     
@@ -27,16 +27,16 @@ struct Score: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color(status))
+                .fill(Color(status.rawValue))
             
             VStack(alignment: .center) {
                 Text(K.scoreTitle)
                     .font(asGuide ? .body.smallCaps() : .caption.smallCaps())
-                    .foregroundStyle(status == K.negativeStatus ? .cowpeas : .accentColor)
+                    .foregroundStyle(status == .negativeStatus ? .cowpeas : .accentColor)
                 
                 Text(String(value))
                     .font(Font.custom(K.newYorkLargeRegularFont, size:asGuide ? 48 : 36))
-                    .foregroundStyle(status == K.negativeStatus ? .cowpeas : .richBlack)
+                    .foregroundStyle(status == .negativeStatus ? .cowpeas : .richBlack)
             }
         }
         .clipShape(.rect(cornerRadius: 21))
