@@ -7,29 +7,26 @@
 import SwiftUI
 
 struct CircularGauge: View {
-    @State var status: Budget.StatusType
-    let current: Double
-    let minValue = 0.0
-    let maxValue = 60.0
+    let budget: Budget
     
     var body: some View {
         // Indicator
-        Gauge(value: current, in: minValue...maxValue) {
+        Gauge(value: budget.currentAmount, in: 0.0...budget.maxAmount) {
             // Image
             
         } currentValueLabel: {
-            Text(String(format:K.decimalFormat, current))
-                .foregroundColor(status == .negativeStatus ? .cowpeas : .richBlack  )
+            Text(String(format:K.decimalFormat, budget.currentAmount))
+                .foregroundColor(budget.status == .negativeStatus ? .cowpeas : .richBlack  )
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 18))
                 .padding(.leading, -1)
             
         } minimumValueLabel: {
-            Text("\(Int(minValue))")
+            Text("\(Int(0.0))")
                 .foregroundColor(.gray700)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
         } maximumValueLabel: {
-            Text("\(Int(maxValue))")
+            Text("\(Int(budget.maxAmount))")
                 .foregroundColor(.cowpeas)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
@@ -41,9 +38,6 @@ struct CircularGauge: View {
 }
 
 #Preview {
-    @Previewable @State var status = Budget().status
-    @Previewable @State var current = Budget().currentAmount
-    
-    CircularGauge(status: status, current: current)
+    CircularGauge(budget: Budget())
         .scaleEffect(4)
 }

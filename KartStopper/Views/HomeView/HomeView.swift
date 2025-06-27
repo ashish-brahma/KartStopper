@@ -5,18 +5,16 @@
 //  Created by Ashish Brahma on 05/04/25.
 //
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+    @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
+    
+    @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
+    
+    @Binding var budget: Budget
+    
     @State var showTags: Bool = false
-
-    @State var budget = Budget()
-    @State var lists = ListContainer()
-    
-    var numLists: Int {
-        lists.data.count
-    }
-    
-    var numTags: Int = 0
     
     var body: some View {
         NavigationStack {
@@ -39,11 +37,7 @@ struct HomeView: View {
                                 .padding(.bottom, reader.size.height/5)
                             
                             // Status Card
-                            StatusCard(
-                                status: budget.status,
-                                current: budget.currentAmount,
-                                currencySymbol: budget.currencySymbol
-                            )
+                            StatusCard(budget: budget)
                             .padding(.vertical, reader.size.height/50)
                             
                             // Call to action
@@ -57,18 +51,18 @@ struct HomeView: View {
                             // Navigation Cards
                             HStack {
                                 NavigationLink {
-                                    ListExplorer(lists: $lists)
+                                    ListExplorer(lists: lists)
                                 } label: {
-                                    CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: numLists)
+                                    CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: lists.count)
                                 }
                                 .padding(3)
                                 .accessibility(addTraits: .isButton)
-                                .accessibility(identifier: "listsNavButton")
+                                .accessibility(identifier: K.homeListsAccessibilityIdentifier)
                                 
                                 Button {
                                     showTags.toggle()
                                 } label: {
-                                    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: numTags)
+                                    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: tags.count)
                                 }
                             }
                             .frame(width: reader.size.width/1.04, height: reader.size.height/3.6)
@@ -99,5 +93,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    @Previewable @State var budget = Budget()
+    HomeView(budget: $budget)
+        .modelContainer(PersistenceController.preview)
 }

@@ -42,7 +42,7 @@ struct ListItem: View {
                 
                 // SKU stepper
                 if !asFavourite {
-                    SKU(count: item.count)
+                    SKU(count: item.numUnits)
                         .padding(.horizontal, 6)
                 }
             }
@@ -79,7 +79,7 @@ struct ListItem: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].items
+    let list = PersistenceController.previewLists[0].items
     NavigationStack {
         ListItem(item: list[0], list: list, isSaved: true, asFavourite: true)
         ListItem(item: list[1], list: list, isSaved: true, asFavourite: false)

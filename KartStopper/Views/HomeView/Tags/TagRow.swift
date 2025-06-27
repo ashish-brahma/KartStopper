@@ -22,5 +22,5 @@ struct TagRow: View {
 }
 
 #Preview {
-    TagRow(tag: ListContainer().tags[0])
+    TagRow(tag: PersistenceController.previewTags[0])
 }

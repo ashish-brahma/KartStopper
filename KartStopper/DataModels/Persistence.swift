@@ -10,7 +10,7 @@ import SwiftData
 
 @MainActor
 struct PersistenceController {
-    static var preivewLists: [ListModel] {
+    static var previewLists: [ListModel] {
         let sampleLists = [
             ListModel(name: "Pariatur celer", detail: "Amiculum torrens", date: .distantPast, items: [
                 ListItemModel(name: "Studio umerus",
@@ -18,10 +18,7 @@ struct PersistenceController {
                               pictures: ["https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                               detail: "Vacuus volaticus careo. Absconditus verto delectus totus nobis atqui aduro censura ter.",
                               price: 28.99,
-                              tags: [
-                                TagModel(name: "Aecipio", color: UIColor.yellow),
-                                TagModel(name: "Cllus", color: UIColor.green)
-                              ],
+                              tags: ["Aecipio", "Cllus"],
                               guide: Guide(score: 86,
                                            info: ProductInfo(
                                             productSafety : "This product is FDA approved.",
@@ -35,10 +32,7 @@ struct PersistenceController {
                               pictures: ["https://images.unsplash.com/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                               detail: "Ocer capto talio venia uterque. Stips sumptus tabernus adimpleo verus venio iure cilicium theca.",
                               price: 10.42,
-                              tags: [
-                                TagModel(name: "Aecipio", color: UIColor.yellow),
-                                TagModel(name: "Oubvenio", color: UIColor.blue)
-                              ],
+                              tags: ["Aecipio", "Oubvenio"],
                               guide: Guide(score: 49,
                                            info: ProductInfo(
                                             productSafety : "This product complies with ESG standards.",
@@ -51,10 +45,7 @@ struct PersistenceController {
                               pictures: ["https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                               detail: "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
                               price: 40.39,
-                              tags: [
-                                TagModel(name: "Aecipio", color: UIColor.yellow),
-                                TagModel(name: "Oubvenio", color: UIColor.blue)
-                              ],
+                              tags: ["Aecipio", "Oubvenio"],
                               guide: Guide(score: 28,
                                            info: ProductInfo(
                                             productSafety : "This product failed toxicity tests.",
@@ -69,10 +60,7 @@ struct PersistenceController {
                               pictures: ["https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"],
                               detail: "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
                               price: 40.39,
-                              tags: [
-                                TagModel(name: "Aecipio", color: UIColor.yellow),
-                                TagModel(name: "Oubvenio", color: UIColor.blue)
-                              ],
+                              tags: ["Aecipio", "Oubvenio"],
                               guide: Guide(score: 28,
                                            info: ProductInfo(
                                             productSafety : "This product failed toxicity tests.",
@@ -87,6 +75,24 @@ struct PersistenceController {
         return sampleLists
     }
     
+    static var previewTags: [TagModel] {
+        let sampleTags = [
+            TagModel(name: "Virga", color: UIColor.systemMint),
+            TagModel(name: "Constans", color: UIColor.yellow),
+            TagModel(name: "Berelinquo", color: UIColor.red)
+        ]
+        
+        return sampleTags
+    }
+    
+    static var previewFavourites: [ListItemModel] {
+        var favourites = [ListItemModel]()
+        for li in previewLists {
+            favourites += (li.items.filter { $0.isFavourited })
+        }
+        return favourites
+    }
+    
     static var preview: ModelContainer = {
         let schema = Schema([
             ListModel.self,
@@ -97,8 +103,14 @@ struct PersistenceController {
         
         let container = try! ModelContainer(for: schema, configurations: [modelConfiguration])
         
-        for list in preivewLists {
+        // Insert sample lists
+        for list in previewLists {
             container.mainContext.insert(list)
+        }
+        
+        // Insert sample tags
+        for tags in previewTags {
+            container.mainContext.insert(tags)
         }
         
         return container

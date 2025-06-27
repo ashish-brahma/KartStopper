@@ -8,12 +8,11 @@ import SwiftUI
 import SwiftData
 
 @Model final class TagModel {
-    @Attribute(.unique) var id = UUID()
+    #Unique<TagModel>([\.name, \.colorData])
     var name: String
     var colorData: Data?
     
-    init(id: UUID = UUID(), name: String, color: UIColor) {
-        self.id = id
+    init(name: String, color: UIColor) {
         self.name = name
         
         do {

@@ -9,18 +9,20 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State var budget = Budget()
+    
     var body: some View {
         TabView {
             Tab (K.homeTabName, systemImage: K.homeTabSymbol) {
-                HomeView()
+                HomeView(budget: $budget)
             }
             
             Tab (K.trackTabName, systemImage: K.trackTabSymbol) {
-                TrackView()
+                TrackView(budget: $budget)
             }
             
             Tab (K.manageTabName, systemImage: K.manageTabSymbol) {
-                ManageView()
+                ManageView(budget: $budget)
             }
         }
     }
@@ -28,4 +30,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .modelContainer(PersistenceController.preview)
 }

@@ -22,6 +22,8 @@ enum K {
     // Button
     static let closeButtonTitle = "Close"
     static let closeButtonSymbol = "xmark"
+    static let deleteButtonLabel = "Delete"
+    static let deleteButtonImage = "trash"
     
     // Tab View
     static let homeTabName = "Home"
@@ -35,6 +37,7 @@ enum K {
     static let homeCTA = "Continue Listing"
     static let homeListsCardName = "Lists"
     static let homeListsCardSymbol = "chevron.right"
+    static let homeListsAccessibilityIdentifier = "listsNavButton"
     static let homeTagsCardName = "Tags"
     static let homeTagsCardSymbol = "plus.circle.fill"
     

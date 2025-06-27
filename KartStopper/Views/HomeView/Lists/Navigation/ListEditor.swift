@@ -14,7 +14,7 @@ struct ListEditor: View {
     @State private var multiSelection = Set<UUID>()
     @State var currencySymbol = Budget().currencySymbol
     
-    let list: ListModel
+    var list: ListModel
     
     var filteredList: [ListItemModel] {
         if searchText.isEmpty {
@@ -29,7 +29,7 @@ struct ListEditor: View {
     var totalAmount: Double {
         var amt = 0.00
         list.items.forEach { item in
-            amt += item.price * Double(item.count)
+            amt += item.price * Double(item.numUnits)
         }
         return amt
     }
@@ -113,8 +113,7 @@ struct ListEditor: View {
 }
 
 #Preview {
-    @Previewable @State var lists = ListContainer()
     NavigationStack {
-        ListEditor(list: lists.data[0])
+        ListEditor(list: PersistenceController.previewLists[0])
     }
 }

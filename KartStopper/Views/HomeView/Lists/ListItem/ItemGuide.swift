@@ -95,6 +95,6 @@ struct ItemGuide: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].items
+    let list = PersistenceController.previewLists[0].items
     ItemGuide(guide: list[0].guide, list: list)
 }

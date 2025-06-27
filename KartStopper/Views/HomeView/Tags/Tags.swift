@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct Tags: View {
     @Environment(\.dismiss) var dismiss
+    
+    @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
+    
     let asHome: Bool
-    let tags = ListContainer().tags
     
     var body: some View {
         List {
@@ -27,8 +30,8 @@ struct Tags: View {
                         .padding(.horizontal)
                 } else {
                     if asHome {
-                        ForEach(tags) {
-                            TagRow(tag: $0)
+                        ForEach(tags) { tag in
+                            TagRow(tag: tag)
                         }
                     } else {
                         TagPicker(tags: tags)
@@ -61,5 +64,6 @@ struct Tags: View {
 #Preview {
     NavigationStack {
         Tags(asHome: false)
+            .modelContainer(PersistenceController.preview)
     }
 }

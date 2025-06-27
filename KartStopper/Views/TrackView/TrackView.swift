@@ -5,8 +5,22 @@
 //  Created by Ashish Brahma on 05/04/25.
 //
 import SwiftUI
+import SwiftData
 
 struct TrackView: View {
+    @Binding var budget: Budget
+    
+    @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
+    
+    // FIXME: Restructure data to make plot visible.
+    var data: [ListItemModel] {
+        var listItems = [ListItemModel]()
+        for li in lists {
+            listItems.append(contentsOf: li.items)
+        }
+        return listItems
+    }
+    
     var body: some View {
         NavigationStack {
             GeometryReader { reader in
@@ -21,11 +35,12 @@ struct TrackView: View {
                     ScrollView {
                         VStack {
                             // Spend by category chart
-                            TopSpendViz()
+                            TopSpendViz(data: data)
                                 .frame(height: reader.size.height/2.2)
                             
                             // Today's total expense card
-                            TodayCard()
+                            // TODO: Use predicate on query
+                            TodayCard(list: PersistenceController.previewLists[0])
                                 .frame(height: reader.size.height/2.2)
                                 .padding(.top, 6)
                             
@@ -52,5 +67,6 @@ struct TrackView: View {
 }
 
 #Preview {
-    TrackView()
+    @Previewable @State var budget = Budget()
+    TrackView(budget: $budget)
 }

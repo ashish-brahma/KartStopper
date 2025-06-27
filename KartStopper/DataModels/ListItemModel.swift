@@ -16,10 +16,10 @@ class ListItemModel {
     var pictures: [String]
     var detail: String
     var price: Double
-    @Relationship var tags: [TagModel]
+    var tags: [String]
     @Relationship var guide: Guide
     var isFavourited: Bool
-    var count: Int
+    var numUnits: Int
     
     init(id: UUID = UUID(),
          name: String,
@@ -27,10 +27,10 @@ class ListItemModel {
          pictures: [String],
          detail: String,
          price: Double,
-         tags: [TagModel],
+         tags: [String],
          guide: Guide,
          isFavourited: Bool = false,
-         count: Int = 1) {
+         numUnits: Int = 1) {
         self.id = id
         self.name = name
         self.thumbnail = thumbnail
@@ -40,7 +40,7 @@ class ListItemModel {
         self.tags = tags
         self.guide = guide
         self.isFavourited = isFavourited
-        self.count = count
+        self.numUnits = numUnits
     }
     
 }

@@ -9,8 +9,7 @@ import SwiftUI
 struct ManageView: View {
     @State var currency: Currency = .usd
     @State var budgetAmount = K.emptyString
-    @State var budget = Budget()
-    @State var budgetMode = "medium"
+    @Binding var budget: Budget
     
     var body: some View {
         NavigationStack {
@@ -25,7 +24,7 @@ struct ManageView: View {
                     List {
                         // Currency
                         Section {
-                            Picker(K.manageCurrencyPickerTitle, selection: $currency) {
+                            Picker(K.manageCurrencyPickerTitle, selection: $budget.currency) {
                                 ForEach(Currency.allCases, id: \.self) { currency in
                                     Text("\(currency.name) (\(currency.symbol))").tag(currency)
                                 }
@@ -42,6 +41,9 @@ struct ManageView: View {
                             Stepper {
                                 TextField(String(format: K.decimalFormat, budget.maxAmount), text: $budgetAmount)
                                     .keyboardType(.decimalPad)
+                                    .onChange(of: budgetAmount) {
+                                        budget.currentAmount = Double(budgetAmount) ?? 0.0
+                                    }
                             } onIncrement: {
                                 budget.maxAmount += 5
                             } onDecrement: {
@@ -58,12 +60,12 @@ struct ManageView: View {
                         
                         // Difficulty Mode
                         Section {
-//                            Picker(K.manageDifficultyModePickerTitle, selection: $budgetMode) {
-//                                ForEach(Mode.allCases, id: \.self) { mode in
-//                                    Text(mode.rawValue).tag(mode)
-//                                }
-//                            }
-//                            .pickerStyle(.navigationLink)
+                            Picker(K.manageDifficultyModePickerTitle, selection: $budget.mode) {
+                                ForEach(Budget.Mode.allCases, id: \.self) { mode in
+                                    Text(mode.rawValue).tag(mode)
+                                }
+                            }
+                            .pickerStyle(.navigationLink)
                         } header: {
                             Text(K.manageDifficultyModeHeader)
                         } footer: {
@@ -107,5 +109,6 @@ struct ManageView: View {
 }
 
 #Preview {
-    ManageView()
+    @Previewable @State var budget = Budget()
+    ManageView(budget: $budget)
 }

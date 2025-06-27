@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TodayCard: View {
-    let list = ListContainer().data[0]
+    let list: ListModel
     
     var body: some View {
         DisclosureGroup(K.trackStatLabelDisclosureTitle) {
@@ -39,7 +39,7 @@ struct TodayCard: View {
     NavigationStack {
         ZStack {
             Color.background
-            TodayCard()
+            TodayCard(list: PersistenceController.previewLists[0])
                 .frame(height: 240)
                 .padding()
         }

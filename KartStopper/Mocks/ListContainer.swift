@@ -18,14 +18,10 @@ class ListContainer {
     
     func createModelContainer() {
         // Sample lists
-        data.append(contentsOf: PersistenceController.preivewLists)
+        data.append(contentsOf: PersistenceController.previewLists)
         
         // Sample tags
-        tags.append(contentsOf: [
-            TagModel(name: "Virga", color: UIColor.systemMint),
-            TagModel(name: "Constans", color: UIColor.yellow),
-            TagModel(name: "Berelinquo", color: UIColor.red)
-        ])
+        tags.append(contentsOf: PersistenceController.previewTags)
     }
     
     func getFavouritesCount() -> Int {

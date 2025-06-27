@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NewTagSection: View {
     @Environment(\.dismiss) var dismiss
+    
+    @Environment(\.modelContext) private var modelContext
+    
+    @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
+    
     @State var tagName = K.emptyString
     @State var color = Color.yellow
     
@@ -39,9 +45,19 @@ struct NewTagSection: View {
                 .clipShape(.rect(cornerRadius: 40))
                 .padding(.horizontal)
                 
-                // TODO: Add button
+                // Add button
                 Button {
-                    
+                    if tagName != K.emptyString {
+                        do {
+                            let newTag = TagModel(name: tagName, color: UIColor(color))
+                            
+                            modelContext.insert(newTag)
+                            
+                            try modelContext.save()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 } label: {
                     Text(K.tagsAddButtonLabel)
                         .foregroundStyle(.gray100)
@@ -57,6 +73,7 @@ struct NewTagSection: View {
 #Preview {
     List {
         NewTagSection(tagName: K.emptyString, color: .yellow)
+            .modelContainer(PersistenceController.preview)
     }
 }
 

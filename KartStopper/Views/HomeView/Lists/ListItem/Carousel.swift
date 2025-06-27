@@ -53,6 +53,6 @@ struct Carousel: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].items
+    let list = PersistenceController.previewLists[0].items
     Carousel(selectedItem: list[0], list: list, isSaved: true)
 }

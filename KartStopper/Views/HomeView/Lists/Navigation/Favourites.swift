@@ -11,7 +11,7 @@ struct Favourites: View {
     @State var searchText: String = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
-    let list: [ListItemModel]
+    var list: [ListItemModel]
     
     var filteredList: [ListItemModel] {
         if searchText.isEmpty {
@@ -53,8 +53,7 @@ struct Favourites: View {
 }
 
 #Preview {
-    let lists = ListContainer()
     NavigationStack {
-        Favourites(list: lists.getFavourites())
+        Favourites(list: PersistenceController.previewFavourites)
     }
 }

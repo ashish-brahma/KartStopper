@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct ListExplorer: View {
-    @State var showTags: Bool = false
-    @State var searchText: String = K.emptyString
+    @State private var showTags: Bool = false
+    @State private var searchText: String = K.emptyString
+    @State private var newListName: String = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
-    @Binding var lists: ListContainer
+    var lists: [ListModel]
     
     var filteredList: [ListModel] {
         if searchText.isEmpty {
-            lists.data
+            lists
         } else {
-            lists.data.filter { item in
+            lists.filter { item in
                 item.name.localizedCaseInsensitiveContains(searchText)
             }
         }
+    }
+    
+    var favourites: [ListItemModel] {
+        var favourites = [ListItemModel]()
+        for li in lists {
+            favourites += (li.items.filter { $0.isFavourited })
+        }
+        return favourites
     }
     
     var body: some View {
@@ -32,7 +41,7 @@ struct ListExplorer: View {
                 .ignoresSafeArea()
             
             VStack {
-                if lists.data.isEmpty {
+                if lists.isEmpty {
                     // No lists message
                     Text(K.listsFillerText)
                         .font(.headline)
@@ -48,7 +57,7 @@ struct ListExplorer: View {
                         // Favourites section
                         Section {
                             NavigationLink {
-                                Favourites(list: lists.getFavourites())
+                                Favourites(list: favourites)
                             } label: {
                                 HStack {
                                     Text(K.listsFavouritesRowTitle)
@@ -56,7 +65,7 @@ struct ListExplorer: View {
                                     
                                     Spacer()
                                     
-                                    Text(String(lists.getFavouritesCount()))
+                                    Text(String(favourites.count))
                                         .foregroundStyle(.secondary)
                                 }
                             }
@@ -96,7 +105,6 @@ struct ListExplorer: View {
             // Add List button
             ToolbarItem(placement: .topBarTrailing) {
                 Button(K.listsAddListButtonLabel, systemImage: K.listsAddListButtonImage) {
-                    // TODO: Add new item.
                 }
             }
             
@@ -116,8 +124,7 @@ struct ListExplorer: View {
 }
 
 #Preview {
-    @Previewable @State var lists = ListContainer()
     NavigationStack {
-        ListExplorer(lists: $lists)
+        ListExplorer(lists: PersistenceController.previewLists)
     }
 }

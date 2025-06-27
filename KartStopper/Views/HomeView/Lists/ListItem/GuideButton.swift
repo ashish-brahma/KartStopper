@@ -24,7 +24,7 @@ struct GuideButton: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0].items
+    let list = PersistenceController.previewLists[0].items
     Group {
         GuideButton(item: list[0], list: list, asSheet: false)
         GuideButton(item: list[0], list: list, asSheet: true)

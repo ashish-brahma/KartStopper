@@ -9,13 +9,13 @@ import SwiftUI
 import Charts
 
 struct TopSpendViz: View {
-    let data : [ListItemModel] = ListContainer().data[0].items
+    let data : [ListItemModel]
     
     var body: some View {
         // TODO: Refactor data model
         Chart(data) { item in
-            SectorMark(angle: .value("Frequency", item.count))
-                .foregroundStyle(by: .value("Category", item.tags[1].name))
+            SectorMark(angle: .value("Frequency", item.numUnits))
+                .foregroundStyle(by: .value("Category", item.tags[1]))
         }
         .padding(8)
         .padding(.top, 30)
@@ -34,7 +34,7 @@ struct TopSpendViz: View {
 #Preview {
     ZStack {
         Color.background
-        TopSpendViz()
+        TopSpendViz(data: PersistenceController.previewLists[0].items)
             .frame(height: 300)
             .padding()
     }

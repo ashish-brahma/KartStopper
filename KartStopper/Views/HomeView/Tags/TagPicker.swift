@@ -24,7 +24,7 @@ struct TagPicker: View {
 
 #Preview {
     List {
-        TagPicker(tags: ListContainer().tags)
+        TagPicker(tags: PersistenceController.previewTags)
     }
 }
 

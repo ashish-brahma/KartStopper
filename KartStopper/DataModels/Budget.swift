@@ -6,23 +6,17 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
+@Observable
+@MainActor
 class Budget {
-    var currencySymbol: String
-    var currentAmount: Double
-    var maxAmount: Double
+    var currency: Currency = .usd
+    var currentAmount: Double = 0.0
+    var maxAmount: Double = 60.0
+    var mode: Mode = .medium
     
-    init(currencySymbol: String = Currency.usd.symbol,
-         currentAmount: Double = 0.0, maxAmount: Double = 60.0) {
-        self.currencySymbol = currencySymbol
-        self.currentAmount = currentAmount
-        self.maxAmount = maxAmount
-    }
-    
-    var mode: Mode {
-        return .medium
+    var currencySymbol: String {
+        Currency.usd.symbol
     }
     
     var status: StatusType {

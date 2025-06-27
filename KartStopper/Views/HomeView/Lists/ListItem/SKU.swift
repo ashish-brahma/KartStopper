@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SKU: View {
-    // FIXME: Connect to data model
     @State var count: Int
     
     var body: some View {
@@ -40,6 +39,6 @@ struct SKU: View {
 
 
 #Preview {
-    let lists = ListContainer()
-    SKU(count: lists.data.count)
+    let list = PersistenceController.previewLists[0]
+    SKU(count: list.items[0].numUnits)
 }
