@@ -51,6 +51,6 @@ struct ComparativeViz: View {
 }
 
 #Preview {
-    let list = PersistenceController.previewLists[0].items
+    let list = PreviewSampleData.previewLists[0].items
     ComparativeViz(list: list)
 }

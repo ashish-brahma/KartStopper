@@ -64,6 +64,6 @@ struct Tags: View {
 #Preview {
     NavigationStack {
         Tags(asHome: false)
-            .modelContainer(PersistenceController.preview)
+            .modelContainer(PreviewSampleData.container)
     }
 }

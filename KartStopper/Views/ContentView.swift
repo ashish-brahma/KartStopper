@@ -30,5 +30,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(PersistenceController.preview)
+        .modelContainer(PreviewSampleData.container)
 }

@@ -47,7 +47,7 @@ struct ListEditor: View {
                     Section {
                         ForEach(filteredList) { item in
                             Label {
-                                ListItem(item: item, list: filteredList,isSaved: true, asFavourite: false)
+                                ListItemRow(item: item, list: filteredList,isSaved: true, asFavourite: false)
                             } icon : {
                                 Image(systemName: K.listsCheckCircleSymbol)
                                     .padding([.leading, .trailing])
@@ -114,6 +114,6 @@ struct ListEditor: View {
 
 #Preview {
     NavigationStack {
-        ListEditor(list: PersistenceController.previewLists[0])
+        ListEditor(list: PreviewSampleData.previewLists[0])
     }
 }

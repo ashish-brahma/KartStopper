@@ -42,8 +42,8 @@ struct ListRow: View {
 
 #Preview {
     Group {
-        ListRow(list: PersistenceController.previewLists[0])
-        ListRow(list: PersistenceController.previewLists[1])
+        ListRow(list: PreviewSampleData.previewLists[0])
+        ListRow(list: PreviewSampleData.previewLists[1])
     }
 }
 

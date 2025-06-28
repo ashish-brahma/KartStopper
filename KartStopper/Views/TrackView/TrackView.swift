@@ -40,7 +40,7 @@ struct TrackView: View {
                             
                             // Today's total expense card
                             // TODO: Use predicate on query
-                            TodayCard(list: PersistenceController.previewLists[0])
+                            TodayCard(list: PreviewSampleData.previewLists[0])
                                 .frame(height: reader.size.height/2.2)
                                 .padding(.top, 6)
                             

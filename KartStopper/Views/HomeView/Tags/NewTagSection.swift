@@ -73,7 +73,7 @@ struct NewTagSection: View {
 #Preview {
     List {
         NewTagSection(tagName: K.emptyString, color: .yellow)
-            .modelContainer(PersistenceController.preview)
+            .modelContainer(PreviewSampleData.container)
     }
 }
 

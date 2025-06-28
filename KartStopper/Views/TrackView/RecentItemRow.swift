@@ -51,6 +51,6 @@ struct RecentItemRow: View {
 }
 
 #Preview {
-    let list = ListContainer().data[0]
+    let list = PreviewSampleData.previewLists[0]
     RecentItemRow(list: list, item: list.items[0])
 }

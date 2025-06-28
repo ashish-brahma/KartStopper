@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model
-class ListItemModel {
+final class ListItemModel {
     @Attribute(.unique) var id = UUID()
     var name: String
     var thumbnail: String

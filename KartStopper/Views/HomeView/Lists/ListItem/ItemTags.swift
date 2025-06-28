@@ -27,6 +27,6 @@ struct ItemTags: View {
 }
 
 #Preview {
-    let item = PersistenceController.previewLists[0].items[1]
+    let item = PreviewSampleData.previewLists[0].items[1]
     ItemTags(tags: item.tags)
 }

@@ -39,7 +39,7 @@ struct TodayCard: View {
     NavigationStack {
         ZStack {
             Color.background
-            TodayCard(list: PersistenceController.previewLists[0])
+            TodayCard(list: PreviewSampleData.previewLists[0])
                 .frame(height: 240)
                 .padding()
         }

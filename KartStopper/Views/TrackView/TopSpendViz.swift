@@ -34,7 +34,7 @@ struct TopSpendViz: View {
 #Preview {
     ZStack {
         Color.background
-        TopSpendViz(data: PersistenceController.previewLists[0].items)
+        TopSpendViz(data: PreviewSampleData.previewLists[0].items)
             .frame(height: 300)
             .padding()
     }

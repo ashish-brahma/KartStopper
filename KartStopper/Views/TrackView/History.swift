@@ -12,7 +12,7 @@ struct History: View {
     @State private var selectedPeriod: Budget.TimePeriod = .week
     
     let period: Budget.TimePeriod
-    let data = ListContainer().data
+    let data = PreviewSampleData.previewLists
     
     var dateFormat: Date.FormatStyle {
         switch(selectedPeriod) {

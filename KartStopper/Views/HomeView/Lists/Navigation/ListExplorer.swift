@@ -125,6 +125,6 @@ struct ListExplorer: View {
 
 #Preview {
     NavigationStack {
-        ListExplorer(lists: PersistenceController.previewLists)
+        ListExplorer(lists: PreviewSampleData.previewLists)
     }
 }

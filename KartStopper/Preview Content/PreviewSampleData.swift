@@ -8,8 +8,7 @@
 import SwiftUI
 import SwiftData
 
-@MainActor
-struct PersistenceController {
+actor PreviewSampleData {
     static var previewLists: [ListModel] {
         let sampleLists = [
             ListModel(name: "Pariatur celer", detail: "Amiculum torrens", date: .distantPast, items: [
@@ -93,7 +92,12 @@ struct PersistenceController {
         return favourites
     }
     
-    static var preview: ModelContainer = {
+    @MainActor
+    static var container: ModelContainer = {
+        return try! inMemoryContainer()
+    }()
+    
+    static var inMemoryContainer: () throws -> ModelContainer = {
         let schema = Schema([
             ListModel.self,
             ListItemModel.self,
@@ -103,16 +107,19 @@ struct PersistenceController {
         
         let container = try! ModelContainer(for: schema, configurations: [modelConfiguration])
         
-        // Insert sample lists
-        for list in previewLists {
-            container.mainContext.insert(list)
-        }
-        
-        // Insert sample tags
-        for tags in previewTags {
-            container.mainContext.insert(tags)
+        // TODO: Create samples in model extensions.
+        Task { @MainActor in
+            // Insert sample lists
+            for list in previewLists {
+                container.mainContext.insert(list)
+            }
+            
+            // Insert sample tags
+            for tags in previewTags {
+                container.mainContext.insert(tags)
+            }
         }
         
         return container
-    }()
+    }
 }

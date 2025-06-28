@@ -95,5 +95,5 @@ struct HomeView: View {
 #Preview {
     @Previewable @State var budget = Budget()
     HomeView(budget: $budget)
-        .modelContainer(PersistenceController.preview)
+        .modelContainer(PreviewSampleData.container)
 }

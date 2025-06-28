@@ -36,7 +36,7 @@ struct Favourites: View {
                     Text(K.listsFavouritesFillerText)
                 } else {
                     List(filteredList, selection: $multiSelection) {
-                        ListItem(item: $0, list: filteredList, isSaved: true, asFavourite: true)
+                        ListItemRow(item: $0, list: filteredList, isSaved: true, asFavourite: true)
                     }
                     .listStyle(.plain)
                 }
@@ -54,6 +54,6 @@ struct Favourites: View {
 
 #Preview {
     NavigationStack {
-        Favourites(list: PersistenceController.previewFavourites)
+        Favourites(list: PreviewSampleData.previewFavourites)
     }
 }

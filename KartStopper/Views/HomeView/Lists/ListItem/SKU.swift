@@ -39,6 +39,6 @@ struct SKU: View {
 
 
 #Preview {
-    let list = PersistenceController.previewLists[0]
+    let list = PreviewSampleData.previewLists[0]
     SKU(count: list.items[0].numUnits)
 }

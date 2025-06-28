@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListItem: View {
+struct ListItemRow: View {
     @State var showInfo = false
     @State var currencySymbol = Budget().currencySymbol
     
@@ -79,9 +79,9 @@ struct ListItem: View {
 }
 
 #Preview {
-    let list = PersistenceController.previewLists[0].items
+    let list = PreviewSampleData.previewLists[0].items
     NavigationStack {
-        ListItem(item: list[0], list: list, isSaved: true, asFavourite: true)
-        ListItem(item: list[1], list: list, isSaved: true, asFavourite: false)
+        ListItemRow(item: list[0], list: list, isSaved: true, asFavourite: true)
+        ListItemRow(item: list[1], list: list, isSaved: true, asFavourite: false)
     }
 }

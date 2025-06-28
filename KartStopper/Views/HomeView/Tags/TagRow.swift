@@ -22,5 +22,5 @@ struct TagRow: View {
 }
 
 #Preview {
-    TagRow(tag: PersistenceController.previewTags[0])
+    TagRow(tag: PreviewSampleData.previewTags[0])
 }

@@ -1,0 +1,122 @@
+[
+    {
+        "items" : [
+            {
+                "tags" : [
+                    "Aecipio",
+                    "Cllus"
+                ],
+                "numUnits" : 1,
+                "price" : 28.99,
+                "id" : "64D92BDD-AB93-49B4-AB35-0E2542C4109B",
+                "detail" : "Vacuus volaticus careo. Absconditus verto delectus totus nobis atqui aduro censura ter.",
+                "isFavourited" : true,
+                "pictures" : [
+                    "https:\/\/images.unsplash.com\/photo-1505740420928-5e560c06d30e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ],
+                "name" : "Studio umerus",
+                "thumbnail" : "https:\/\/images.unsplash.com\/photo-1505740420928-5e560c06d30e?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "guide" : {
+                    "score" : 86,
+                    "info" : {
+                        "id" : "516AFE71-A0B8-4361-8539-ABB0B5BD465F",
+                        "carbonImpact" : "290-930 g CO2e\/kWh",
+                        "productSafety" : "This product is FDA approved.",
+                        "shippingPolicy" : "Return Period: 7 working days\nFree shipping: For orders USD 80 & above."
+                    },
+                    "id" : "8EE4CCE3-2625-48CF-B27C-23637F47D8F9"
+                }
+            },
+            {
+                "tags" : [
+                    "Aecipio",
+                    "Oubvenio"
+                ],
+                "numUnits" : 1,
+                "price" : 10.42,
+                "id" : "934141E6-98AF-4A75-8AEE-65BA1F214CD9",
+                "detail" : "Ocer capto talio venia uterque. Stips sumptus tabernus adimpleo verus venio iure cilicium theca.",
+                "isFavourited" : false,
+                "pictures" : [
+                    "https:\/\/images.unsplash.com\/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ],
+                "name" : "Aegre tantum",
+                "thumbnail" : "https:\/\/images.unsplash.com\/photo-1509423350716-97f9360b4e09?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "guide" : {
+                    "score" : 49,
+                    "info" : {
+                        "shippingPolicy" : "No Returns\nNo free shipping",
+                        "carbonImpact" : "-2 g CO2e\/kWh",
+                        "productSafety" : "This product complies with ESG standards.",
+                        "id" : "4AE5721D-588A-4034-A599-B1E0A4602E76"
+                    },
+                    "id" : "58019BED-CD5D-4A8B-81D7-C40AFF2F50FD"
+                }
+            },
+            {
+                "tags" : [
+                    "Aecipio",
+                    "Oubvenio"
+                ],
+                "numUnits" : 1,
+                "price" : 40.39,
+                "id" : "4D4805C5-913E-4F58-8E7B-4161AD2AB2FD",
+                "detail" : "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
+                "isFavourited" : false,
+                "pictures" : [
+                    "https:\/\/images.unsplash.com\/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ],
+                "name" : "Abundans decerno",
+                "thumbnail" : "https:\/\/images.unsplash.com\/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "guide" : {
+                    "score" : 28,
+                    "info" : {
+                        "shippingPolicy" : "Return Period: 5-7 working days\nNo free shipping",
+                        "id" : "06658E36-63E5-49E5-91D9-913150B64463",
+                        "productSafety" : "This product failed toxicity tests.",
+                        "carbonImpact" : "-2 g CO2e\/kWh"
+                    },
+                    "id" : "9D93CAFC-1DE9-458E-9095-9CA57FD3C6D7"
+                }
+            }
+        ],
+        "detail" : "Amiculum torrens",
+        "date" : -63114076800,
+        "id" : "54AD4345-79C7-482E-9594-FB8EA6D77B21",
+        "name" : "Pariatur celer"
+    },
+    {
+        "items" : [
+            {
+                "id" : "9463A908-A2AA-435B-A401-59E54FD3470F",
+                "price" : 40.39,
+                "pictures" : [
+                    "https:\/\/images.unsplash.com\/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ],
+                "detail" : "Depraedor voluptatum cibus hic provident surgo. Sumo audax sub copiose sufficio suffragium cognatus crux tertius eligendi.",
+                "thumbnail" : "https:\/\/images.unsplash.com\/photo-1542496658-e33a6d0d50f6?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                "tags" : [
+                    "Aecipio",
+                    "Oubvenio"
+                ],
+                "guide" : {
+                    "info" : {
+                        "id" : "9AFCCEA2-35D5-4770-80CD-3677E72809E4",
+                        "shippingPolicy" : "Return Period: 5-7 working days\nNo free shipping",
+                        "carbonImpact" : "-2 g CO2e\/kWh",
+                        "productSafety" : "This product failed toxicity tests."
+                    },
+                    "id" : "EE72DA03-A39B-40F9-9122-BF96AC7711D1",
+                    "score" : 28
+                },
+                "name" : "Abundans decerno",
+                "isFavourited" : false,
+                "numUnits" : 1
+            }
+        ],
+        "detail" : "Colligo sumo comparo",
+        "date" : 772813776.188995,
+        "id" : "7914DC2D-58A4-4227-A2BA-718E87100F6B",
+        "name" : "Bis caterva"
+    }
+]

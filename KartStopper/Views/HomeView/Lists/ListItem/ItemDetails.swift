@@ -154,7 +154,7 @@ struct ItemDetails: View {
 }
 
 #Preview {
-    let list = PersistenceController.previewLists[0].items
+    let list = PreviewSampleData.previewLists[0].items
     NavigationStack {
         ItemDetails(isSaved: false, item: list[0], list: list)
     }
