@@ -113,7 +113,9 @@ struct ListEditor: View {
 }
 
 #Preview {
-    NavigationStack {
-        ListEditor(list: PreviewSampleData.previewLists[0])
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            ListEditor(list: ListModel.listDistantPast)
+        }
     }
 }

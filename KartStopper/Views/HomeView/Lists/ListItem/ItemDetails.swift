@@ -154,8 +154,10 @@ struct ItemDetails: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    NavigationStack {
-        ItemDetails(isSaved: false, item: list[0], list: list)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            ItemDetails(isSaved: false, item: list[0], list: list)
+        }
     }
 }

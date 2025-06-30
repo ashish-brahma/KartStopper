@@ -24,10 +24,12 @@ struct GuideButton: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    Group {
-        GuideButton(item: list[0], list: list, asSheet: false)
-        GuideButton(item: list[0], list: list, asSheet: true)
-            .labelStyle(.iconOnly)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        VStack {
+            GuideButton(item: list[0], list: list, asSheet: false)
+            GuideButton(item: list[0], list: list, asSheet: true)
+                .labelStyle(.iconOnly)
+        }
     }
 }

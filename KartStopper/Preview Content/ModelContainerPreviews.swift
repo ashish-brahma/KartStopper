@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// A view used to create a model container in memory before showing preview content.
 struct ModelContainerPreview<Content: View>: View {
     var content: () -> Content
     let container: ModelContainer

@@ -39,6 +39,8 @@ struct SKU: View {
 
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0]
-    SKU(count: list.items[0].numUnits)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        SKU(count: list[0].numUnits)
+    }
 }

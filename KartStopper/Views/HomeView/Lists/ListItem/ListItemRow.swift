@@ -79,9 +79,11 @@ struct ListItemRow: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    NavigationStack {
-        ListItemRow(item: list[0], list: list, isSaved: true, asFavourite: true)
-        ListItemRow(item: list[1], list: list, isSaved: true, asFavourite: false)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            ListItemRow(item: list[0], list: list, isSaved: true, asFavourite: true)
+            ListItemRow(item: list[1], list: list, isSaved: true, asFavourite: false)
+        }
     }
 }

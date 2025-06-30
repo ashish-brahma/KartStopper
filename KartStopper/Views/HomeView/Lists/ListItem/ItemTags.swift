@@ -27,6 +27,8 @@ struct ItemTags: View {
 }
 
 #Preview {
-    let item = PreviewSampleData.previewLists[0].items[1]
-    ItemTags(tags: item.tags)
+    let item = ListModel.listDistantPast.items[0]
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        ItemTags(tags: item.tags)
+    }
 }

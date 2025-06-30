@@ -23,8 +23,14 @@ struct TagPicker: View {
 }
 
 #Preview {
-    List {
-        TagPicker(tags: PreviewSampleData.previewTags)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        List {
+            TagPicker(tags: [
+                TagModel.tag1,
+                TagModel.tag2,
+                TagModel.tag3
+            ])
+        }
     }
 }
 

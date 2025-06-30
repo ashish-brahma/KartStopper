@@ -51,6 +51,8 @@ struct ComparativeViz: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    ComparativeViz(list: list)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        ComparativeViz(list: list)
+    }
 }

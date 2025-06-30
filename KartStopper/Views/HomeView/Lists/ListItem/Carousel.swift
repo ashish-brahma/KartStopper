@@ -53,6 +53,8 @@ struct Carousel: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    Carousel(selectedItem: list[0], list: list, isSaved: true)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        Carousel(selectedItem: list[0], list: list, isSaved: true)
+    }
 }

@@ -95,6 +95,8 @@ struct ItemGuide: View {
 }
 
 #Preview {
-    let list = PreviewSampleData.previewLists[0].items
-    ItemGuide(guide: list[0].guide, list: list)
+    let list = ListModel.listDistantPast.items
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        ItemGuide(guide: list[0].guide, list: list)
+    }
 }

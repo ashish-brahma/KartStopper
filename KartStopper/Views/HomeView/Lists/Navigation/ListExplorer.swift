@@ -124,7 +124,12 @@ struct ListExplorer: View {
 }
 
 #Preview {
-    NavigationStack {
-        ListExplorer(lists: PreviewSampleData.previewLists)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            ListExplorer(lists: [
+                ListModel.listDistantPast,
+                ListModel.listNow
+            ])
+        }
     }
 }

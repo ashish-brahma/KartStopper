@@ -53,7 +53,10 @@ struct Favourites: View {
 }
 
 #Preview {
-    NavigationStack {
-        Favourites(list: PreviewSampleData.previewFavourites)
+    let favsList = ListModel.listDistantPast.items.filter { $0.isFavourited }
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            Favourites(list: favsList)
+        }
     }
 }

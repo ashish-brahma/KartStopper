@@ -36,13 +36,15 @@ struct TodayCard: View {
 }
 
 #Preview {
-    NavigationStack {
-        ZStack {
-            Color.background
-            TodayCard(list: PreviewSampleData.previewLists[0])
-                .frame(height: 240)
-                .padding()
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        NavigationStack {
+            ZStack {
+                Color.background
+                TodayCard(list: ListModel.listNow)
+                    .frame(height: 240)
+                    .padding()
+            }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
 }

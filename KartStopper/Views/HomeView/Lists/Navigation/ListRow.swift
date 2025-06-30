@@ -41,9 +41,11 @@ struct ListRow: View {
 
 
 #Preview {
-    Group {
-        ListRow(list: PreviewSampleData.previewLists[0])
-        ListRow(list: PreviewSampleData.previewLists[1])
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        VStack {
+            ListRow(list: ListModel.listDistantPast)
+            ListRow(list: ListModel.listNow)
+        }
     }
 }
 

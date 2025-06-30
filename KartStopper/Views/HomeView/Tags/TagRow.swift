@@ -22,5 +22,7 @@ struct TagRow: View {
 }
 
 #Preview {
-    TagRow(tag: PreviewSampleData.previewTags[0])
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        TagRow(tag: TagModel.tag1)
+    }
 }

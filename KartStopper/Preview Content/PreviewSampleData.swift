@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// An actor that creates an in-memory model container for previews.
 actor PreviewSampleData {
     @MainActor
     static var container: ModelContainer = {
@@ -21,29 +22,33 @@ actor PreviewSampleData {
             TagModel.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-        
         let container = try! ModelContainer(for: schema, configurations: [modelConfiguration])
         
-        let sampleLists: [any PersistentModel] = [ ListModel.listDistantPast, ListModel.listNow]
+        let sampleLists: [any PersistentModel] = [
+            ListModel.listDistantPast,
+            ListModel.listNow
+        ]
         
-        let sampleTags: [any PersistentModel] = [TagModel.tag1, TagModel.tag2, TagModel.tag3]
+        let sampleTags: [any PersistentModel] = [
+            TagModel.tag1,
+            TagModel.tag2,
+            TagModel.tag3
+        ]
         
         Task { @MainActor in
-            // Insert sample lists
             for list in sampleLists {
                 container.mainContext.insert(list)
             }
             
-            // Insert sample tags
             for tags in sampleTags {
                 container.mainContext.insert(tags)
             }
         }
-        
         return container
     }
 }
 
+// Default lists for use in previews.
 extension ListModel {
     static var listDistantPast: ListModel {
         .init(name: "Pariatur celer", detail: "Amiculum torrens", date: .distantPast, items: [
@@ -110,6 +115,7 @@ extension ListModel {
     }
 }
 
+// Default tags for use in previews.
 extension TagModel {
     static var tag1: TagModel {
         .init(name: "Virga", color: UIColor.systemMint)

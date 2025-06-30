@@ -32,11 +32,13 @@ struct TopSpendViz: View {
 }
 
 #Preview {
-    ZStack {
-        Color.background
-        TopSpendViz(data: PreviewSampleData.previewLists[0].items)
-            .frame(height: 300)
-            .padding()
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        ZStack {
+            Color.background
+            TopSpendViz(data: ListModel.listDistantPast.items)
+                .frame(height: 300)
+                .padding()
+        }
+        .ignoresSafeArea()
     }
-    .ignoresSafeArea()
 }
