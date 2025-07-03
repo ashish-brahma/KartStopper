@@ -7,18 +7,31 @@
 
 import Foundation
 
-@Observable
-@MainActor
-class Budget {
-    var currency: Currency = .usd
-    var currentAmount: Double = 0.0
-    var maxAmount: Double = 60.0
-    var mode: Mode = .medium
+/// A representation of a budget.
+struct Budget {
+    /// Currency type to be used for accounting.
+    var currency: Currency
     
+    /// Total amount spent in the current month.
+    var currentAmount: Double
+    
+    /// Limit to be set for budgeting expenses.
+    var maxAmount: Double
+    
+    /// Difficulty mode used for strictness level of budget monitoring.
+    var mode: Mode
+}
+
+// A convenience to retrive the currency symbol.
+extension Budget {
     var currencySymbol: String {
-        Currency.usd.symbol
+        currency.symbol
     }
-    
+}
+
+// Values that represent budget status on the interface.
+extension Budget {
+    /// A value which qualitatively describes expenditure.
     var status: StatusType {
         switch (currentAmount/maxAmount) {
         case 0.0..<0.5:
@@ -30,6 +43,7 @@ class Budget {
         }
     }
     
+    /// A short message that represents the status.
     var message: String {
         switch status {
         case .neurtalStatus:
@@ -41,6 +55,7 @@ class Budget {
         }
     }
     
+    /// A color that represents the status.
     var messageColor: String {
         switch status {
         case .neurtalStatus:
@@ -50,27 +65,5 @@ class Budget {
         default:
             "RichBlack"
         }
-    }
-    
-    enum Mode: String, Codable, CaseIterable, Identifiable {
-        case easy = "Easy"
-        case medium = "Medium"
-        case hard = "Hard"
-        
-        var id: Self { self }
-    }
-    
-    enum StatusType: String, Codable, CaseIterable, Identifiable {
-        case positiveStatus = "PositiveStatus"
-        case neurtalStatus = "NeutralStatus"
-        case negativeStatus = "NegativeStatus"
-        
-        var id: Self { self }
-    }
-    
-    enum TimePeriod: String, Codable, CaseIterable, Identifiable {
-        case week, month, year
-        
-        var id: Self { self }
     }
 }

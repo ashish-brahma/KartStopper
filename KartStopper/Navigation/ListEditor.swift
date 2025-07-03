@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ListEditor: View {
+    @Environment(ViewModel.self) private var viewModel
     @State var searchText = K.emptyString
     @State var newItem = K.emptyString
     @State var showTags = false
     @State private var multiSelection = Set<UUID>()
-    @State var currencySymbol = Budget().currencySymbol
     
     var list: ListModel
     
@@ -97,7 +97,9 @@ struct ListEditor: View {
                 
                 // Running total
                 ToolbarItem(placement: .principal) {
-                    Text(K.listsTotalCostLabel + currencySymbol + K.spaceString + String(format: K.decimalFormat, totalAmount))
+                    Text(K.listsTotalCostLabel
+                         + viewModel.budget.currencySymbol + K.spaceString
+                         + String(format: K.decimalFormat, totalAmount))
                         .foregroundStyle(Color.foreground)
                 }
             }
@@ -118,4 +120,5 @@ struct ListEditor: View {
             ListEditor(list: ListModel.listDistantPast)
         }
     }
+    .environment(ViewModel.preview)
 }

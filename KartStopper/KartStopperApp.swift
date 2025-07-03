@@ -10,6 +10,8 @@ import SwiftData
 
 @main
 struct KartStopperApp: App {
+    @State private var viewModel = ViewModel()
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             ListModel.self,
@@ -28,7 +30,8 @@ struct KartStopperApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(sharedModelContainer)
+                .environment(viewModel)
         }
+        .modelContainer(sharedModelContainer)
     }
 }

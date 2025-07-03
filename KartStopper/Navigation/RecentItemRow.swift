@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct RecentItemRow: View {
+    @Environment(ViewModel.self) private var viewModel
     @State var showInfo = false
+    
     let list: ListModel
     let item: ListItemModel
     
@@ -29,7 +31,7 @@ struct RecentItemRow: View {
             Spacer()
             
             // Price
-            Text("\(Budget().currencySymbol) \(String(format:K.decimalFormat, item.price))")
+            Text("\(viewModel.budget.currencySymbol) \(String(format:K.decimalFormat, item.price))")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             
@@ -55,4 +57,5 @@ struct RecentItemRow: View {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         RecentItemRow(list: list, item: list.items[0])
     }
+    .environment(ViewModel.preview)
 }

@@ -9,9 +9,10 @@ import SwiftUI
 import Charts
 
 struct History: View {
-    @State private var selectedPeriod: Budget.TimePeriod = .week
+    @Environment(ViewModel.self) private var viewModel
+    @State private var selectedPeriod: TimePeriod = .week
     
-    let period: Budget.TimePeriod
+    let period: TimePeriod
     
     private let data = [
         ListModel.listNow,
@@ -51,9 +52,9 @@ struct History: View {
         NavigationStack {
             List {
                 Picker("Time Period", selection: $selectedPeriod) {
-                    Text("W").tag(Budget.TimePeriod.week)
-                    Text("M").tag(Budget.TimePeriod.month)
-                    Text("Y").tag(Budget.TimePeriod.year)
+                    Text("W").tag(TimePeriod.week)
+                    Text("M").tag(TimePeriod.month)
+                    Text("Y").tag(TimePeriod.year)
                 }
                 .pickerStyle(.segmented)
                 .listRowBackground(Color.clear)
@@ -68,7 +69,7 @@ struct History: View {
                         
                         // Average
                         HStack(alignment: .firstTextBaseline) {
-                            Text(Budget().currencySymbol)
+                            Text(viewModel.budget.currencySymbol)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.letterJacket)
                             
@@ -114,4 +115,5 @@ struct History: View {
 
 #Preview {
     History(period: .week)
+        .environment(ViewModel.preview)
 }

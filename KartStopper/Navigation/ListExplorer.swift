@@ -6,24 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ListExplorer: View {
+    @Environment(ViewModel.self) private var viewModel
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
+    
     @State private var showTags: Bool = false
     @State private var searchText: String = K.emptyString
     @State private var newListName: String = K.emptyString
     @State private var multiSelection = Set<UUID>()
-    
-    var lists: [ListModel]
-    
-    var filteredList: [ListModel] {
-        if searchText.isEmpty {
-            lists
-        } else {
-            lists.filter { item in
-                item.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-    }
     
     var favourites: [ListItemModel] {
         var favourites = [ListItemModel]()
@@ -42,7 +35,7 @@ struct ListExplorer: View {
             
             VStack {
                 if lists.isEmpty {
-                    // No lists message
+                    // TODO: Content Unavailable view with action.
                     Text(K.listsFillerText)
                         .font(.headline)
                         .fontWeight(.semibold)
@@ -74,7 +67,7 @@ struct ListExplorer: View {
                         
                         // Saved lists section
                         Section {
-                            ForEach(filteredList) { list in
+                            ForEach(lists) { list in
                                 NavigationLink {
                                     ListEditor(list: list)
                                 } label: {
@@ -126,10 +119,8 @@ struct ListExplorer: View {
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         NavigationStack {
-            ListExplorer(lists: [
-                ListModel.listDistantPast,
-                ListModel.listNow
-            ])
+            ListExplorer()
         }
     }
+    .environment(ViewModel.preview)
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct Price: View {
+    @Environment(ViewModel.self) private var viewModel
     let value: Double
-    @State var currencySymbol = Budget().currencySymbol
     
     var body: some View {
         HStack(alignment: .lastTextBaseline) {
             // Symbol
-            Text(currencySymbol)
+            Text(viewModel.budget.currencySymbol)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 24))
                 .foregroundStyle(.letterJacket)
             
@@ -33,5 +33,8 @@ struct Price: View {
 }
 
 #Preview {
-    Price(value: 28.99)
+    ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
+        Price(value: ListModel.listNow.items[0].price)
+    }
+    .environment(ViewModel.preview)
 }

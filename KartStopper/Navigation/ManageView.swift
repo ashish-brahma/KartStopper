@@ -7,11 +7,12 @@
 import SwiftUI
 
 struct ManageView: View {
-    @State var currency: Currency = .usd
+    @Environment(ViewModel.self) private var viewModel
     @State var budgetAmount = K.emptyString
-    @Binding var budget: Budget
-    
+
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         NavigationStack {
             GeometryReader { reader in
                 ZStack {
@@ -24,7 +25,7 @@ struct ManageView: View {
                     List {
                         // Currency
                         Section {
-                            Picker(K.manageCurrencyPickerTitle, selection: $budget.currency) {
+                            Picker(K.manageCurrencyPickerTitle, selection: $viewModel.budget.currency) {
                                 ForEach(Currency.allCases, id: \.self) { currency in
                                     Text("\(currency.name) (\(currency.symbol))").tag(currency)
                                 }
@@ -39,17 +40,17 @@ struct ManageView: View {
                         // Budget
                         Section {
                             Stepper {
-                                TextField(String(format: K.decimalFormat, budget.maxAmount), text: $budgetAmount)
+                                TextField(String(format: K.decimalFormat, viewModel.budget.maxAmount), text: $budgetAmount)
                                     .keyboardType(.decimalPad)
                                     .onChange(of: budgetAmount) {
-                                        budget.currentAmount = Double(budgetAmount) ?? 0.0
+                                        viewModel.budget.currentAmount = Double(budgetAmount) ?? 0.0
                                     }
                             } onIncrement: {
-                                budget.maxAmount += 5
+                                viewModel.budget.maxAmount += 5
                             } onDecrement: {
-                                budget.maxAmount -= 5
-                                if budget.maxAmount < 0 {
-                                    budget.maxAmount = 0
+                                viewModel.budget.maxAmount -= 5
+                                if viewModel.budget.maxAmount < 0 {
+                                    viewModel.budget.maxAmount = 0
                                 }
                             }
                         } header: {
@@ -60,8 +61,8 @@ struct ManageView: View {
                         
                         // Difficulty Mode
                         Section {
-                            Picker(K.manageDifficultyModePickerTitle, selection: $budget.mode) {
-                                ForEach(Budget.Mode.allCases, id: \.self) { mode in
+                            Picker(K.manageDifficultyModePickerTitle, selection: $viewModel.budget.mode) {
+                                ForEach(Mode.allCases, id: \.self) { mode in
                                     Text(mode.rawValue).tag(mode)
                                 }
                             }
@@ -108,7 +109,16 @@ struct ManageView: View {
     }
 }
 
+enum Mode: String, Codable, CaseIterable, Identifiable {
+    case easy = "Easy"
+    case medium = "Medium"
+    case hard = "Hard"
+    
+    var id: Self { self }
+}
+
 #Preview {
-    @Previewable @State var budget = Budget()
-    ManageView(budget: $budget)
+    ManageView()
+        .environment(ViewModel.preview)
+        .modelContainer(PreviewSampleData.container)
 }

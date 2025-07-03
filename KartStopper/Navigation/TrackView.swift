@@ -8,11 +8,10 @@ import SwiftUI
 import SwiftData
 
 struct TrackView: View {
-    @Binding var budget: Budget
+    @Environment(ViewModel.self) private var viewModel
     
     @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
-    
-    // FIXME: Restructure data to make plot visible.
+
     var data: [ListItemModel] {
         var listItems = [ListItemModel]()
         for li in lists {
@@ -39,8 +38,7 @@ struct TrackView: View {
                                 .frame(height: reader.size.height/2.2)
                             
                             // Today's total expense card
-                            // TODO: Use predicate on query
-                            TodayCard(list: ListModel.listNow)
+                            TodayCard(list: lists.first ?? ListModel.listNow)
                                 .frame(height: reader.size.height/2.2)
                                 .padding(.top, 6)
                             
@@ -67,6 +65,7 @@ struct TrackView: View {
 }
 
 #Preview {
-    @Previewable @State var budget = Budget()
-    TrackView(budget: $budget)
+    TrackView()
+        .environment(ViewModel.preview)
+        .modelContainer(PreviewSampleData.container)
 }

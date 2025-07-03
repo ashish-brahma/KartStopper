@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TodayCard: View {
+    @Environment(ViewModel.self) private var viewModel
     let list: ListModel
     
     var body: some View {
@@ -15,9 +16,13 @@ struct TodayCard: View {
             List {
                 // Recent items
                 Section(K.trackRecentsNavigationTitle) {
-                    ForEach(0..<2) { n in
-                        RecentItemRow(list: list, item: list.items[n])
-                            .frame(height: 36)
+                    if !list.items.isEmpty {
+                        ForEach(0..<2) { n in
+                            if n < list.items.count {
+                                RecentItemRow(list: list, item: list.items[n])
+                                    .frame(height: 36)
+                            }
+                        }
                     }
                 }
                 
@@ -47,4 +52,5 @@ struct TodayCard: View {
             .ignoresSafeArea()
         }
     }
+    .environment(ViewModel.preview)
 }

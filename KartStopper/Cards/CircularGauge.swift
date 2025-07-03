@@ -7,16 +7,16 @@
 import SwiftUI
 
 struct CircularGauge: View {
-    let budget: Budget
+    @Environment(ViewModel.self) private var viewModel
     
     var body: some View {
         // Indicator
-        Gauge(value: budget.currentAmount, in: 0.0...budget.maxAmount) {
+        Gauge(value: viewModel.budget.currentAmount, in: 0.0...viewModel.budget.maxAmount) {
             // Image
             
         } currentValueLabel: {
-            Text(String(format:K.decimalFormat, budget.currentAmount))
-                .foregroundColor(budget.status == .negativeStatus ? .cowpeas : .richBlack  )
+            Text(String(format:K.decimalFormat, viewModel.budget.currentAmount))
+                .foregroundColor(viewModel.budget.status == .negativeStatus ? .cowpeas : .richBlack  )
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 18))
                 .padding(.leading, -1)
             
@@ -26,7 +26,7 @@ struct CircularGauge: View {
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
         } maximumValueLabel: {
-            Text("\(Int(budget.maxAmount))")
+            Text("\(Int(viewModel.budget.maxAmount))")
                 .foregroundColor(.cowpeas)
                 .font(Font.custom(K.newYorkLargeRegularFont, size: 9))
             
@@ -38,6 +38,7 @@ struct CircularGauge: View {
 }
 
 #Preview {
-    CircularGauge(budget: Budget())
+    CircularGauge()
+        .environment(ViewModel.preview)
         .scaleEffect(4)
 }

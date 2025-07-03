@@ -43,15 +43,14 @@ struct ItemGuide: View {
                     .padding(.vertical, 50)
                     
                     // Comparison chart
-                    Group {
-                        Text(K.listsComparisonTitle)
-                            .font(.title2)
-                            .bold()
-                        
-                        ComparativeViz(list: list)
-                            .padding(.horizontal, 30)
-                            .padding(.bottom, 40)
-                    }
+                    Text(K.listsComparisonTitle)
+                        .font(.title2)
+                        .bold()
+                    
+                    ComparativeViz(list: list)
+                        .padding(.horizontal, 30)
+                        .padding(.top, 10)
+                        .padding(.bottom, 40)
                     
                     Divider()
                     
@@ -59,33 +58,18 @@ struct ItemGuide: View {
                     Text(K.listsImportantInfoTitle)
                         .font(.title2)
                         .bold()
-                        .padding(.vertical)
+                        .padding(.top)
                     
-                    // Product Safety
-                    Text(K.listsProductSafetyTitle)
-                        .font(.title3)
-                    
-                    Text(guide.info.productSafety)
-                        .foregroundStyle(.gray)
-                        .padding(.top, -8)
-                    
-                    // Shipping and Returns
-                    Text(K.listsShippingPolicyTitle)
-                        .font(.title3)
-                        .padding(.top, 10)
-                    
-                    Text(guide.info.shippingPolicy)
-                        .foregroundStyle(.gray)
-                        .padding(.top, -8)
-                    
-                    // Carbon Impact
-                    Text(K.listsCarbonImpactTitle)
-                        .font(.title3)
-                        .padding(.top, 10)
-                    
-                    Text(guide.info.carbonImpact)
-                        .foregroundStyle(.gray)
-                        .padding(.top, -8)
+                    // Product Info
+                    ForEach([String](guide.info.keys), id: \.self) { infoItem in
+                        Text(infoItem)
+                            .font(.title3)
+                            .padding(.top, 10)
+                        
+                        Text(guide.info[infoItem] ?? K.emptyString)
+                            .foregroundStyle(.gray)
+                            .padding(.top, -8)
+                    }
                 }
                 .foregroundStyle(Color.foreground)
                 .padding()

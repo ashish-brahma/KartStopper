@@ -11,7 +11,7 @@ struct Score: View {
     let value: Int
     let asGuide: Bool
     
-    var status : Budget.StatusType {
+    var status : StatusType {
         switch value {
         case 50..<100:
             .positiveStatus

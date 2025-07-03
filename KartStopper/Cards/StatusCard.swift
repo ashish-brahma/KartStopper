@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct StatusCard: View {
-    let budget: Budget
+    @Environment(ViewModel.self) private var viewModel
     
     var body: some View {
         GeometryReader { reader in
             ZStack() {
                 // Background
                 Rectangle()
-                    .fill(Color(budget.status.rawValue))
+                    .fill(Color(viewModel.budget.status.rawValue))
                 
                 VStack(alignment: .leading) {
                     HStack(alignment: .top) {
@@ -28,17 +28,17 @@ struct StatusCard: View {
                         Spacer()
                         
                         // Gauge
-                        CircularGauge(budget: budget)
+                        CircularGauge()
                     }
                     
                     HStack {
                         // Currency
-                        Text(budget.currencySymbol)
-                            .foregroundStyle(budget.status == Budget.StatusType.negativeStatus ? .cowpeas : .letterJacket)
+                        Text(viewModel.budget.currencySymbol)
+                            .foregroundStyle(viewModel.budget.status == StatusType.negativeStatus ? .cowpeas : .letterJacket)
                             .font(Font.custom(K.newYorkLargeRegularFont, size: 48))
                         
                         // Current Amount
-                        Text(String(format:K.decimalFormat, budget.currentAmount))
+                        Text(String(format:K.decimalFormat, viewModel.budget.currentAmount))
                             .font(Font.custom(K.newYorkLargeRegularFont, size: 132))
                             .padding(.leading, 10)
                     }
@@ -47,7 +47,7 @@ struct StatusCard: View {
                     .padding(.bottom, 30)
                     .padding(.horizontal, 10)
                 }
-                .foregroundStyle(budget.status == Budget.StatusType.negativeStatus ? .cowpeas : .richBlack)
+                .foregroundStyle(viewModel.budget.status == StatusType.negativeStatus ? .cowpeas : .richBlack)
                 .padding(.vertical, reader.size.height/2)
             }
             .frame(height: reader.size.height)
@@ -55,10 +55,19 @@ struct StatusCard: View {
     }
 }
 
+enum StatusType: String, Codable, CaseIterable, Identifiable {
+    case positiveStatus = "PositiveStatus"
+    case neurtalStatus = "NeutralStatus"
+    case negativeStatus = "NegativeStatus"
+    
+    var id: Self { self }
+}
+
 #Preview {
     ZStack {
         Color.background
-        StatusCard(budget: Budget())
+        StatusCard()
+            .environment(ViewModel.preview)
             .frame(height: 100)
     }
     .ignoresSafeArea()

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct StatCardDisclosure: DisclosureGroupStyle {
+    @Environment(ViewModel.self) private var viewModel
+    
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading) {
             Button {
@@ -51,7 +53,7 @@ struct StatCardDisclosure: DisclosureGroupStyle {
                         
                         // Number
                         HStack {
-                            Text(Budget().currencySymbol)
+                            Text(viewModel.budget.currencySymbol)
                                 .foregroundStyle(.letterJacket)
                             
                             // TODO: Insert calculated value

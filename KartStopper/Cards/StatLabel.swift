@@ -11,6 +11,7 @@ struct StatLabel: View {
     let name: String
     let description: String
     let stat: Double
+    let currency: Currency = .usd
     
     var body: some View {
         GeometryReader { reader in
@@ -48,7 +49,7 @@ struct StatLabel: View {
                 
                 // Number
                 HStack {
-                    Text(Budget().currencySymbol)
+                    Text(currency.symbol)
                         .foregroundStyle(.letterJacket)
                     
                     Text(String(format: K.decimalFormat, stat))

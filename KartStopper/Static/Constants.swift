@@ -86,9 +86,6 @@ enum K {
     static let listsFavouriteButtonSymbol = "heart"
     static let listsComparisonTitle = "How does it compare?"
     static let listsImportantInfoTitle = "Important Information"
-    static let listsProductSafetyTitle = "Product Safety"
-    static let listsShippingPolicyTitle = "Shipping & Returns Policy"
-    static let listsCarbonImpactTitle = "Carbon Impact"
     
     // Score Card
     static let scoreTitle = "Score"

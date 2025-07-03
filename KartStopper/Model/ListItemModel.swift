@@ -8,19 +8,40 @@
 import SwiftUI
 import SwiftData
 
+/// A representation of a product as an item in a shopping list.
 @Model
 final class ListItemModel {
+    /// A unique identifier associated with a list item.
     @Attribute(.unique) var id = UUID()
+    
+    /// Name of the item.
     var name: String
+    
+    /// A headshot thumbnail image depicting the actual item.
     var thumbnail: String
+    
+    /// A collection of photos of the acutal item.
     var pictures: [String]
+    
+    /// Brief description of the item.
     var detail: String
+    
+    /// Price of the item in the currency chosen.
     var price: Double
+    
+    /// A collection of values used to describe the item.
     var tags: [String]
+    
+    /// A shopping guide providing stats, critical info and review.
     @Relationship var guide: Guide
+    
+    /// A boolean value indicating if the item has been added to favourites.
     var isFavourited: Bool
+    
+    /// The number of units of the SKU that need to be purchased.
     var numUnits: Int
     
+    /// Creates a new list item from the specified values.
     init(id: UUID = UUID(),
          name: String,
          thumbnail: String,
@@ -43,38 +64,4 @@ final class ListItemModel {
         self.numUnits = numUnits
     }
     
-}
-
-@Model
-class Guide: Identifiable {
-    @Attribute(.unique) var id = UUID()
-    var score: Int
-    @Relationship var info: ProductInfo
-    
-    init(score: Int, info: ProductInfo) {
-        self.score = score
-        self.info = info
-    }
-    
-    var title : String {
-        score > 50 ? "Go Ahead" : "Not Recommended"
-    }
-    
-    var icon : String {
-        score > 50 ? "hand.thumbsup" : "hand.thumbsdown"
-    }
-}
-
-@Model
-class ProductInfo: Identifiable {
-    @Attribute(.unique) var id = UUID()
-    var productSafety: String
-    var shippingPolicy: String
-    var carbonImpact: String
-    
-    init(productSafety: String, shippingPolicy: String, carbonImpact: String) {
-        self.productSafety = productSafety
-        self.shippingPolicy = shippingPolicy
-        self.carbonImpact = carbonImpact
-    }
 }

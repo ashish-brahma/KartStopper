@@ -8,11 +8,11 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @Environment(ViewModel.self) private var viewModel
+    
     @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
     
     @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
-    
-    @Binding var budget: Budget
     
     @State var showTags: Bool = false
     
@@ -29,15 +29,15 @@ struct HomeView: View {
                     ScrollView {
                         VStack(alignment: .leading) {
                             // Title
-                            Text(budget.message)
+                            Text(viewModel.budget.message)
                                 .font(.largeTitle)
                                 .bold()
-                                .foregroundStyle(Color(budget.messageColor))
+                                .foregroundStyle(Color(viewModel.budget.messageColor))
                                 .padding()
                                 .padding(.bottom, reader.size.height/5)
                             
                             // Status Card
-                            StatusCard(budget: budget)
+                            StatusCard()
                             .padding(.vertical, reader.size.height/50)
                             
                             // Call to action
@@ -51,7 +51,7 @@ struct HomeView: View {
                             // Navigation Cards
                             HStack {
                                 NavigationLink {
-                                    ListExplorer(lists: lists)
+                                    ListExplorer()
                                 } label: {
                                     CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: lists.count)
                                 }
@@ -93,7 +93,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    @Previewable @State var budget = Budget()
-    HomeView(budget: $budget)
+    HomeView()
+        .environment(ViewModel.preview)
         .modelContainer(PreviewSampleData.container)
 }

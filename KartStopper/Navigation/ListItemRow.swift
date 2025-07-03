@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ListItemRow: View {
+    @Environment(ViewModel.self) private var viewModel
     @State var showInfo = false
-    @State var currencySymbol = Budget().currencySymbol
     
     let item: ListItemModel
     let list: [ListItemModel]
@@ -35,7 +35,7 @@ struct ListItemRow: View {
                     .foregroundStyle(Color.foreground)
                 
                 // Price
-                Text(currencySymbol + K.spaceString + String(format: K.decimalFormat, item.price))
+                Text(viewModel.budget.currencySymbol + K.spaceString + String(format: K.decimalFormat, item.price))
                     .font(.subheadline)
                     .foregroundStyle(.gray)
                     .padding(.bottom, 8)
@@ -86,4 +86,5 @@ struct ListItemRow: View {
             ListItemRow(item: list[1], list: list, isSaved: true, asFavourite: false)
         }
     }
+    .environment(ViewModel.preview)
 }

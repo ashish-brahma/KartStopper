@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct Favourites: View {
+    @Environment(ViewModel.self) private var viewModel
+    
     @State var searchText: String = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
@@ -59,4 +61,5 @@ struct Favourites: View {
             Favourites(list: favsList)
         }
     }
+    .environment(ViewModel.preview)
 }

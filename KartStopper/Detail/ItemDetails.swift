@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ItemDetails: View {
-    @State var currencySymbol = Budget().currencySymbol
-    
     let isSaved: Bool
     let item: ListItemModel
     let list: [ListItemModel]
