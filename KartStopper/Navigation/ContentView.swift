@@ -29,5 +29,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environment(ViewModel())
-        .modelContainer(PreviewSampleData.container)
+        .modelContainer(for: ListModel.self, inMemory: true)
 }

@@ -22,26 +22,32 @@ struct Tags: View {
             
             // Saved tags
             Section {
-                if tags.isEmpty {
-                    Text(K.tagsFillerText)
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.tertiary)
-                        .padding(.horizontal)
-                } else {
-                    if asHome {
-                        ForEach(tags) { tag in
-                            TagRow(tag: tag)
-                        }
-                    } else {
-                        TagPicker(tags: tags)
+                if asHome {
+                    ForEach(tags) { tag in
+                        TagRow(tag: tag)
                     }
+                } else {
+                    TagPicker(tags: tags)
                 }
             } header:  {
                 Text(K.tagsSavedTagsHeader)
             } footer: {
                 if !tags.isEmpty && !asHome {
                     Text(K.tagsSavedTagsFooter)
+                }
+                
+                if tags.isEmpty {
+                    ContentUnavailableView {
+                        Text(K.tagsFillerText)
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                    } description: {
+                        Text(K.tagsCTA)
+                            .font(.subheadline)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             }
         }

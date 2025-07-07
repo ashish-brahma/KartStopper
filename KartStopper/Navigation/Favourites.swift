@@ -34,13 +34,23 @@ struct Favourites: View {
             
             // Favourite List
             VStack {
-                if list.isEmpty {
-                    Text(K.listsFavouritesFillerText)
-                } else {
-                    List(filteredList, selection: $multiSelection) {
-                        ListItemRow(item: $0, list: filteredList, isSaved: true, asFavourite: true)
+                List(filteredList, selection: $multiSelection) {
+                    ListItemRow(item: $0, list: filteredList, isSaved: true, asFavourite: true)
+                }
+                .listStyle(.plain)
+                .overlay {
+                    if list.isEmpty {
+                        ContentUnavailableView {
+                            Text(K.listsFavouritesFillerText)
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.tertiary)
+                        } description: {
+                            Text(K.listsFavouritesCTA)
+                                .font(.subheadline)
+                                .foregroundStyle(.tertiary)
+                        }
                     }
-                    .listStyle(.plain)
                 }
             }
         }

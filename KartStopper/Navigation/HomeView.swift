@@ -14,8 +14,6 @@ struct HomeView: View {
     
     @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
     
-    @State var showTags: Bool = false
-    
     var body: some View {
         NavigationStack {
             GeometryReader { reader in
@@ -38,7 +36,7 @@ struct HomeView: View {
                             
                             // Status Card
                             StatusCard()
-                            .padding(.vertical, reader.size.height/50)
+                                .padding(.vertical, reader.size.height/50)
                             
                             // Call to action
                             Text(K.homeCTA)
@@ -49,37 +47,15 @@ struct HomeView: View {
                                 .padding(.leading, reader.size.width/40)
                             
                             // Navigation Cards
-                            HStack {
-                                NavigationLink {
-                                    ListExplorer()
-                                } label: {
-                                    CardLabel(name: K.homeListsCardName, symbol: K.homeListsCardSymbol, symbolFont: .title2, stat: lists.count)
-                                }
-                                .padding(3)
-                                .accessibility(addTraits: .isButton)
-                                .accessibility(identifier: K.homeListsAccessibilityIdentifier)
-                                
-                                Button {
-                                    showTags.toggle()
-                                } label: {
-                                    CardLabel(name: K.homeTagsCardName, symbol: K.homeTagsCardSymbol, symbolFont: .title, stat: tags.count)
-                                }
-                            }
-                            .frame(width: reader.size.width/1.04, height: reader.size.height/3.6)
-                            .padding(.horizontal, reader.size.width/60)
-                            .navigationTitle(K.homeTabName)
-                            .navigationTitleColor(Color.foreground)
-                            .toolbarVisibility(.hidden, for: .navigationBar)
-                            .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                            .background(Color(.background))
-                            .foregroundStyle(Color(.foreground))
-                            .sheet(isPresented: $showTags) {
-                                NavigationStack {
-                                    Tags(asHome: true)
-                                        .presentationDetents([.medium, .large])
-                                        .presentationDragIndicator(.visible)
-                                }
-                            }
+                            NavCardsRow()
+                                .frame(width: reader.size.width/1.04, height: reader.size.height/3.6)
+                                .padding(.horizontal, reader.size.width/60)
+                                .navigationTitle(K.homeTabName)
+                                .navigationTitleColor(Color.foreground)
+                                .toolbarVisibility(.hidden, for: .navigationBar)
+                                .toolbarBackgroundVisibility(.visible, for: .tabBar)
+                                .background(Color(.background))
+                                .foregroundStyle(Color(.foreground))
                             
                             Spacer()
                         }

@@ -8,9 +8,10 @@
 import XCTest
 
 final class KartStopperUITests: XCTestCase {
-    let app = XCUIApplication()
+    var app: XCUIApplication!
     
     override func setUpWithError() throws {
+        app = XCUIApplication()
         app.launch()
         continueAfterFailure = false
     }
@@ -21,19 +22,12 @@ final class KartStopperUITests: XCTestCase {
     }
 
     @MainActor
-    func testListNavButtonExists() throws {
-        let listsNavButton = app.buttons["listsNavButton"]
-        
-        XCTAssertTrue(listsNavButton.exists,"Method testListNavButtonExists() expected to find a list card but could not find one.")
+    func testLaunchPerformance() throws {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
+                XCUIApplication().launch()
+            }
+        }
     }
-
-//    @MainActor
-//    func testLaunchPerformance() throws {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTApplicationLaunchMetric()]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
 }

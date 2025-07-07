@@ -34,59 +34,58 @@ struct ListExplorer: View {
                 .ignoresSafeArea()
             
             VStack {
-                if lists.isEmpty {
-                    // TODO: Content Unavailable view with action.
-                    Text(K.listsFillerText)
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.tertiary)
-                    
-                    // Call to action
-                    Text(K.listsCTA)
-                        .font(.subheadline)
-                        .foregroundStyle(.tertiary)
-                } else {
-                    List(selection: $multiSelection) {
-                        // Favourites section
-                        Section {
-                            NavigationLink {
-                                Favourites(list: favourites)
-                            } label: {
-                                HStack {
-                                    Text(K.listsFavouritesRowTitle)
-                                        .foregroundStyle(Color.foreground)
-                                    
-                                    Spacer()
-                                    
-                                    Text(String(favourites.count))
-                                        .foregroundStyle(.secondary)
-                                }
+                List(selection: $multiSelection) {
+                    // Favourites section
+                    Section {
+                        NavigationLink {
+                            Favourites(list: favourites)
+                        } label: {
+                            HStack {
+                                Text(K.listsFavouritesRowTitle)
+                                    .foregroundStyle(Color.foreground)
+                                
+                                Spacer()
+                                
+                                Text(String(favourites.count))
+                                    .foregroundStyle(.secondary)
                             }
-                            .selectionDisabled(true)
                         }
-                        
-                        // Saved lists section
-                        Section {
-                            ForEach(lists) { list in
-                                NavigationLink {
-                                    ListEditor(list: list)
-                                } label: {
-                                    ListRow(list: list)
-                                }
+                        .selectionDisabled(true)
+                    }
+                    
+                    // Saved lists section
+                    Section {
+                        ForEach(lists) { list in
+                            NavigationLink {
+                                ListEditor(list: list)
+                            } label: {
+                                ListRow(list: list)
                             }
-                        } header: {
-                            Text(K.listsSectionHeader)
-                                .font(.title2)
-                                .foregroundStyle(.accent)
+                        }
+                    } header: {
+                        Text(K.listsSectionHeader)
+                            .font(.title2)
+                            .foregroundStyle(.accent)
+                    }
+                }
+                .listStyle(.plain)
+                .overlay {
+                    if lists.isEmpty {
+                        ContentUnavailableView {
+                            Text(K.listsFillerText)
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.tertiary)
+                        } description: {
+                            Text(K.listsCTA)
+                                .font(.subheadline)
+                                .foregroundStyle(.tertiary)
                         }
                     }
-                    .listStyle(.plain)
                 }
             }
         }
         .navigationTitle(K.listsNavigationTitle)
-        .searchable(text: $searchText)
-        .autocorrectionDisabled()
         .toolbar {
             // Add Tags button
             ToolbarItem(placement: .navigation) {

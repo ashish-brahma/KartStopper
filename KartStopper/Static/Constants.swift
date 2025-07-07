@@ -37,7 +37,6 @@ enum K {
     static let homeCTA = "Continue Listing"
     static let homeListsCardName = "Lists"
     static let homeListsCardSymbol = "chevron.right"
-    static let homeListsAccessibilityIdentifier = "listsNavButton"
     static let homeTagsCardName = "Tags"
     static let homeTagsCardSymbol = "plus.circle.fill"
     
@@ -47,6 +46,7 @@ enum K {
     // Tags View
     static let tagsTitle = "Tags"
     static let tagsFillerText = "No Tags"
+    static let tagsCTA = "Save tags by tapping Add button."
     static let tagsTextFieldPlaceholder = "New Tag"
     static let tagsCreateTagsHeader = "Create tags"
     static let tagsCancelButtonLabel = "Cancel"
@@ -70,7 +70,8 @@ enum K {
     static let listsFavouritesRowTitle = "Favourites"
     static let listsFavouritesSymbol = "heart.fill"
     static let listsSectionHeader = "Keep Going..."
-    static let listsFavouritesFillerText = "No lists favourited."
+    static let listsFavouritesFillerText = "No Favourites"
+    static let listsFavouritesCTA = "Use heart button in item info to add it to favourites."
     static let listsNewListTitlePlaceholderLabel = "New List"
     static let listsTotalCostLabel = "Total: "
     static let listsSearchPlaceholderLabel = "Search a product"
