@@ -8,25 +8,29 @@
 import SwiftUI
 import SwiftData
 
+/// The explorer view to see all saved lists.
 struct ListExplorer: View {
     @Environment(ViewModel.self) private var viewModel
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
     
     @State private var showTags: Bool = false
-    @State private var searchText: String = K.emptyString
-    @State private var newListName: String = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
-    var favourites: [ListItemModel] {
-        var favourites = [ListItemModel]()
-        for li in lists {
-            favourites += (li.items.filter { $0.isFavourited })
-        }
-        return favourites
+    init(
+        searchText: String = K.emptyString,
+        searchDate: Date = .now
+    ) {
+        _lists = Query(filter: ListModel.predicate(
+                            searchText: searchText,
+                            searchDate: searchDate),
+                       sort: \.date,
+                       order: .reverse)
     }
     
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         ZStack {
             // Background
             Rectangle()
@@ -35,22 +39,11 @@ struct ListExplorer: View {
             
             VStack {
                 List(selection: $multiSelection) {
-                    // Favourites section
                     Section {
-                        NavigationLink {
-                            Favourites(list: favourites)
-                        } label: {
-                            HStack {
-                                Text(K.listsFavouritesRowTitle)
-                                    .foregroundStyle(Color.foreground)
-                                
-                                Spacer()
-                                
-                                Text(String(favourites.count))
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
-                        .selectionDisabled(true)
+                        Favourites(searchText: viewModel.searchText)
+                            .searchable(text: $viewModel.searchText)
+                            .autocorrectionDisabled()
+                            .selectionDisabled(true)
                     }
                     
                     // Saved lists section

@@ -12,7 +12,7 @@ import SwiftData
 @Model
 final class ListModel {
     /// A unique identifier associated with a list.
-    @Attribute(.unique) var id = UUID()
+    @Attribute(.unique) var id: UUID
     
     /// The name given to the list.
     var name: String
@@ -40,7 +40,7 @@ extension ListModel {
     /// A filter that checks for a date and text in the list's name.
     static func predicate(
         searchText: String,
-        searchDate: Date,
+        searchDate: Date
     ) -> Predicate<ListModel> {
         let calendar = Calendar.autoupdatingCurrent
         let start = calendar.startOfDay(for: searchDate)

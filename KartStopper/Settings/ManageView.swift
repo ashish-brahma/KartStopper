@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+///  The view to manage budget settings and show help information.
 struct ManageView: View {
     @Environment(ViewModel.self) private var viewModel
     @State var budgetAmount = K.emptyString

@@ -34,6 +34,9 @@ class ViewModel {
     /// Total tags saved in the container.
     var totalTags: Int = 0
     
+    /// Total items favourited in the container.
+    var totalFavourites: Int = 0
+    
     /// Updates the search date and search date range based on
     /// the current set of stored lists.
     func update(modelContext: ModelContext) {
@@ -41,5 +44,6 @@ class ViewModel {
         searchDate = min(searchDateRange.upperBound, .now)
         totalLists = ListModel.totalLists(modelContext: modelContext)
         totalTags = ListModel.totalTags(modelContext: modelContext)
+        totalFavourites = ListItemModel.totalFavourites(modelContext: modelContext)
     }
 }

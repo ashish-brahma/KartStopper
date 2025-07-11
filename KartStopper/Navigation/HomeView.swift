@@ -7,9 +7,8 @@
 import SwiftUI
 import SwiftData
 
+/// The main view showing summary highlights and navigation buttons.
 struct HomeView: View {
-    @Environment(ViewModel.self) private var viewModel
-    
     @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
     
     @Query(sort: \TagModel.name, animation: .default) private var tags: [TagModel]
@@ -26,15 +25,9 @@ struct HomeView: View {
                     
                     ScrollView {
                         VStack(alignment: .leading) {
-                            // Title
-                            Text(viewModel.budget.message)
-                                .font(.largeTitle)
-                                .bold()
-                                .foregroundStyle(Color(viewModel.budget.messageColor))
-                                .padding()
+                            DynamicTitle()
                                 .padding(.bottom, reader.size.height/5)
                             
-                            // Status Card
                             StatusCard()
                                 .padding(.vertical, reader.size.height/50)
                             
@@ -46,16 +39,9 @@ struct HomeView: View {
                                 .padding(.top, reader.size.height/4.6)
                                 .padding(.leading, reader.size.width/40)
                             
-                            // Navigation Cards
                             NavCardsRow()
                                 .frame(width: reader.size.width/1.04, height: reader.size.height/3.6)
                                 .padding(.horizontal, reader.size.width/60)
-                                .navigationTitle(K.homeTabName)
-                                .navigationTitleColor(Color.foreground)
-                                .toolbarVisibility(.hidden, for: .navigationBar)
-                                .toolbarBackgroundVisibility(.visible, for: .tabBar)
-                                .background(Color(.background))
-                                .foregroundStyle(Color(.foreground))
                             
                             Spacer()
                         }
@@ -64,6 +50,10 @@ struct HomeView: View {
                 }
                 .position(x: reader.size.width/2, y: reader.size.height/2)
             }
+            .navigationTitle(K.homeTabName)
+            .navigationTitleColor(Color.foreground)
+            .toolbarVisibility(.hidden, for: .navigationBar)
+            .toolbarBackgroundVisibility(.visible, for: .tabBar)
         }
     }
 }
@@ -73,3 +63,5 @@ struct HomeView: View {
         .environment(ViewModel.preview)
         .modelContainer(PreviewSampleData.container)
 }
+
+

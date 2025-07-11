@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A customizable card view to navigate and display summary in HomeView.
 struct CardLabel: View {
     let name: String
     let symbol: String

@@ -156,6 +156,7 @@ struct ItemDetails: View {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         NavigationStack {
             ItemDetails(isSaved: false, item: list[0], list: list)
+                .environment(ViewModel.preview)
         }
     }
 }

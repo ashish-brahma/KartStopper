@@ -7,6 +7,7 @@
 import SwiftUI
 import SwiftData
 
+/// A dashboard view showing summary statistics, charts and recent history.
 struct TrackView: View {
     @Environment(ViewModel.self) private var viewModel
     

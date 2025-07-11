@@ -87,7 +87,8 @@ extension ListModel {
                             "Product Safety" : "This product failed toxicity tests.",
                             "Shipping Policy" : "Return Period: 5-7 working days\nNo free shipping",
                             "Carbon Impact" : "-2 g CO2e/kWh"
-                          ]))
+                          ]),
+                          isFavourited: true)
         ])
     }
     
@@ -103,7 +104,8 @@ extension ListModel {
                             "Product Safety" : "This product failed toxicity tests.",
                             "Shipping Policy" : "Return Period: 5-7 working days\nNo free shipping",
                             "Carbon Impact" : "-2 g CO2e/kWh"
-                          ])),
+                          ]),
+                          isFavourited: true)
         ])
     }
 }

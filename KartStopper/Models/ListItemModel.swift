@@ -12,7 +12,7 @@ import SwiftData
 @Model
 final class ListItemModel {
     /// A unique identifier associated with a list item.
-    @Attribute(.unique) var id = UUID()
+    @Attribute(.unique) var id: UUID
     
     /// Name of the item.
     var name: String
@@ -64,4 +64,22 @@ final class ListItemModel {
         self.numUnits = numUnits
     }
     
+}
+
+extension ListItemModel {
+    /// A filter that checks for a text in the favourited items's name.
+    static func predicate(searchText: String) -> Predicate<ListItemModel> {
+        return #Predicate<ListItemModel> { item in
+            item.isFavourited
+            &&
+            (searchText.isEmpty || item.name.localizedStandardContains(searchText))
+        }
+    }
+    
+    /// Reports the total number of items favourited in all lists.
+    static func totalFavourites(modelContext: ModelContext) -> Int {
+        let descriptor = FetchDescriptor<ListItemModel>(
+            predicate: #Predicate<ListItemModel> { $0.isFavourited })
+        return (try? modelContext.fetchCount(descriptor)) ?? 0
+    }
 }

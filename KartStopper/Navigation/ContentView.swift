@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 
+/// The app's top level tab view.
 struct ContentView: View {
     var body: some View {
         TabView {
