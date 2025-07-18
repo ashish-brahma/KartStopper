@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+/// A single row in ListExplorer.
 struct ListRow: View {
-    let list: ListModel
+    @State var list: ListModel
     
     var body: some View {
         HStack {

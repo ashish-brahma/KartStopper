@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+/// A detail view that displays brief description of items in a shopping list.
 struct ItemDetails: View {
-    let isSaved: Bool
+    @State private var isSaved = true
     let item: ListItemModel
     let list: [ListItemModel]
     
@@ -17,7 +18,7 @@ struct ItemDetails: View {
             ScrollView {
                 Spacer()
                 
-                // Pictures
+                // MARK: Pictures
                 TabView {
                     ForEach(item.pictures, id: \.self) { pic in
                         AsyncImage(url: URL(string: pic)) { image in
@@ -36,24 +37,24 @@ struct ItemDetails: View {
                 
                 VStack(alignment: .leading) {
                     HStack(alignment: .center) {
-                        // Price
+                        // MARK: Price
                         Price(value: item.price)
                             .padding()
                         
                         Spacer()
                         
-                        // Score
+                        // MARK: Score
                         Score(value: item.guide.score, asGuide: false)
                             .padding()
                     }
                     .padding(.top, -5)
                     
-                    // Tags
+                    // MARK: Tags
                     ItemTags(tags: item.tags)
                         .padding(.top, -12)
                         .padding(.horizontal)
                     
-                    // Description
+                    // MARK: Description
                     Text(item.detail)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
@@ -61,11 +62,11 @@ struct ItemDetails: View {
                         .padding(.horizontal)
                         .frame(height: 60)
                     
-                    // Controls
+                    // MARK: Controls
                     VStack(alignment: .center) {
                         HStack {
                             if isSaved {
-                                // TODO: Share button
+                                // MARK: Share button
                                 Button {
                                     
                                 } label: {
@@ -80,7 +81,7 @@ struct ItemDetails: View {
                                 .tint(.gray700)
                                 .padding(.trailing)
                                 
-                                // TODO: Favourite button
+                                // MARK: Favourite button
                                 Button {
                                     
                                 } label: {
@@ -94,7 +95,7 @@ struct ItemDetails: View {
                                 .tint(.pink)
                                 .padding(.trailing)
                                 
-                                // Guide
+                                // MARK: Guide
                                 GuideButton(item: item, list: list, asSheet: isSaved)
                                     .labelStyle(.iconOnly)
                                     .buttonStyle(.borderedProminent)
@@ -102,7 +103,6 @@ struct ItemDetails: View {
                                     .tint(.orange)
                                 
                             } else {
-                                // Guide
                                 GuideButton(item: item, list: list, asSheet: isSaved)
                                     .labelStyle(.titleAndIcon)
                                     .buttonStyle(.bordered)
@@ -110,7 +110,7 @@ struct ItemDetails: View {
                                     .tint(Color.foreground)
                                     .padding(.trailing)
                                 
-                                // TODO: Add button
+                                // MARK: Add button
                                 Button {
                                     
                                 } label: {
@@ -155,8 +155,8 @@ struct ItemDetails: View {
     let list = ListModel.listDistantPast.items
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         NavigationStack {
-            ItemDetails(isSaved: false, item: list[0], list: list)
-                .environment(ViewModel.preview)
+            ItemDetails(item: list[0], list: list)
         }
     }
+    .environment(ViewModel.preview)
 }

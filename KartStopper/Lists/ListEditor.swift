@@ -6,35 +6,42 @@
 //
 
 import SwiftUI
+import SwiftData
 
+/// A view to navigate and edit items in a shopping list.
 struct ListEditor: View {
     @Environment(ViewModel.self) private var viewModel
-    @State var searchText = K.emptyString
-    @State var newItem = K.emptyString
+    @Query var items: [ListItemModel]
+    
+    let listName: String
     @State var showTags = false
+    @State var newItem = K.emptyString
     @State private var multiSelection = Set<UUID>()
     
-    var list: ListModel
-    
-    var filteredList: [ListItemModel] {
-        if searchText.isEmpty {
-            list.items
-        } else {
-            list.items.filter { item in
-                item.name.localizedCaseInsensitiveContains(searchText)
-            }
-        }
-    }
-    
     var totalAmount: Double {
-        var amt = 0.00
-        list.items.forEach { item in
+        var amt = 0.0
+        items.forEach { item in
             amt += item.price * Double(item.numUnits)
         }
         return amt
     }
     
+    init(
+        searchText: String = K.emptyString,
+        listName: String
+    ) {
+        self.listName = listName
+        let predicate = #Predicate<ListItemModel> { item in
+            (item.lists.contains { $0.name == listName })
+            &&
+            (searchText.isEmpty || item.name.localizedStandardContains(searchText))
+        }
+        _items = Query(filter: predicate)
+    }
+    
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         ZStack {
             // Background
             Rectangle()
@@ -45,9 +52,13 @@ struct ListEditor: View {
                 List(selection: $multiSelection) {
                     // Saved list items
                     Section {
-                        ForEach(filteredList) { item in
+                        ForEach(items) { item in
                             Label {
-                                ListItemRow(item: item, list: filteredList,isSaved: true, asFavourite: false)
+                                VStack {
+                                    ListItemRow(item: item, list: items)
+                                    SKU(count: item.numUnits)
+                                        .padding(.top, -32)
+                                }
                             } icon : {
                                 Image(systemName: K.listsCheckCircleSymbol)
                                     .padding([.leading, .trailing])
@@ -70,18 +81,10 @@ struct ListEditor: View {
                     }
                     .listRowBackground(Color.clear)
                     .listSectionSeparator(.hidden)
-                    
-                    // TODO: Search results
-                    Section {
-                        
-                    }
                 }
                 .listStyle(.plain)
             }
-            .navigationTitle(list.name)
-            .searchable(text: $searchText)
-            .autocorrectionDisabled()
-            .animation(.default, value: searchText)
+            .navigationTitle(listName)
             .toolbar {
                 // Edit Button
                 ToolbarItem(placement: .primaryAction) {
@@ -117,7 +120,7 @@ struct ListEditor: View {
 #Preview {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         NavigationStack {
-            ListEditor(list: ListModel.listDistantPast)
+            ListEditor(listName: ListModel.listDistantPast.name)
         }
     }
     .environment(ViewModel.preview)

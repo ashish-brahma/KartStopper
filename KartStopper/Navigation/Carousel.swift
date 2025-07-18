@@ -7,13 +7,13 @@
 
 import SwiftUI
 
+/// A view to browse through snapshots of items in a shopping list.
 struct Carousel: View {
     @Environment(\.dismiss) var dismiss
     @State var selection = UUID()
     
     let selectedItem: ListItemModel
     let list: [ListItemModel]
-    let isSaved: Bool
     
     var body: some View {
         GeometryReader { reader in
@@ -26,7 +26,7 @@ struct Carousel: View {
                     
                     TabView(selection: $selection) {
                         ForEach(list) { item in
-                            ItemDetails(isSaved: isSaved, item: item, list: list)
+                            ItemDetails(item: item, list: list)
                                 .tag(item.id)
                         }
                     }
@@ -34,7 +34,6 @@ struct Carousel: View {
                     .frame(width: reader.size.width , height: reader.size.height)
                     .toolbarTitleDisplayMode(.inline)
                     .toolbar {
-                        // Dismiss button
                         ToolbarItem(placement: .topBarTrailing) {
                             Button(K.closeButtonTitle, systemImage: K.closeButtonSymbol, action: {dismiss()})
                                 .buttonStyle(.bordered)
@@ -55,6 +54,7 @@ struct Carousel: View {
 #Preview {
     let list = ListModel.listDistantPast.items
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
-        Carousel(selectedItem: list[0], list: list, isSaved: true)
+        Carousel(selectedItem: list[0], list: list)
     }
+    .environment(ViewModel.preview)
 }

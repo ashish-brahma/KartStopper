@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 import Charts
 
 struct TopSpendViz: View {
-    let data : [ListItemModel]
+    @Query private var data: [ListItemModel]
     
     var body: some View {
-        // TODO: Refactor data model
+        // FIXME: Rearrange data.
         Chart(data) { item in
             SectorMark(angle: .value("Frequency", item.numUnits))
-                .foregroundStyle(by: .value("Category", item.tags[1]))
+                .foregroundStyle(by: .value("Category", item.tags[1].name))
         }
         .padding(8)
         .padding(.top, 30)
@@ -35,7 +36,7 @@ struct TopSpendViz: View {
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         ZStack {
             Color.background
-            TopSpendViz(data: ListModel.listDistantPast.items)
+            TopSpendViz()
                 .frame(height: 300)
                 .padding()
         }

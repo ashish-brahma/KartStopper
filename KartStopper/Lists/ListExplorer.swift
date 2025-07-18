@@ -8,24 +8,25 @@
 import SwiftUI
 import SwiftData
 
-/// The explorer view to see all saved lists.
+/// The explorer view to navigate all saved lists.
 struct ListExplorer: View {
     @Environment(ViewModel.self) private var viewModel
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
+    @Query private var lists: [ListModel]
     
     @State private var showTags: Bool = false
     @State private var multiSelection = Set<UUID>()
     
     init(
         searchText: String = K.emptyString,
-        searchDate: Date = .now
+        searchDate: Date? = nil
     ) {
         _lists = Query(filter: ListModel.predicate(
                             searchText: searchText,
                             searchDate: searchDate),
                        sort: \.date,
-                       order: .reverse)
+                       order: .reverse,
+                       animation: .default)
     }
     
     var body: some View {
@@ -39,31 +40,36 @@ struct ListExplorer: View {
             
             VStack {
                 List(selection: $multiSelection) {
-                    Section {
-                        Favourites(searchText: viewModel.searchText)
-                            .searchable(text: $viewModel.searchText)
-                            .autocorrectionDisabled()
-                            .selectionDisabled(true)
+                    if !lists.isEmpty {
+                        Section {
+                            Favourites(searchText: viewModel.searchText)
+                                .selectionDisabled(true)
+                        }
                     }
                     
-                    // Saved lists section
+                    // Saved lists
                     Section {
                         ForEach(lists) { list in
                             NavigationLink {
-                                ListEditor(list: list)
+                                ListEditor(searchText: viewModel.searchText,
+                                           listName: list.name)
+                                .searchable(text: $viewModel.searchText)
+                                .autocorrectionDisabled()
                             } label: {
                                 ListRow(list: list)
                             }
                         }
                     } header: {
-                        Text(K.listsSectionHeader)
-                            .font(.title2)
-                            .foregroundStyle(.accent)
+                        if !lists.isEmpty {
+                            Text(K.listsSectionHeader)
+                                .font(.title2)
+                                .foregroundStyle(.accent)
+                        }
                     }
                 }
                 .listStyle(.plain)
                 .overlay {
-                    if lists.isEmpty {
+                    if viewModel.totalLists == 0 {
                         ContentUnavailableView {
                             Text(K.listsFillerText)
                                 .font(.headline)
@@ -74,6 +80,8 @@ struct ListExplorer: View {
                                 .font(.subheadline)
                                 .foregroundStyle(.tertiary)
                         }
+                    } else if lists.isEmpty {
+                        ContentUnavailableView.search
                     }
                 }
             }

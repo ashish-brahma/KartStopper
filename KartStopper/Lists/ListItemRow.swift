@@ -7,14 +7,14 @@
 
 import SwiftUI
 
+/// A single row in a shopping list representing an item.
 struct ListItemRow: View {
     @Environment(ViewModel.self) private var viewModel
+    
     @State var showInfo = false
     
     let item: ListItemModel
     let list: [ListItemModel]
-    let isSaved: Bool
-    let asFavourite: Bool
     
     var body: some View {
         HStack(alignment: .top) {
@@ -22,7 +22,7 @@ struct ListItemRow: View {
             AsyncImage(url: URL(string:item.thumbnail)) { image in
                 image
                     .resizable()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 90, height: 90)
             } placeholder: {
                 ProgressView()
             }
@@ -38,13 +38,7 @@ struct ListItemRow: View {
                 Text(viewModel.budget.currencySymbol + K.spaceString + String(format: K.decimalFormat, item.price))
                     .font(.subheadline)
                     .foregroundStyle(.gray)
-                    .padding(.bottom, 8)
-                
-                // SKU stepper
-                if !asFavourite {
-                    SKU(count: item.numUnits)
-                        .padding(.horizontal, 6)
-                }
+                    .padding(.bottom, 6)
             }
             .frame(height: 80, alignment: .topLeading)
             .padding(.horizontal, 8)
@@ -52,7 +46,7 @@ struct ListItemRow: View {
             Spacer()
             
             // Favourite status
-            if asFavourite {
+            if item.isFavourited {
                 Image(systemName: K.listsFavouritesSymbol)
                     .imageScale(.large)
                     .padding(.vertical, 5)
@@ -68,10 +62,10 @@ struct ListItemRow: View {
                     .padding(.vertical, 5)
             }
         }
-        .frame(height: 110, alignment: .topLeading)
+        .frame(height: 90, alignment: .topLeading)
         .foregroundStyle(.accent)
         .sheet(isPresented: $showInfo) {
-            Carousel(selectedItem: item, list: list, isSaved: isSaved)
+            Carousel(selectedItem: item, list: list)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }
@@ -82,8 +76,8 @@ struct ListItemRow: View {
     let list = ListModel.listDistantPast.items
     ModelContainerPreview(PreviewSampleData.inMemoryContainer) {
         NavigationStack {
-            ListItemRow(item: list[0], list: list, isSaved: true, asFavourite: true)
-            ListItemRow(item: list[1], list: list, isSaved: true, asFavourite: false)
+            ListItemRow(item: list[0], list: list)
+            ListItemRow(item: list[1], list: list)
         }
     }
     .environment(ViewModel.preview)

@@ -11,8 +11,10 @@ struct SKU: View {
     @State var count: Int
     
     var body: some View {
-        HStack {
-            Stepper {
+        Stepper {
+            HStack {
+                Spacer()
+                
                 Text("\(count)")
                     .foregroundStyle(Color.foreground)
                     .frame(width: 60)
@@ -26,14 +28,14 @@ struct SKU: View {
                             .stroke()
                             .foregroundStyle(Color.foreground)
                     }
-            } onIncrement: {
-                count += 1
-            } onDecrement: {
-                count -= 1
-                if count < 1 { count = 1 }
+                    .padding(20)
             }
+        } onIncrement: {
+            count += 1
+        } onDecrement: {
+            count -= 1
+            if count < 1 { count = 1 }
         }
-        .padding(.vertical, 3)
     }
 }
 

@@ -17,11 +17,19 @@ struct Favourites: View {
     @State private var multiSelection = Set<UUID>()
     
     init(searchText: String = K.emptyString) {
-        let predicate = ListItemModel.predicate(searchText: searchText)
-        _items = Query(filter: predicate, sort: \.price, order: .reverse)
+        _items = Query(
+            filter: #Predicate<ListItemModel> { item in
+                (item.isFavourited)
+                &&
+                (searchText.isEmpty || item.name.localizedStandardContains(searchText))
+            },
+            sort: \.price,
+            order: .reverse)
     }
     
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         NavigationLink {
             ZStack {
                 // Background
@@ -30,14 +38,15 @@ struct Favourites: View {
                     .ignoresSafeArea()
                 
                 // Favourite List
-                // FIXME: Repeating items from different lists.
                 VStack {
                     List(items, selection: $multiSelection) {
-                        ListItemRow(item: $0, list: items, isSaved: true, asFavourite: true)
+                        ListItemRow(item: $0, list: items)
                     }
                     .listStyle(.plain)
+                    .searchable(text: $viewModel.searchText)
+                    .autocorrectionDisabled()
                     .overlay {
-                        if items.isEmpty {
+                        if viewModel.totalFavourites == 0 {
                             ContentUnavailableView {
                                 Text(K.listsFavouritesFillerText)
                                     .font(.headline)
@@ -48,6 +57,8 @@ struct Favourites: View {
                                     .font(.subheadline)
                                     .foregroundStyle(.tertiary)
                             }
+                        } else if items.isEmpty {
+                            ContentUnavailableView.search
                         }
                     }
                 }

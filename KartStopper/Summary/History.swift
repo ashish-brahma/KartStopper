@@ -87,7 +87,7 @@ struct History: View {
                             x: .value("Date",list.date.formatted(dateFormat)),
                             y: .value("Cost", list.items[0].price)
                         )
-                        .foregroundStyle(by: .value("Category", list.items[0].tags[1]))
+                        .foregroundStyle(by: .value("Category", list.items[0].tags[1].name))
                     }
                     .padding()
                 }

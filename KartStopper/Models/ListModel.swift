@@ -24,11 +24,17 @@ final class ListModel {
     var date: Date
     
     /// Collection of items saved in the list.
-    @Relationship(deleteRule: .cascade) var items: [ListItemModel]
+    @Relationship(deleteRule: .cascade)
+    var items: [ListItemModel]
     
     /// Creates a new list from the specified values.
-    init(id: UUID = UUID(), name: String, detail: String, date: Date, items: [ListItemModel]) {
-        self.id = id
+    init(
+        name: String,
+        detail: String,
+        date: Date,
+        items: [ListItemModel] = []
+    ) {
+        self.id = UUID()
         self.name = name
         self.detail = detail
         self.date = date
@@ -40,17 +46,26 @@ extension ListModel {
     /// A filter that checks for a date and text in the list's name.
     static func predicate(
         searchText: String,
-        searchDate: Date
+        searchDate: Date?
     ) -> Predicate<ListModel> {
-        let calendar = Calendar.autoupdatingCurrent
-        let start = calendar.startOfDay(for: searchDate)
-        let end = calendar.date(byAdding: .init(day: 1), to: start) ?? start
-        
-        return #Predicate<ListModel> { list in
+        var predicate = #Predicate<ListModel> { list in
             (searchText.isEmpty || list.name.localizedStandardContains(searchText))
-            &&
-            (list.date > start && list.date < end)
         }
+        
+        let calendar = Calendar.autoupdatingCurrent
+        
+        if let date = searchDate {
+            let start = calendar.startOfDay(for: date)
+            let end = calendar.date(byAdding: .init(day: 1), to: start) ?? start
+            
+            predicate = #Predicate<ListModel> { list in
+                (searchText.isEmpty || list.name.localizedStandardContains(searchText))
+                &&
+                (list.date > start && list.date < end)
+            }
+        }
+        
+        return predicate
     }
     
     /// Report the range of dates over which the lists were created.
@@ -65,11 +80,6 @@ extension ListModel {
     /// Reports the total number of lists created.
     static func totalLists(modelContext: ModelContext) -> Int {
         (try? modelContext.fetchCount(FetchDescriptor<ListModel>())) ?? 0
-    }
-    
-    /// Reports the total number of saved tags.
-    static func totalTags(modelContext: ModelContext) -> Int {
-        (try? modelContext.fetchCount(FetchDescriptor<TagModel>())) ?? 0
     }
 }
 

@@ -45,7 +45,7 @@ struct RecentItemRow: View {
             }
         }
         .sheet(isPresented: $showInfo) {
-            Carousel(selectedItem: item, list: list.items, isSaved: true)
+            Carousel(selectedItem: item, list: list.items)
                 .presentationDetents([.large])
                 .presentationDragIndicator(.visible)
         }

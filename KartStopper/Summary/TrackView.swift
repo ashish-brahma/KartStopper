@@ -9,18 +9,6 @@ import SwiftData
 
 /// A dashboard view showing summary statistics, charts and recent history.
 struct TrackView: View {
-    @Environment(ViewModel.self) private var viewModel
-    
-    @Query(sort: \ListModel.date, animation: .default) private var lists: [ListModel]
-
-    var data: [ListItemModel] {
-        var listItems = [ListItemModel]()
-        for li in lists {
-            listItems.append(contentsOf: li.items)
-        }
-        return listItems
-    }
-    
     var body: some View {
         NavigationStack {
             GeometryReader { reader in
@@ -34,16 +22,13 @@ struct TrackView: View {
                     // Dashboard
                     ScrollView {
                         VStack {
-                            // Spend by category chart
-                            TopSpendViz(data: data)
+                            TopSpendViz()
                                 .frame(height: reader.size.height/2.2)
                             
-                            // Today's total expense card
-                            TodayCard(list: lists.first ?? ListModel.listNow)
+                            TodayCard()
                                 .frame(height: reader.size.height/2.2)
                                 .padding(.top, 6)
                             
-                            // Spend by week and month
                             CalendarCards()
                                 .frame(height: reader.size.height/3.8, alignment: .top)
                                 .padding(.top, -2)

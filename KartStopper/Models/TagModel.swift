@@ -18,7 +18,14 @@ import SwiftData
     /// A value used to store the tag color.
     var colorData: Data?
     
-    init(name: String, color: UIColor) {
+    /// A collection of items containing the tag.
+    @Relationship var items: [ListItemModel]? = nil
+    
+    init(
+        name: String,
+        color: UIColor,
+        items: [ListItemModel]? = []
+    ) {
         self.name = name
         
         do {
@@ -26,6 +33,8 @@ import SwiftData
         } catch {
             print(error)
         }
+        
+        self.items = items
     }
 }
 
@@ -42,5 +51,12 @@ extension TagModel {
         }
         
         return Color.clear
+    }
+}
+
+extension TagModel {
+    /// Reports the total number of saved tags.
+    static func totalTags(modelContext: ModelContext) -> Int {
+        (try? modelContext.fetchCount(FetchDescriptor<TagModel>())) ?? 0
     }
 }

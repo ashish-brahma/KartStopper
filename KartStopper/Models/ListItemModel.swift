@@ -29,53 +29,67 @@ final class ListItemModel {
     /// Price of the item in the currency chosen.
     var price: Double
     
-    /// A collection of values used to describe the item.
-    var tags: [String]
-    
-    /// A shopping guide providing stats, critical info and review.
-    @Relationship var guide: Guide
-    
     /// A boolean value indicating if the item has been added to favourites.
     var isFavourited: Bool
     
     /// The number of units of the SKU that need to be purchased.
     var numUnits: Int
     
+    /// A list containing the item.
+    @Relationship(inverse: \ListModel.items)
+    var lists: [ListModel]
+    
+    /// A collection of values used to describe the item.
+    @Relationship(inverse: \TagModel.items)
+    var tags: [TagModel]
+    
+    /// A shopping guide providing stats, critical info and review.
+    @Relationship(deleteRule: .cascade)
+    var guide: Guide
+    
     /// Creates a new list item from the specified values.
-    init(id: UUID = UUID(),
-         name: String,
+    init(name: String,
          thumbnail: String,
          pictures: [String],
          detail: String,
          price: Double,
-         tags: [String],
-         guide: Guide,
          isFavourited: Bool = false,
-         numUnits: Int = 1) {
-        self.id = id
+         numUnits: Int = 1,
+         lists: [ListModel] = [],
+         tags: [String] = [],
+         guide: Guide
+    ) {
+        self.id = UUID()
         self.name = name
         self.thumbnail = thumbnail
         self.pictures = pictures
         self.detail = detail
         self.price = price
-        self.tags = tags
-        self.guide = guide
         self.isFavourited = isFavourited
         self.numUnits = numUnits
+        
+        self.lists = lists
+        
+        var storedTags = [TagModel]()
+        for name in tags {
+            let tag = TagModel(name: name, color: UIColor.colors.randomElement()!)
+            storedTags.append(tag)
+        }
+        self.tags = storedTags
+        
+        self.guide = guide
     }
-    
+}
+
+// A convenience to access color presets.
+extension UIColor {
+    static let colors: [UIColor] = [
+        .black, .darkGray, .lightGray, .white, .gray, .red, .green,
+        .blue, .cyan, .yellow, .magenta, .orange, .purple, .brown
+    ]
 }
 
 extension ListItemModel {
-    /// A filter that checks for a text in the favourited items's name.
-    static func predicate(searchText: String) -> Predicate<ListItemModel> {
-        return #Predicate<ListItemModel> { item in
-            item.isFavourited
-            &&
-            (searchText.isEmpty || item.name.localizedStandardContains(searchText))
-        }
-    }
-    
     /// Reports the total number of items favourited in all lists.
     static func totalFavourites(modelContext: ModelContext) -> Int {
         let descriptor = FetchDescriptor<ListItemModel>(

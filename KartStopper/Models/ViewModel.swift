@@ -19,11 +19,11 @@ class ViewModel {
     /// Sort order to be used to sort lists.
     var sortOrder: SortOrder = .reverse
     
-    /// An item name to use filtering lists.
+    /// A list or an item name to use filtering lists.
     var searchText: String = K.emptyString
     
     /// A date to use when filtering lists.
-    var searchDate: Date = .now
+    var searchDate: Date? = nil
     
     /// The range of dates that the date picker offers for filtering lists.
     var searchDateRange: ClosedRange<Date> = .distantPast ... .distantFuture
@@ -41,9 +41,8 @@ class ViewModel {
     /// the current set of stored lists.
     func update(modelContext: ModelContext) {
         searchDateRange = ListModel.dateRange(modelContext: modelContext)
-        searchDate = min(searchDateRange.upperBound, .now)
         totalLists = ListModel.totalLists(modelContext: modelContext)
-        totalTags = ListModel.totalTags(modelContext: modelContext)
+        totalTags = TagModel.totalTags(modelContext: modelContext)
         totalFavourites = ListItemModel.totalFavourites(modelContext: modelContext)
     }
 }

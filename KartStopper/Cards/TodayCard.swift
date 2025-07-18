@@ -6,23 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TodayCard: View {
     @Environment(ViewModel.self) private var viewModel
-    let list: ListModel
+    @Query(
+        filter: ListModel.predicate(
+                    searchText: K.emptyString,
+                    searchDate: .now)
+    ) private var lists: [ListModel]
     
     var body: some View {
         DisclosureGroup(K.trackStatLabelDisclosureTitle) {
             List {
                 // Recent items
                 Section(K.trackRecentsNavigationTitle) {
-                    if !list.items.isEmpty {
-                        ForEach(0..<2) { n in
-                            if n < list.items.count {
-                                RecentItemRow(list: list, item: list.items[n])
-                                    .frame(height: 36)
-                            }
-                        }
+                    ForEach(lists) { list in
+                        RecentItemRow(list: list, item: list.items[0])
+                            .frame(height: 36)
                     }
                 }
                 
@@ -45,7 +46,7 @@ struct TodayCard: View {
         NavigationStack {
             ZStack {
                 Color.background
-                TodayCard(list: ListModel.listNow)
+                TodayCard()
                     .frame(height: 240)
                     .padding()
             }
