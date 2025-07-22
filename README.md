@@ -1,8 +1,8 @@
 # KartStopper
   
   ![Version](https://img.shields.io/badge/minimum_iOS_version-15.0-maroon)
-  &nbsp; ![Last Commit](https://img.shields.io/github/last-commit/ashish-brahma/KartStopper) 
   &nbsp; ![Total Commits](https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper)
+  &nbsp; ![Last Commit](https://img.shields.io/github/last-commit/ashish-brahma/KartStopper) 
   &nbsp; [![License Badge](https://img.shields.io/github/license/ashish-brahma/KartStopper)](https://github.com/ashish-brahma/KartStopper#BSD-3-Clause-1-ov-file)
   &nbsp; [![Social Badge](https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da)](https://www.linkedin.com/company/kartstopper/)
 
