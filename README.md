@@ -18,7 +18,7 @@ KartStopper is a one-stop solution for buyers looking to make informed choices b
 
 - ✅ **Status card** showing monthly spend
 - ⏳ Add items to list through **online search**
-- 🚧 Get **recommedations** and detailed product reviews
+- 🚧 Product reviews, recommedations and **go/no-go verdict**
 - 🚧 **Dashboard** summarizing spend history
 - ✅ Choose **difficulty mode** for monitoring budget
 - 🚧 **Set currency** of choice
