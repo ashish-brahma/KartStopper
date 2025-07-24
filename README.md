@@ -6,9 +6,28 @@
 
 # KartStopper
 
-KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.
+KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.<br/>
 
 <div align="center">
 <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="240px" height="240px"
      alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
 </div>
+
+## Features
+
+- ✅ **Status card** showing monthly spend
+- ⏳ Add items to list through **online search**
+- 🚧 Get **recommedations** and detailed product reviews
+- 🚧 **Dashboard** summarizing spend history
+- ✅ Choose **difficulty mode** for monitoring budget
+- 🚧 **Set currency** of choice
+<br/><br/>
+
+## Contribution
+
+Contributions are welcome. Please connect with [@ashish-brahma](https://github.com/ashish-brahma) to discuss further.
+<br/><br/>
+
+## License
+
+Please see [License](LICENSE) page for details.
