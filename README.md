@@ -6,7 +6,7 @@
 
 # KartStopper
 
-KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.<br/>
+KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.<br/><br/>
 
 <div align="center">
 <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="240px" height="240px"
