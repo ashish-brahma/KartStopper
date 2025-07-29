@@ -18,7 +18,7 @@
   <br/><br/> <!--  Line break -->
 </div> <!--  End of div -->
 
-## Features
+#### Features
 
 - ✅ **Status card** showing monthly spend
 - ⏳ Add items to list through **online search**
@@ -28,11 +28,11 @@
 - 🚧 **Set currency** of choice
 <br/><br/>
 
-## Contribution
+#### Contributing
 
 Contributions are welcome. Please connect with [@ashish-brahma](https://github.com/ashish-brahma) to discuss further.
 <br/><br/>
 
-## License
+#### License
 
 Please see [License](https://github.com/ashish-brahma/KartStopper/tree/main?tab=BSD-3-Clause-1-ov-file) page for details.
