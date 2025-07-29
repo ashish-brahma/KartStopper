@@ -3,6 +3,7 @@
   <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="240px" height="240px"
        alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
   <br/><br/>
+    
     ![Minimum Deployment](https://img.shields.io/badge/minimum_deployment-18.0-orange)
     &nbsp; ![Total Commits](https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper)
     &nbsp; ![Last Commit](https://img.shields.io/github/last-commit/ashish-brahma/KartStopper) 
