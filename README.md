@@ -10,7 +10,7 @@
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ashish-brahma/KartStopper"> &nbsp; &nbsp;
   
   <a alt="License link" href="LICENSE">
-    <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper"> &nbsp;
+    <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper">
   </a> 
   <a alt="Social link" href="https://www.linkedin.com/company/kartstopper/">
     <img alt="Social Badge" src="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da">
