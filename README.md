@@ -12,11 +12,11 @@
   <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper"> &nbsp; 
   <img alt="Social Badge" src="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da">
   <br/><br/> <!--  Line break -->
+  
+  <h1> KartStopper </h1>
+  <i> KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people. </i>
+  <br/><br/> <!--  Line break -->
 </div> <!--  End of div -->
-
-# KartStopper
-
-KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.<br/><br/>
 
 ## Features
 
