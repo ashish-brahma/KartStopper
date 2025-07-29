@@ -1,5 +1,5 @@
 
-<div align="center" style="a { color: black; text-decoration: none; }" >
+<div align="center">
   <!--  Brand logo -->
   <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="64px" height="64px"
        alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
@@ -9,7 +9,7 @@
   <img alt="Total Commits" src="https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper"> &nbsp;
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ashish-brahma/KartStopper"> &nbsp; &nbsp;
   
-  <a alt="License link" href="https://github.com/ashish-brahma/KartStopper/tree/main?tab=BSD-3-Clause-1-ov-file">
+  <a alt="License link" href="LICENSE">
     <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper">
   </a> 
   &nbsp;
@@ -40,4 +40,4 @@ Contributions are welcome. Please connect with [@ashish-brahma](https://github.c
 
 ## License
 
-Please see [License](LICENSE) page for details.
+Please see [License](https://github.com/ashish-brahma/KartStopper/tree/main?tab=BSD-3-Clause-1-ov-file) page for details.
