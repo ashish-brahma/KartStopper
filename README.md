@@ -1,17 +1,18 @@
 
-<div align="center">
+<div align="center" style="display: flex; margin: auto;">
   <!--  Brand logo -->
   <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="64px" height="64px"
        alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
-
+  <br/><br/> <!--  Line break -->
+  
   <!--  Badges -->
   <img alt="Minimum Deployment" src="https://img.shields.io/badge/minimum_deployment-18.0-orange"> &nbsp;  
   <img alt="Total Commits" src="https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper"> &nbsp;
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ashish-brahma/KartStopper"> &nbsp;
   <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper"> &nbsp;
   <img alt="Social Badge" src="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da">
+  <br/><br/> <!--  Line break -->
 </div> <!--  End of div -->
-<br/><br/> <!--  Line break -->
 
 # KartStopper
 
