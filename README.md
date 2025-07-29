@@ -10,7 +10,9 @@
   <img alt="Total Commits" src="https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper"> &nbsp;
   <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ashish-brahma/KartStopper"> <br/>
   <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper"> &nbsp; 
-  <a alt="Social Badge" href="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da"></a>
+  <a alt="Social link" href="https://www.linkedin.com/in/brahma-ashish/">
+    <img alt="Social Badge" src="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da">
+  </a>
   <br/><br/> <!--  Line break -->
 
   <i> <b>KartStopper</b> is a one-stop solution for buyers looking to make informed choices <br/>
