@@ -1,4 +1,8 @@
-
+<div align="center">
+  <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="240px" height="240px"
+       alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
+</div>
+<br/><br/>
 
   ![Minimum Deployment](https://img.shields.io/badge/minimum_deployment-18.0-orange)
   &nbsp; ![Total Commits](https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper)
@@ -9,12 +13,6 @@
 # KartStopper
 
 KartStopper is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people.<br/><br/>
-
-<div align="center">
-  <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="240px" height="240px"
-       alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
-  <br/><br/>
-</div>
 
 ## Features
 
