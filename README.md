@@ -1,5 +1,5 @@
 
-<div align="center" style="a { color: inherit; text-decoration: inherit; }" >
+<div align="center" style="a { color: black; text-decoration: none; }" >
   <!--  Brand logo -->
   <img src="KartStopper/Assets.xcassets/AppIcon.appiconset/KS_light.png" width="64px" height="64px"
        alt="App icon image with an orange background containing a blood red pause button surrounded by a cart symbol, initials K and S.">
