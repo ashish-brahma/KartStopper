@@ -5,11 +5,15 @@
 <br/><br/>
 
 <div align="center">
-  ![Minimum Deployment](https://img.shields.io/badge/minimum_deployment-18.0-orange)
-  &nbsp; ![Total Commits](https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper)
-  &nbsp; ![Last Commit](https://img.shields.io/github/last-commit/ashish-brahma/KartStopper) 
-  &nbsp; [![License Badge](https://img.shields.io/github/license/ashish-brahma/KartStopper)](https://github.com/ashish-brahma/KartStopper/tree/main?tab=BSD-3-Clause-1-ov-file)
-  &nbsp; [![Social Badge](https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da)](https://www.linkedin.com/company/kartstopper/)
+  <img alt="Minimum Deployment" src="https://img.shields.io/badge/minimum_deployment-18.0-orange"> &nbsp; 
+  <img alt="Total Commits" src="https://img.shields.io/github/commit-activity/t/ashish-brahma/KartStopper"> &nbsp; 
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/ashish-brahma/KartStopper"> &nbsp; 
+  <a alt="License link" href="https://github.com/ashish-brahma/KartStopper/tree/main?tab=BSD-3-Clause-1-ov-file">
+    <img alt="License Badge" src="https://img.shields.io/github/license/ashish-brahma/KartStopper">
+  </a> &nbsp; 
+  <a alt="Social link" href="https://www.linkedin.com/company/kartstopper/">
+    <img alt="Social Badge" src="https://img.shields.io/badge/LinkedIn-Follow_us-blue?style=social&labelColor=black&color=%230969da">
+  </a> 
 </div>
 <br/><br/>
 
