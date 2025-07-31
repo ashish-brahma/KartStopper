@@ -24,7 +24,7 @@
 
 - ✅ **Status card** showing monthly spend
 - ⏳ Add items to list through **online search**
-- 🚧 Product reviews, recommedations and **go/no-go verdict**
+- 🚧 Product reviews, recommendations and **go/no-go verdict**
 - 🚧 **Dashboard** summarizing spend history
 - ✅ Choose **difficulty mode** for monitoring budget
 - 🚧 **Set currency** of choice
@@ -32,7 +32,7 @@
 
 ### Contributing
 
-Contributions are welcome. Please connect with [@ashish-brahma](https://github.com/ashish-brahma) to discuss further.
+Contributions are welcome. Please connect with [@ashish-brahma](https://github.com/ashish-brahma) to discuss your ideas and inputs.
 <br/><br/>
 
 ### License
