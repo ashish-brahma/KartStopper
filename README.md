@@ -15,8 +15,7 @@
   </a>
   <br/><br/> <!--  Line break -->
 
-  <i> <b>KartStopper</b> is a one-stop solution for buyers looking to make informed choices <br/>
-      before shopping their daily needs. It improves spending habits of people. </i>
+  <i> <b>KartStopper</b> is a one-stop solution for buyers looking to make informed choices before shopping their daily needs. It improves spending habits of people. </i>
   <br/><br/> <!--  Line break -->
 </div> <!--  End of div -->
 
